@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .footer{
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: mediumseagreen;
+            color: #333333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="footer">
+    900 Dandenong Rd
+    <br>Caulfield Eest VIC 3145
+    <br>(03) 9903 2000
+
+    <br><br>@2020 Sr.Charge
+</div>
+</body>
+</html>
