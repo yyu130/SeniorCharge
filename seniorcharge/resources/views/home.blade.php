@@ -29,8 +29,8 @@
 
     #background {
         position: relative;
-        /*background-image: url('{{asset('image/home.jpg')}}');*/
-        /*background-size: cover;*/
+        background-image: url('{{asset('image/newhome.jpg')}}');
+        background-size: contain;
         margin: 100px;
         background-position: center center;
         background-repeat: no-repeat;

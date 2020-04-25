@@ -150,7 +150,7 @@
     <tbody>
     @foreach($details as $station)
     <tr>
-        <td width="300" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/monash.jpg')}}" width="300" height="200"></td>
+        <td width="300" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/book.png')}}" width="300" height="200"></td>
         <td>
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
             <ul class = "address"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}}</ul>

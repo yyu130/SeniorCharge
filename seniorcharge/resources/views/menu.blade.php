@@ -157,7 +157,7 @@
         </a>
         <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;max-width:200px">
             {{ csrf_field() }}
-            <div class="input-group">
+            <div class="input-group" style="max-width: 1000px">
                 <input type="text" class="form-control" name="q"
                        placeholder="Search..." style="border-radius: 8px">
                 <span>

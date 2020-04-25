@@ -103,7 +103,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-5 col-md-offset-1" style="max-width: 400px">
 <!--            <h2 id="title">{{$station->station_name}}</h2>-->
 <!--            <h5 style="font-size: 16px"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}} |-->
 <!--                @if(\Carbon\Carbon::now()->format('H:i:s') >= $station->mon_open & \Carbon\Carbon::now()->format('H:i:s') <= $station->mon_close)-->
@@ -118,7 +118,7 @@
             <br><br><br>
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin-right: auto;margin-left: auto;width: 50%;">
-                    <img src="{{asset('image/monash.jpg')}}" width="200" height="200">
+                    <img src="{{asset('image/book.png')}}" width="200" height="200">
                 </div>
             </div>
             <br>
@@ -165,6 +165,7 @@
     </div>
     </div>
 </div>
+
 <div class="footer">
     900 Dandenong Rd
     <br>Caulfield Eest VIC 3145
