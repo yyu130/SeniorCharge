@@ -41,7 +41,7 @@
     }
 
     .footer{
-        position: fixed;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;
@@ -81,8 +81,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
-        <h2 id="title" style="width: 1000px">{{$station->station_name}}</h2>
-        <h5 style="font-size: 15px; width: 1000px"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}} |
+        <h2 id="title">{{$station->station_name}}</h2>
+        <h5 style="font-size: 15px"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}} |
             @if(\Carbon\Carbon::now()->format('H:i:s') >= $station->mon_open & \Carbon\Carbon::now()->format('H:i:s') <= $station->mon_close)
             <td><img src="{{asset('image/clock.png')}}" width="15" height="15"> <b id="open">Open Now {{$station->mon_open}} - {{$station->mon_close}} |</b></td>
             @else
@@ -165,6 +165,13 @@
     </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="footer">
     900 Dandenong Rd

@@ -140,7 +140,12 @@
 <div class="container">
     @if(isset($details))
     <p style="display: none"> The search results for <b id="q"> {{ $query }} </b> are :</p>
-    <table class="table table-striped">
+    <div id="map">
+
+    </div>
+
+    <table class="table table-striped" >
+        <table class="table table-responsive">
     <!--        <thead>-->
     <!--        <tr>-->
     <!--            <th>Station Name</th>-->
@@ -150,8 +155,8 @@
     <tbody>
     @foreach($details as $station)
     <tr>
-        <td width="300" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/book.png')}}" width="300" height="200"></td>
-        <td>
+        <td class="table-responsive-md" width="300" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/book.png')}}" width="300" height="200"></td>
+        <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
             <ul class = "address"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}}</ul>
             <ul class="longitude" style="display: none">{{$station->longitude}}</ul>
@@ -179,10 +184,10 @@
     </tr>
     @endforeach
     </tbody>
-        <div id="map">
-
-        </div>
-</table>
+<!--        <div id="map">-->
+<!---->
+<!--        </div>-->
+</table></table>
 </div>
 <script src="{{asset('js/jquery-3.5.0.js')}}"></script>
 <script
