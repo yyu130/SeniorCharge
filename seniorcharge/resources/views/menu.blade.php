@@ -79,7 +79,7 @@
             padding: 7px;
             background: #588D6A;
             color: white;
-            font-size: 17px;
+            font-size: 15px;
             border: 1px solid grey;
             border-left: none;
             cursor: pointer;
@@ -162,7 +162,7 @@
                 <input type="text" class="form-control" name="q"
                        placeholder="Search..." style="border-radius: 8px;width: 300px">
                 <span>
-					<button type="submit" id="submitBtn" style="background-color: #588D6A" class="fa fa-search">
+					<button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="fa fa-search">
 						<span id="search"></span>
 					</button>
                 </span>
