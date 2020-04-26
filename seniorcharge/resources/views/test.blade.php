@@ -172,11 +172,17 @@
     @foreach($details as $station)
     <tr>
         @if ($station->establishment_type == "Library")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/book.png')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="200" height="150"></td>
         @elseif ($station->establishment_type == "Housing Support Services")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/house.png')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/supporting.jpg')}}" width="200" height="150"></td>
+        @elseif ($station->establishment_type == "Train Station")
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/station.jpg')}}" width="200" height="150"></td>
+        @elseif ($station->establishment_type == "Community Centre")
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/center.jpg')}}" width="200" height="150"></td>
+        @elseif ($station->establishment_type == "Community Space")
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/space.jpg')}}" width="200" height="150"></td>
         @else
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.png')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="200" height="150"></td>
         @endif
         <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>

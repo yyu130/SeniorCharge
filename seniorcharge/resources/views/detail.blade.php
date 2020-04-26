@@ -121,11 +121,17 @@
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin-right: auto;margin-left: auto;width: 50%;">
                     @if ($station->establishment_type == "Library")
-                    <img src="{{asset('image/book.png')}}" width="200" height="200">
+                    <img src="{{asset('image/library.jpg')}}" width="200" height="200">
                     @elseif ($station->establishment_type == "Housing Support Services")
-                    <img src="{{asset('image/house.png')}}" width="200" height="200">
+                    <img src="{{asset('image/supporting.jpg')}}" width="200" height="200">
+                    @elseif ($station->establishment_type == "Train Station")
+                    <img src="{{asset('image/station.jpg')}}" width="200" height="200">
+                    @elseif ($station->establishment_type == "Community Centre")
+                    <img src="{{asset('image/center.jpg')}}" width="200" height="200">
+                    @elseif ($station->establishment_type == "Community Space")
+                    <img src="{{asset('image/space.jpg')}}" width="200" height="200">
                     @else
-                    <img src="{{asset('image/other.png')}}" width="200" height="200">
+                    <img src="{{asset('image/other.jpg')}}" width="200" height="200">
                     @endif
                 </div>
             </div>
