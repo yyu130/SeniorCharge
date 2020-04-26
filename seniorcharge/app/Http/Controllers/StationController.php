@@ -216,7 +216,6 @@ class StationController extends Controller
     }
 
     public function searchFor(Request $request){
-
         $q = $request->get('q');
         $sort = $request->get('sort');
         $check = $request->has('openAllDay');
@@ -274,7 +273,7 @@ class StationController extends Controller
                     $station = Station::where ([
                         ['postcode','LIKE','%'.$q.'%'],['if_24h','=','1']])
                         ->orWhere([['suburb','LIKE',$q],['if_24h','=','1']])
-                        // ->orderBy('star_rating','DESC')
+                        ->orderBy('station_name','ASC')
                         ->get();
 
                     if(count($station) > 0)
@@ -283,7 +282,7 @@ class StationController extends Controller
                 }else{
                     $station = Station::where ('postcode','LIKE',$q)
                         ->orWhere('suburb','LIKE','%'.$q.'%')
-                        // ->orderBy('star_rating','DESC')
+                        ->orderBy('station_name','ASC')
                         ->get();
 
                     if(count($station) > 0)

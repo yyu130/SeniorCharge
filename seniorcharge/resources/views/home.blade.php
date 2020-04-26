@@ -1,4 +1,5 @@
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
     #search{
@@ -36,8 +37,8 @@
 
     #background {
         position: relative;
-        background-image: url('{{asset('image/newhome.jpg')}}');
-        background-size: contain;
+        background-image: url('{{asset('image/finalhome.jpg')}}');
+        background-size: cover;
         margin: 100px;
         background-position: center center;
         background-repeat: no-repeat;
@@ -49,7 +50,7 @@
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: mediumseagreen;
+        /*background-color: white;*/
         color: #333333;
         text-align: center;
     }
@@ -71,22 +72,27 @@
 <!--        </div>-->
 <!--    </form>-->
 <!--</div>-->
-<div class="collapse navbar-collapse">
-    <a href="/" class="navbar-brand" style="position: fixed">
+<head>
+<div class="container">
+    <div class="collapse navbar-collapse" style="margin-top: auto">
+    <a href="/" class="navbar-brand" >
         <img src="{{asset('image/green.png')}}" alt="" class="d-inline-block align-top" height="100" width="300">
     </a>
+    </div>
 </div>
+</head>
 
 <body id="background">
 <!--<div class="jumbotron background mb-0 jumbotron-fluid" style="height: 500px; padding-top: 150px;">-->
-<div class="jumbotron mb-0 jumbotron-fluid" style="height: 500px; padding-top: 150px;">
+<div class="jumbotron mb-0 jumbotron-fluid">
     <div class="container">
         <div class="row align-items-center">
             <div class="col">
 
                 <div class="col-md-4 text-light">
                     <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Arial">Free Charging?</h1>
-                    <p style="width: 300px; color: #3D4738; font-size: 20px; font-family: Arial;">Enter your postcode or suburb to find your nearest free charging place</p>
+                    <p style="color: white; font-family: Arial;font-size: 34px; font-weight: bold">Your Postcode/Suburb</p>
+                    <p style="width: 300px; color: white; font-size: 20px; font-family: Arial;">Enter your postcode or suburb to find your nearest free charging place</p>
                 </div>
 
                 <div class="col-md-6">
@@ -104,26 +110,21 @@
                                 </div>
                     </form>
                 </div>
-
-
             </div>
-
         </div>
     </div>
-
 </div>
 </body>
+
 <footer>
     <div class="footer">
-        900 Dandenong Rd
-        <br>Caulfield Eest VIC 3145
-        <br>(03) 9903 2000
-
-        <br><br>@2020 Sr.Charge
+@ 2020 Sr.Charge. All Rights Reserved * Terms and Conditions * Privacy Policy
     </div>
 </footer>
 
 </html>
+
+
 
 
 

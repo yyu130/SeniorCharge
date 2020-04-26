@@ -171,7 +171,7 @@
         </form>
     </div>
 <div class="topnav" id="myTopnav">
-    <a href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
+    <a  style="font-weight: bold; font-size: 30px; font-family: Arial" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
 <!--    <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
 <!--    <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
 <!--        <i class="fa fa-bars"></i>-->

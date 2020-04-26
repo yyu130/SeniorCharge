@@ -1,6 +1,8 @@
 @extends('layout')
 @section('title','Find Stations')
 @section('mycontent')
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <style>
@@ -119,11 +121,11 @@
             <input type="text" class="form-control" name="q"
                    placeholder="Search postcode/suburb here..." value="{{ request()->input('q')}}" style="border-radius: 8px; display: none">
             <span>
-            <h3><b style="font-size: 22px; font-family: Arial">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
+            <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
             </span>
             <span>
             <select id="dropdown" class="form-control" name="sort" value="" style="border-radius: 8px">
-                <option value="no" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "no" ? "selected" : "" ?>>--Please Select--</option>
+<!--                <option value="no" --><?php //echo isset($_GET["sort"]) && $_GET["sort"] == "no" ? "selected" : "" ?><!-->--Please Select--</option>-->
                 <option value="name" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "name" ? "selected" : "" ?>>Name</option>
                 <option value="rating" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "rating" ? "selected" : "" ?>>Rating</option>
             </select>
@@ -132,22 +134,21 @@
 <!--            &nbsp;&nbsp;&nbsp;-->
 <!--            &nbsp;&nbsp;&nbsp;-->
 <!--            &nbsp;&nbsp;&nbsp;-->
-        </div>
-        <br>
-        <div>
-        <b>
+            &nbsp;&nbsp;&nbsp;
+            <b>
             <span>
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
-            <label style="font-size: 22px; font-family: Arial">24 Hours Only</label>
+            <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
             </span>
-        </b>
-        </div>
-        <br>
-        <span>
-            <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A">
-                <span id="search">SEARCH</span>
+            </b>
+            &nbsp;&nbsp;&nbsp;
+            <span>
+            <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A;">
+                <span id="search" style="text-align: center">SUBMIT</span>
             </button>
-        </span>
+            </span>
+
+        </div>
     </form>
 </div>
 
@@ -155,6 +156,7 @@
 
 <div class="container">
     @if(isset($details))
+    <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result(s)</strong> have been found</p>
     <p style="display: none"> The search results for <b id="q"> {{ $query }} </b> are :</p>
     <div id="map">
 
@@ -172,25 +174,27 @@
     @foreach($details as $station)
     <tr>
         @if ($station->establishment_type == "Library")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="200" height="200"></td>
         @elseif ($station->establishment_type == "Housing Support Services")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/supporting.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/supporting.jpg')}}" width="200" height="200"></td>
         @elseif ($station->establishment_type == "Train Station")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/station.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/station.jpg')}}" width="200" height="200"></td>
         @elseif ($station->establishment_type == "Community Centre")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/center.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/center.jpg')}}" width="200" height="200"></td>
         @elseif ($station->establishment_type == "Community Space")
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/space.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/space.jpg')}}" width="200" height="200"></td>
+        @elseif ($station->establishment_type == "Restaurant")
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/mc.jpg')}}" width="200" height="200"></td>
         @else
-        <td class="table-responsive" width="200" height="200"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="200" height="150"></td>
+        <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="200" height="200"></td>
         @endif
         <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
             <ul class = "address" style="font-family: Arial;font-size: 26px; color: #3D4738"><img src="{{asset('image/pin.png')}}" width="22" height="22"> {{$station->address}}</ul>
             <ul class="longitude" style="display: none">{{$station->longitude}}</ul>
             <ul class="latitude" style="display: none">{{$station->latitude}}</ul>
-            <ul class="open" style="display: none">{{$station->mon_open}}</ul>
-            <ul class="close" style="display: none">{{$station->mon_close}}</ul>
+            <ul class="open" style="display: none">{{\Carbon\Carbon::createFromFormat('H:i:s',$station->mon_open)->format('g a')}}</ul>
+            <ul class="close" style="display: none">{{\Carbon\Carbon::createFromFormat('H:i:s',$station->mon_close)->format('g a')}}</ul>
             <ul class="hour" style="display: none">{{$station->if_24h}}</ul>
             @if(\Carbon\Carbon::now()->format('H:i:s') >= $station->mon_open & \Carbon\Carbon::now()->format('H:i:s') <= $station->mon_close)
             <ul id="open">
@@ -198,7 +202,7 @@
             </ul>
             @else
             <ul id="close">
-                Close Now
+                Closed Now
             </ul>
             @endif
             <ul style="font-size: 20px">
@@ -211,7 +215,7 @@
                 @endfor
             </ul>
             <ul class="type" style="font-size: 26px;font-family: Arial">{{$station->establishment_type}}</ul>
-            <ul style="font-size: 26px;font-family: Arial">Types of Charger Available:</ul>
+            <ul style="font-size: 26px;font-family: Arial;font-weight: bold">Types of Charger Available:</ul>
             <ul style="font-size: 26px;font-family: Arial">{{$station->charger_type}}</ul>
         </td>
     </tr>
