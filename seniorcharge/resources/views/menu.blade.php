@@ -77,7 +77,7 @@
         form.example Button {
             border-radius: 8px;
             padding: 7px;
-            background: green;
+            background: #588D6A;
             color: white;
             font-size: 17px;
             border: 1px solid grey;
@@ -150,18 +150,19 @@
     </style>
 </head>
 <nav>
-<nav class="navbar navbar-expand-lg navbar-light" style="background: mediumseagreen"
+<nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
-        <a href="/" class="navbar-brand">
-            <img src="{{asset('image/green.png')}}" alt="" class="d-inline-block align-top" height="60" width="200">
-        </a>
-        <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;max-width:200px">
+    <a href="/" class="navbar-brand"  style="margin: auto">
+        <img src="{{asset('image/green.png')}}" alt="" class="d-inline-block align-top" height="100" width="300">
+    </a></div>
+    <div class="container" style="max-width: 800px">
+        <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
             {{ csrf_field() }}
-            <div class="input-group" style="max-width: 1000px">
+            <div class="input-group">
                 <input type="text" class="form-control" name="q"
-                       placeholder="Search..." style="border-radius: 8px">
+                       placeholder="Search..." style="border-radius: 8px;width: 300px">
                 <span>
-					<button type="submit" id="submitBtn" class="fa fa-search">
+					<button type="submit" id="submitBtn" style="background-color: #588D6A" class="fa fa-search">
 						<span id="search"></span>
 					</button>
                 </span>
@@ -172,22 +173,22 @@
 <div class="topnav" id="myTopnav">
     <a href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
 <!--    <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
+<!--    <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
+<!--        <i class="fa fa-bars"></i>-->
+<!--    </a>-->
 </div>
 </nav>
 
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-</script>
+<!--<script>-->
+<!--    function myFunction() {-->
+<!--        var x = document.getElementById("myTopnav");-->
+<!--        if (x.className === "topnav") {-->
+<!--            x.className += " responsive";-->
+<!--        } else {-->
+<!--            x.className = "topnav";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 
 </body>
 </html>

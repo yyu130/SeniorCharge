@@ -226,14 +226,14 @@ class StationController extends Controller
                 if($check){
                     $station = Station::where ([
                         ['postcode','LIKE',$q],['if_24h','=','1']])
-                        ->orWhere([['suburb','LIKE',$q],['if_24h','=','1']])
+                        ->orWhere([['suburb','LIKE','%'.$q.'%'],['if_24h','=','1']])
                         ->orderBy('star_rating','DESC')
                         ->get();
                     if(count($station) > 0)
                         return view('test') -> withDetails($station) -> withQuery($q);
                 }else{
                     $station = Station::where ('postcode','LIKE',$q)
-                        ->orWhere('suburb','LIKE',$q)
+                        ->orWhere('suburb','LIKE','%'.$q.'%')
                         ->orderBy('star_rating','DESC')
                         ->get();
                     if(count($station) > 0)
@@ -244,14 +244,14 @@ class StationController extends Controller
                 if($check){
                     $station = Station::where ([
                         ['postcode','LIKE',$q],['if_24h','=','1']])
-                        ->orWhere([['suburb','LIKE',$q],['if_24h','=','1']])
+                        ->orWhere([['suburb','LIKE','%'.$q.'%'],['if_24h','=','1']])
                         ->orderBy('station_name','ASC')
                         ->get();
                     if(count($station) > 0)
                         return view('test') -> withDetails($station) -> withQuery($q);
                 }else{
                     $station = Station::where ('postcode','LIKE',$q)
-                        ->orWhere('suburb','LIKE',$q)
+                        ->orWhere('suburb','LIKE','%'.$q.'%')
                         ->orderBy('station_name','ASC')
                         ->get();
                     if(count($station) > 0)
@@ -272,7 +272,7 @@ class StationController extends Controller
             else{
                 if ($check){
                     $station = Station::where ([
-                        ['postcode','LIKE',$q],['if_24h','=','1']])
+                        ['postcode','LIKE','%'.$q.'%'],['if_24h','=','1']])
                         ->orWhere([['suburb','LIKE',$q],['if_24h','=','1']])
                         // ->orderBy('star_rating','DESC')
                         ->get();
@@ -282,7 +282,7 @@ class StationController extends Controller
 //            $station=Station::where('if_24h',request('if_24h'));
                 }else{
                     $station = Station::where ('postcode','LIKE',$q)
-                        ->orWhere('suburb','LIKE',$q)
+                        ->orWhere('suburb','LIKE','%'.$q.'%')
                         // ->orderBy('star_rating','DESC')
                         ->get();
 

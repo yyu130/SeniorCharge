@@ -15,7 +15,7 @@
     }
 
     #star{
-        color: orange;
+        color: #f77f00;
     }
 
     .Button {
@@ -35,9 +35,10 @@
 
     #title{
         font-weight: bold;
-        color: green;
-        font-size: 26px;
-        width: 400px;
+        color: #588D6A;
+        font-size: 30px;
+        width: auto;
+        font-family: Arial;
     }
 
     .footer{
@@ -50,6 +51,7 @@
         text-align: center;
     }
 </style>
+<body style="background-color: #f0efef">
 <h1></h1>
 <!--<form action="/search" method="POST" role="search" class="example" style="margin-right: auto;max-width:600px">-->
 <!--    {{ csrf_field() }}-->
@@ -82,11 +84,11 @@
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
         <h2 id="title">{{$station->station_name}}</h2>
-        <h5 style="font-size: 15px"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}} |
+        <h5 style="font-size: 22px;font-family: Arial"><img src="{{asset('image/pin.png')}}" width="15" height="15"> {{$station->address}} |
             @if(\Carbon\Carbon::now()->format('H:i:s') >= $station->mon_open & \Carbon\Carbon::now()->format('H:i:s') <= $station->mon_close)
-            <td><img src="{{asset('image/clock.png')}}" width="15" height="15"> <b id="open">Open Now {{$station->mon_open}} - {{$station->mon_close}} |</b></td>
+            <td><img src="{{asset('image/clock.png')}}" width="15" height="15"> <b id="open">Open Now {{$station->mon_open}} - {{$station->mon_close}}</b> | </td>
             @else
-            <td><img src="{{asset('image/clock.png')}}" width="15" height="15"> <b id="close">Close Now | </b></td>
+            <td><img src="{{asset('image/clock.png')}}" width="15" height="15"> <b id="close">Close Now </b> | </td>
             @endif
             @for ($star = 1; $star <=5; $star++)
             @if ($station->star_rating >= $star)
@@ -118,7 +120,13 @@
             <br><br><br>
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin-right: auto;margin-left: auto;width: 50%;">
+                    @if ($station->establishment_type == "Library")
                     <img src="{{asset('image/book.png')}}" width="200" height="200">
+                    @elseif ($station->establishment_type == "Housing Support Services")
+                    <img src="{{asset('image/house.png')}}" width="200" height="200">
+                    @else
+                    <img src="{{asset('image/other.png')}}" width="200" height="200">
+                    @endif
                 </div>
             </div>
             <br>
@@ -126,58 +134,53 @@
 
         <div class="col-md-5 col-md-offset-1">
             <br>
-            <h4 style="font-weight: bold; font-size: 17px">Facilities</h4>
-            <h5 style="font-weight: bold; font-size: 15px">Types of Charger Available:<h5>
-                <h5 style="font-size: 15px">{{$station->charger_type}}</h5>
+            <h4 style="font-weight: bold; font-size: 28px;font-family: Arial">Facilities</h4>
+            <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Types of Charger Available:<h5>
+                <h5 style="font-size: 20px;font-family: Arial">{{$station->charger_type}}</h5>
 <br><br>
                 @if($station->if_wifi == 0 & $station->if_bathroom ==0 & $station->other_amenities != null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5>{{$station->other_amenities}}</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial">{{$station->other_amenities}}</h5>
                 @elseif($station->if_wifi == 0 & $station->if_bathroom ==0 & $station->other_amenities == null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5>No other amenities</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial">No other amenities</h5>
                 @elseif($station->if_wifi == 0 & $station->if_bathroom ==1 & $station->other_amenities == null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom</h5>
                 @elseif($station->if_wifi == 0 & $station->if_bathroom ==1 & $station->other_amenities != null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom </h5>
-                    <h5>{{$station->other_amenities}}</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom </h5>
+                    <h5 style="font-size: 20px;font-family: Arial">{{$station->other_amenities}}</h5>
                 @elseif($station->if_wifi == 1 & $station->if_bathroom ==1 & $station->other_amenities == null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom </h5>
-                    <h5><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
                 @elseif($station->if_wifi == 1 & $station->if_bathroom ==1 & $station->other_amenities != null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom</h5>
-                    <h5><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
-                    <h5>{{$station->other_amenities}}</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom</h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
+                    <h5 style="font-size: 20px;font-family: Arial">{{$station->other_amenities}}</h5>
                 @elseif($station->if_wifi == 1 & $station->if_bathroom ==0 & $station->other_amenities == null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
                 @elseif($station->if_wifi == 1 & $station->if_bathroom ==0 & $station->other_amenities != null)
-                    <h5 style="font-weight: bold; font-size: 17px">Other amenities: </h5>
-                    <h5><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
-                    <h5>{{$station->other_amenities}}</h5>
+                    <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Other amenities: </h5>
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
+                    <h5 style="font-size: 20px;font-family: Arial">{{$station->other_amenities}}</h5>
                 @endif
         </div>
 
     </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<div class="footer">
-    900 Dandenong Rd
-    <br>Caulfield Eest VIC 3145
-    <br>(03) 9903 2000
+</body>
 
-    <br><br>@2020 Sr.Charge
-</div>
+<!--<div class="footer">-->
+<!--    900 Dandenong Rd-->
+<!--    <br>Caulfield Eest VIC 3145-->
+<!--    <br>(03) 9903 2000-->
+<!---->
+<!--    <br><br>@2020 Sr.Charge-->
+<!--</div>-->
 @endsection

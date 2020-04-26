@@ -1,5 +1,12 @@
 <html>
 <style>
+
+    #search{
+        font-weight: bold;
+        font-family: Arial;
+        font-size: 20px;
+    }
+
     * {
         box-sizing: border-box;
     }
@@ -78,8 +85,8 @@
             <div class="col">
 
                 <div class="col-md-4 text-light">
-                    <h1 class="display-5" style="color: green">Free Charging?</h1>
-                    <h3 style="width: 300px; color: green">Enter your postcode or suburb to find your nearest free charging place</h3>
+                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Arial">Free Charging?</h1>
+                    <p style="width: 300px; color: #3D4738; font-size: 20px; font-family: Arial;">Enter your postcode or suburb to find your nearest free charging place</p>
                 </div>
 
                 <div class="col-md-6">
@@ -87,10 +94,10 @@
                                 {{ csrf_field() }}
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="q"
-                                           placeholder="Search postcode/suburb here..." style="border-radius: 8px">
+                                           placeholder="Search postcode/suburb here..." style="border-radius: 8px;background-color: #ffffff">
                                     <p></p>
                                         <span>
-                                             <button type="submit" id="submitBtn" class="fa fa-search">
+                                             <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A">
                         						<span id="search">SEARCH</span>
                         					</button>
                         				</span>
@@ -117,6 +124,7 @@
 </footer>
 
 </html>
+
 
 
 

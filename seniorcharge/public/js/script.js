@@ -100,10 +100,11 @@ $(document).ready(function (listener) {
 
 
             map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(myData.results[0].geometry.location.lat,myData.results[0].geometry.location.lng),
-            zoom: 12
+            // center: new google.maps.LatLng(myData.results[0].geometry.location.lat,myData.results[0].geometry.location.lng),
+                center: new google.maps.LatLng(lat[0],lng[0]),
+                zoom: 12
             });
-            console.log(myData.results[0].geometry.location.lat,myData.results[0].geometry.location.lng)
+            console.log(lat[0],lng[0])
 
             for(i=0;i<lat.length;i++){
                 var contentString = '<div style="font-weight: bold">' + sname[i] + '</div>' + "<br/>" +add[i] + "<br/>" + open[i] + "-" + close[i] + "<br/>" + type[i]
