@@ -143,8 +143,8 @@
             </b>
             &nbsp;&nbsp;&nbsp;
             <span>
-            <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A;">
-                <span id="search" style="text-align: center">SUBMIT</span>
+            <button type="submit" id="submitBtn"  style="background-color: #588D6A;" class="fa fa-search">
+                <span id="search">SUBMIT</span>
             </button>
             </span>
 

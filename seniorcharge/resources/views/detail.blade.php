@@ -121,19 +121,19 @@
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin: auto;">
                     @if ($station->establishment_type == "Library")
-                    <img src="{{asset('image/library.png')}}" width="300" height="200">
+                    <img src="{{asset('image/library.png')}}" width="300" height="300">
                     @elseif ($station->establishment_type == "Housing Support Services")
-                    <img src="{{asset('image/house.png')}}" width="300" height="200">
+                    <img src="{{asset('image/house.png')}}" width="300" height="300">
                     @elseif ($station->establishment_type == "Train Station")
-                    <img src="{{asset('image/station.png')}}" width="300" height="200">
+                    <img src="{{asset('image/station.png')}}" width="300" height="300">
                     @elseif ($station->establishment_type == "Community Centre")
-                    <img src="{{asset('image/center.png')}}" width="300" height="200">
+                    <img src="{{asset('image/center.png')}}" width="300" height="300">
                     @elseif ($station->establishment_type == "Community Space")
-                    <img src="{{asset('image/space.png')}}" width="300" height="200">
+                    <img src="{{asset('image/space.png')}}" width="300" height="300">
                     @elseif ($station->establishment_type == "Restaurant")
-                    <img src="{{asset('image/mc.png')}}" width="300" height="200">
+                    <img src="{{asset('image/mc.png')}}" width="300" height="300">
                     @else
-                    <img src="{{asset('image/other.png')}}" width="300" height="200">
+                    <img src="{{asset('image/other.png')}}" width="300" height="300">
                     @endif
                 </div>
             </div>
