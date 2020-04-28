@@ -121,7 +121,7 @@
             <input type="text" class="form-control" name="q"
                    placeholder="Search postcode/suburb here..." value="{{ request()->input('q')}}" style="border-radius: 8px; display: none">
             <span>
-            <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
+            <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738;">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
             </span>
             <span>
             <select id="dropdown" class="form-control" name="sort" value="" style="border-radius: 8px">
@@ -134,17 +134,18 @@
 <!--            &nbsp;&nbsp;&nbsp;-->
 <!--            &nbsp;&nbsp;&nbsp;-->
 <!--            &nbsp;&nbsp;&nbsp;-->
-            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <b>
             <span>
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
             <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
             </span>
             </b>
-            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
-            <button type="submit" id="submitBtn"  style="background-color: #588D6A;">
-                <span id="search">APPLY</span>
+            <button type="submit" id="submitBtn" style="background-color: #588D6A" class="fa fa-filter">
+                    <span style="font-family: Arial;font-size: 20px; font-weight: bold">Submit</span>
+
             </button>
             </span>
 
