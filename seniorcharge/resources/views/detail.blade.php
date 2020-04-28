@@ -157,10 +157,10 @@
                     <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">Plug Only</h5>
                     @endif
                     <br>
-                @if($station->if_wifi != 0)
+                @if($station->if_wifi == 1)
                     <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>
                 @endif
-                    @if($station->if_bathroom != 0)
+                    @if($station->if_bathroom == 1)
                     <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/restroom.png')}}" width="20" height="20"> Bathroom</h5>
                     @endif
 
