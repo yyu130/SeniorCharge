@@ -26,8 +26,11 @@
     <th>Suburb</th>
     <th>Postcode</th>
     <th>Charger Working</th>
-       <th>Charger Type</th>
-    <th>Establishment Type</th>
+       <th>Usb A</th>
+       <th>Usb C</th>
+       <th>Micro Usb</th>
+       <th>Plug Only</th>
+       <th>Establishment Type</th>
     <th>Wifi</th>
     <th>Bathroom</th>
        <th>Accessibility Type</th>
@@ -60,7 +63,10 @@
     <td>{{$row['suburb']}}</td>
     <td>{{$row['postcode']}}</td>
        <td>{{$row['if_charger_working']}}</td>
-       <td>{{$row['charger_type']}}</td>
+       <td>{{$row['usb_a']}}</td>
+       <td>{{$row['usb_c']}}</td>
+       <td>{{$row['micro_usb']}}</td>
+       <td>{{$row['plug_only']}}</td>
        <td>{{$row['establishment_type']}}</td>
        <td>{{$row['if_wifi']}}</td>
        <td>{{$row['if_bathroom']}}</td>

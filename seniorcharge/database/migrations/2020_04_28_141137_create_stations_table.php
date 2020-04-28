@@ -22,7 +22,10 @@ class CreateStationsTable extends Migration
             $table->string('suburb');
             $table->string('postcode');
             $table->boolean('if_charger_working');
-            $table->string('charger_type');
+            $table->boolean('usb_a');
+            $table->boolean('usb_c');
+            $table->boolean('micro_usb');
+            $table->boolean('plug_only');
             $table->string('establishment_type');
             $table->boolean('if_wifi');
             $table->boolean('if_bathroom');

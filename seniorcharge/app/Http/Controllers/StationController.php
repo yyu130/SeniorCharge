@@ -51,6 +51,10 @@ class StationController extends Controller
             'suburb'  =>  'required',
             'postcode'  =>  'required',
             'if_charger_working' => 'required',
+            'usb_a' => 'required',
+            'usb_c' => 'required',
+            'micro_usb' => 'required',
+            'plug_only' => 'required',
             'establishment_type' => 'required',
             'if_wifi' => 'required',
             'if_bathroom' => 'required',
@@ -79,7 +83,10 @@ class StationController extends Controller
             'suburb'  =>  $request->get('suburb'),
             'postcode'  =>  $request->get('postcode'),
             'if_charger_working'  =>  $request->get('if_charger_working'),
-            'charger_type'  =>  $request->get('charger_type'),
+            'usb_a'  =>  $request->get('usb_a'),
+            'usb_c'  =>  $request->get('usb_c'),
+            'micro_usb'  =>  $request->get('micro_usb'),
+            'plug_only'  =>  $request->get('plug_only'),
             'establishment_type'  =>  $request->get('establishment_type'),
             'if_wifi'  =>  $request->get('if_wifi'),
             'if_bathroom'  =>  $request->get('if_bathroom'),
@@ -147,6 +154,10 @@ class StationController extends Controller
             'suburb'  =>  'required',
             'postcode'  =>  'required',
             'if_charger_working' => 'required',
+            'usb_a' => 'required',
+            'usb_c' => 'required',
+            'micro_usb' => 'required',
+            'plug_only' => 'required',
             'establishment_type' => 'required',
             'if_wifi' => 'required',
             'if_bathroom' => 'required',
@@ -175,7 +186,10 @@ class StationController extends Controller
         $station->suburb =$request->get('suburb');
         $station->postcode =$request->get('postcode');
         $station->if_charger_working = $request->get('if_charger_working');
-        $station->charger_type = $request->get('charger_type');
+        $station->usb_a = $request->get('usb_a');
+        $station->usb_c = $request->get('usb_c');
+        $station->micro_usb = $request->get('micro_usb');
+        $station->plug_only = $request->get('plug_only');
         $station->establishment_type =$request->get('establishment_type');
         $station->if_wifi =$request->get('if_wifi');
         $station->if_bathroom = $request->get('if_bathroom');

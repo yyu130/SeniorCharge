@@ -144,7 +144,18 @@
             <br>
             <h4 style="font-weight: bold; font-size: 28px;font-family: Arial">Facilities</h4>
             <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Types of Charger Available:<h5>
-                <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">{{$station->charger_type}}</h5>
+                    @if ($station->usb_a == 1)
+                <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">USB A</h5>
+                    @endif
+                    @if ($station->usb_c == 1)
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">Type C</h5>
+                    @endif
+                    @if ($station->micro_usb == 1)
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">Micro USB</h5>
+                    @endif
+                    @if ($station->plug_only == 1)
+                    <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/plug.png')}}" width="20" height="20">Plug Only</h5>
+                    @endif
                     <br>
                 @if($station->if_wifi != 0)
                     <h5 style="font-size: 20px;font-family: Arial"><img src="{{asset('image/internet.png')}}" width="20" height="20"> Free Wifi</h5>

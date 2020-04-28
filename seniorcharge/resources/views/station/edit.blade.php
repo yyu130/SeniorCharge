@@ -41,7 +41,16 @@
                     <input type="text" name="if_charger_working" class="form-control" value="{{$station->if_charger_working}}" placeholder="Enter If Charger Working" />
                 </div>
                 <div class="form-group">
-                    <input type="text" name="charger_type" class="form-control" value="{{$station->charger_type}}" placeholder="Enter Charger Type" />
+                    <input type="text" name="usb_a" class="form-control" value="{{$station->usb_a}}" placeholder="Enter If Usb A" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="usb_c" class="form-control" value="{{$station->usb_c}}" placeholder="Enter If Usb C" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="micro_usb" class="form-control" value="{{$station->micro_usb}}" placeholder="Enter If Micro Usb" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="plug_only" class="form-control" value="{{$station->plug_only}}" placeholder="Enter If Plug Only" />
                 </div>
                 <div class="form-group">
                     <input type="text" name="establishment_type" class="form-control" value="{{$station->establishment_type}}" placeholder="Enter Establishment Type" />

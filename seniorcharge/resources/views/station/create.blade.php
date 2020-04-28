@@ -46,7 +46,15 @@
         <input type="text" name="if_charger_working" class="form-control" placeholder="Enter If Charger Working" />
     </div>
        <div class="form-group">
-           <input type="text" name="charger_type" class="form-control" placeholder="Enter Charger Type" />
+           <input type="text" name="usb_a" class="form-control" placeholder="Enter If Usb A" />
+       </div>
+       <div class="form-group">
+           <input type="text" name="usb_c" class="form-control" placeholder="Enter If Usb C" />
+       </div>
+       <div class="form-group">
+           <input type="text" name="micro_usb" class="form-control" placeholder="Enter If Micro Usb" />
+       </div><div class="form-group">
+           <input type="text" name="plug_only" class="form-control" placeholder="Enter If Plug Only" />
        </div>
        <div class="form-group">
            <input type="text" name="establishment_type" class="form-control" placeholder="Enter Establish Type" />
