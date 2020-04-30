@@ -318,7 +318,7 @@ class StationController extends Controller
                 }
             }
         }
-        return view('test')->withMessage("no data found!");
+        return view('test')->withMessage("No data found in this area! Please try other postcode or suburb!");
     }
 
 //    public function searchStations(Request $request){

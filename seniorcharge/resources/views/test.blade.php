@@ -271,7 +271,7 @@
 </table>
 </div>
 @elseif(isset($message))
-<p>{{$message}}</p>
+<p style="font-family: Arial;font-size: 20px;color: #3d4738">{{$message}}</p>
 @endif
 </body>
 
