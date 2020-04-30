@@ -2,7 +2,7 @@ var map;
 var myLatLng
 $(document).ready(function (listener) {
 
-    var query = document.getElementById("q").innerText;
+    var query = document.getElementById("query").innerText;
     document.getElementById('submitBtn').addEventListener("click",findLocation(query));
 
     // $('submitBtn').click(function () {

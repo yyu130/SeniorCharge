@@ -118,15 +118,15 @@
     <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;max-width:600px">
         {{ csrf_field() }}
         <div class="input-group">
-            <input type="text" class="form-control" name="q"
-                   placeholder="Search postcode/suburb here..." value="{{ request()->input('q')}}" style="border-radius: 8px; display: none">
+            <input type="text" class="form-control" name="query"
+                   placeholder="Search postcode/suburb here..." value="{{ request()->input('query')}}" style="border-radius: 8px; display: none">
             <span>
             <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738;">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
             </span>
             <span>
             <select id="dropdown" class="form-control" name="sort" value="" style="border-radius: 8px">
-<!--                <option value="no" --><?php //echo isset($_GET["sort"]) && $_GET["sort"] == "no" ? "selected" : "" ?><!-->--Please Select--</option>-->
                 <option value="name" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "name" ? "selected" : "" ?>>Name</option>
+                <option value="status" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "status" ? "selected" : "" ?>>Open</option>
                 <option value="rating" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "rating" ? "selected" : "" ?>>Rating</option>
             </select>
             </span>
@@ -158,7 +158,7 @@
 <div class="container">
     @if(isset($details))
     <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result(s)</strong> have been found</p>
-    <p style="display: none"> The search results for <b id="q"> {{ $query }} </b> are :</p>
+    <p style="display: none"> The search results for <b id="query"> {{ $query }} </b> are :</p>
     <div id="map">
 
     </div>

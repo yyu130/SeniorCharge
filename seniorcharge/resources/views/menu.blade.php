@@ -159,16 +159,32 @@
         <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
             {{ csrf_field() }}
             <div class="input-group">
-                <input type="text" class="form-control" name="q"
+                <input type="text" class="form-control" name="query"
                        placeholder="Search..." style="border-radius: 8px;width: 300px">
                 <span>
 					<button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="fa fa-search">
 						<span id="search"></span>
 					</button>
                 </span>
-
             </div>
         </form>
+        <div class="container">
+            @if (session()->has('success_message'))
+            <div class="alter alter-success">
+                {{session() -> get('success_message')}}
+            </div>
+            @endif
+
+            @if (count($errors) > 0)
+            <div class="alter alter-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+        </div>
     </div>
 <div class="topnav" id="myTopnav">
     <a  style="font-weight: bold; font-size: 30px; font-family: Arial" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>

@@ -17,7 +17,7 @@
 
     #search{
         font-weight: bold;
-        font-family: Arial;
+        font-family: Apple SD Gothic Neo;
         font-size: 20px;
     }
 
@@ -156,16 +156,16 @@
 <div class="jumbotron mb-0 jumbotron-fluid">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col" style="background-color: #f0efef; width:350px; height: 450px; text-align: center">
+            <div class="col" style="background-color: #f0efef; width:350px; height: 500px; text-align: center">
                 <div class="col-md-4 text-light" style="display: inline-block">
-                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Arial;text-align: center">Free Charging?</h1>
-                    <p style="color: #3d4738; font-family: Arial;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
-                    <p style="color: #3d4738; font-size: 20px; font-family: Arial;text-align: center">Enter your postcode or suburb to find your nearest free charging place</p>
+                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Impact;text-align: center">Free Charging?</h1>
+                    <p style="color: #3d4738; font-family: Avenir;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
+                    <p style="color: #3d4738; font-size: 20px; font-family: Avenir;text-align: center">Enter your postcode or suburb to find your nearest free charging place</p>
 
                     <form action="{{route('searchFor')}}" class="example" style="text-align: center ">
                         {{ csrf_field() }}
                         <div class="input-group">
-                            <input type="text" class="form-control" name="q"
+                            <input type="text" class="form-control" name="query"
                                    placeholder="Search postcode/suburb here..." style="border-radius: 8px;background-color: #ffffff">
                             <p></p>
                             <span>
@@ -175,6 +175,23 @@
                             </span>
                         </div>
                     </form>
+                    <div class="container">
+                        @if (session()->has('success_message'))
+                        <div class="alter alter-success">
+                            {{session() -> get('success_message')}}
+                        </div>
+                        @endif
+
+                        @if (count($errors) > 0)
+                        <div class="alter alter-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

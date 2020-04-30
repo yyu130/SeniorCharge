@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchStationRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Station;
 
@@ -230,9 +232,14 @@ class StationController extends Controller
     }
 
     public function searchFor(Request $request){
-        $q = $request->get('q');
+
+        request()->validate([
+           'query' => 'required|min:2|max:20|regex:/(^[\pL0-9 ]+)$/u',
+        ]);
+        $q = $request->get('query');
         $sort = $request->get('sort');
         $check = $request->has('openAllDay');
+        $current = \Carbon\Carbon::now()->format('H:i:s');
 
         if($q != ""){
             if($sort == "rating"){
@@ -270,18 +277,24 @@ class StationController extends Controller
                     if(count($station) > 0)
                         return view('test') -> withDetails($station) -> withQuery($q);
                 }
-//            $station=Station::where('if_24h',request('if_24h'));
+            }elseif($sort == "status"){
+                if($check){
+                    $station = Station::where ([
+                        ['postcode','LIKE',$q],['if_24h','=','1'],['mon_open','<',$current],['mon_close','>',$current]])
+                        ->orWhere([['suburb','LIKE','%'.$q.'%'],['if_24h','=','1'],['mon_open','<',$current],['mon_close','>',$current]])
+                        ->orderBy('station_name','ASC')
+                        ->get();
+                    if(count($station) > 0)
+                        return view('test') -> withDetails($station) -> withQuery($q);
+                }else{
+                    $station = Station::where ([['postcode','LIKE',$q],['mon_open','<',$current],['mon_close','>',$current]])
+                        ->orWhere([['suburb','LIKE','%'.$q.'%'],['mon_open','<',$current],['mon_close','>',$current]])
+                        ->orderBy('station_name','ASC')
+                        ->get();
+                    if(count($station) > 0)
+                        return view('test') -> withDetails($station) -> withQuery($q);
+                }
             }
-//       elseif($sort == "allDay"){
-//           $station = Station::where ([
-//               ['postcode','LIKE',$q],['if_24h','=','1']])
-//               ->orWhere('suburb','LIKE',$q)
-//               ->get();
-//
-//           if(count($station) > 0)
-//               return view('find') -> withDetails($station) -> withQuery($q);
-////            $station=Station::where('if_24h',request('if_24h'));
-//       }
             else{
                 if ($check){
                     $station = Station::where ([
