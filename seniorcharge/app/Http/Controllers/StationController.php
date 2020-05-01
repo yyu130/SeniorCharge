@@ -234,7 +234,7 @@ class StationController extends Controller
     public function searchFor(Request $request){
 
         request()->validate([
-           'query' => 'required|min:2|max:20|regex:/(^[\pL0-9 ]+)$/u',
+           'query' => 'required|max:20|regex:/(^[\pL0-9 ]+)$/u',
         ]);
         $q = $request->get('query');
         $sort = $request->get('sort');

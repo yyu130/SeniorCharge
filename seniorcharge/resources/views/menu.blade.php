@@ -1,61 +1,142 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--    <style>-->
+<!--        * {-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
 <!---->
-<!--<style>-->
-<!--    * {-->
-<!--        box-sizing: border-box;-->
-<!--    }-->
+<!--        form.example input[type=text] {-->
+<!--            padding: 8px;-->
+<!--            font-size: 15px;-->
+<!--            border: 1px solid grey;-->
+<!--            width: 80%;-->
+<!--            background: #f1f1f1;-->
+<!--        }-->
 <!---->
-<!--    form.example input[type=text] {-->
-<!--        padding: 8px;-->
-<!--        font-size: 15px;-->
-<!--        border: 1px solid grey;-->
-<!--        width: 80%;-->
-<!--        background: #f1f1f1;-->
-<!--    }-->
+<!--        form.example Button {-->
+<!--            border-radius: 8px;-->
+<!--            padding: 7px;-->
+<!--            background: #588D6A;-->
+<!--            color: white;-->
+<!--            font-size: 15px;-->
+<!--            border: 1px solid grey;-->
+<!--            border-left: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
 <!---->
-<!--    form.example Button {-->
-<!--        border-radius: 8px;-->
-<!--        padding: 8px;-->
-<!--        background: red;-->
-<!--        color: white;-->
-<!--        font-size: 17px;-->
-<!--        border: 1px solid grey;-->
-<!--        border-left: none;-->
-<!--        cursor: pointer;-->
-<!--    }-->
+<!--        form.example Button:hover {-->
+<!--            background: forestgreen;-->
+<!--        }-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            font-family: Arial, Helvetica, sans-serif;-->
+<!--        }-->
 <!---->
-<!--    form.example Button:hover {-->
-<!--        background: #FE2E2E;-->
-<!--    }-->
-<!--</style>-->
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--        .topnav {-->
+<!--            overflow: hidden;-->
+<!--            /*background-color: #333;*/-->
+<!--        }-->
 <!---->
-<!--<nav class="navbar navbar-expand-lg navbar-light" style="background: mediumseagreen"-->
-<!--    <div class="collapse navbar-collapse">-->
-<!--        <a href="/" class="navbar-brand">-->
-<!--            <img src="{{asset('image/white.png')}}" alt="" class="d-inline-block align-top" height="60" width="200">-->
-<!--        </a>-->
-<!--        <form action="/search" method="POST" role="search" class="example" style="margin-right: auto;max-width:200px">-->
+<!--        .topnav a {-->
+<!--            float: left;-->
+<!--            display: block;-->
+<!--            color: Black;-->
+<!--            text-align: center;-->
+<!--            padding: 14px 16px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 17px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!---->
+<!--        .topnav a:hover {-->
+<!--            background-color: #ddd;-->
+<!--            color: black;-->
+<!--        }-->
+<!---->
+<!--        .topnav a.active {-->
+<!--            /*background-color: lightgreen;*/-->
+<!--            color: White;-->
+<!--        }-->
+<!---->
+<!--        .topnav .icon {-->
+<!--            display: none;-->
+<!--        }-->
+<!---->
+<!--        @media screen and (max-width: 600px) {-->
+<!--            .topnav a:not(:first-child) {display: none;}-->
+<!--            .topnav a.icon {-->
+<!--                float: right;-->
+<!--                display: block;-->
+<!--            }-->
+<!--        }-->
+<!---->
+<!--        @media screen and (max-width: 600px) {-->
+<!--            .topnav.responsive {-->
+<!--                position: relative;-->
+<!--            }-->
+<!---->
+<!--            .topnav.responsive .icon {-->
+<!--                position: absolute;-->
+<!--                right: 0;-->
+<!--                top: 0;-->
+<!--            }-->
+<!--            .topnav.responsive a {-->
+<!--                float: none;-->
+<!--                display: block;-->
+<!--                text-align: left;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef">-->
+<!--    <div class="container">-->
+<!--        <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">-->
 <!--            {{ csrf_field() }}-->
 <!--            <div class="input-group">-->
-<!--                <input type="text" class="form-control" name="q"-->
-<!--                       placeholder="Search...">-->
+<!--                <input type="text" class="form-control" name="query"-->
+<!--                       placeholder="Search..." style="border-radius: 8px;width: 150px">-->
 <!--                <span>-->
-<!--					<button type="submit" id="submitBtn" class="fa fa-search">-->
+<!--					<button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="fa fa-search">-->
 <!--						<span id="search"></span>-->
 <!--					</button>-->
 <!--                </span>-->
-<!---->
 <!--            </div>-->
+<!--                    <div class="container">-->
+<!--                        @if (session()->has('success_message'))-->
+<!--                        <div class="alter alter-success">-->
+<!--                            {{session() -> get('success_message')}}-->
+<!--                        </div>-->
+<!--                        @endif-->
+<!---->
+<!--                        @if (count($errors) > 0)-->
+<!--                        <div class="alter alter-danger">-->
+<!--                            <ul>-->
+<!--                                @foreach ($errors->all() as $error)-->
+<!--                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>-->
+<!--                                @endforeach-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                        @endif-->
+<!--                    </div>-->
 <!--        </form>-->
+<!---->
+<!--        <div class="container" style="text-align: center">-->
+<!--            <a href="/" class="navbar-brand"  style="margin: auto">-->
+<!--                <img src="{{asset('image/homelogo.png')}}" alt="" class="d-inline-block align-top" height="150" width="400">-->
+<!--            </a>-->
+<!--        </div>-->
+<!---->
 <!--    </div>-->
-<!--    <div class="navbar-nav" >-->
-<!--        <a href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>-->
-<!--        <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
+<!--    <div class="topnav" id="myTopnav">-->
+<!--        <a  style="font-weight: bold; font-size: 30px; font-family: Arial;color: #588D6A" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>-->
 <!--    </div>-->
-<!--</a>-->
 <!--</nav>-->
 <!---->
-<!---->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +146,6 @@
         * {
             box-sizing: border-box;
         }
-
         form.example input[type=text] {
             padding: 8px;
             font-size: 15px;
@@ -73,7 +153,6 @@
             width: 80%;
             background: #f1f1f1;
         }
-
         form.example Button {
             border-radius: 8px;
             padding: 7px;
@@ -84,7 +163,6 @@
             border-left: none;
             cursor: pointer;
         }
-
         form.example Button:hover {
             background: forestgreen;
         }
@@ -92,12 +170,10 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
-
         .topnav {
             overflow: hidden;
             /*background-color: #333;*/
         }
-
         .topnav a {
             float: left;
             display: block;
@@ -108,21 +184,17 @@
             font-size: 17px;
             font-weight: bold;
         }
-
         .topnav a:hover {
             background-color: #ddd;
             color: black;
         }
-
         .topnav a.active {
             /*background-color: lightgreen;*/
             color: White;
         }
-
         .topnav .icon {
             display: none;
         }
-
         @media screen and (max-width: 600px) {
             .topnav a:not(:first-child) {display: none;}
             .topnav a.icon {
@@ -130,12 +202,10 @@
                 display: block;
             }
         }
-
         @media screen and (max-width: 600px) {
             .topnav.responsive {
                 position: relative;
             }
-
             .topnav.responsive .icon {
                 position: absolute;
                 right: 0;
@@ -150,11 +220,11 @@
     </style>
 </head>
 <nav>
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
-    <a href="/" class="navbar-brand"  style="margin: auto">
-        <img src="{{asset('image/green.png')}}" alt="" class="d-inline-block align-top" height="100" width="300">
-    </a></div>
+        <a href="/" class="navbar-brand"  style="margin: auto">
+            <img src="{{asset('image/homelogo.png')}}" alt="" class="d-inline-block align-top" height="150" width="350">
+        </a></div>
     <div class="container" style="max-width: 800px">
         <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
             {{ csrf_field() }}
@@ -186,13 +256,13 @@
             @endif
         </div>
     </div>
-<div class="topnav" id="myTopnav">
-    <a  style="font-weight: bold; font-size: 30px; font-family: Arial" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
-<!--    <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
-<!--    <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
-<!--        <i class="fa fa-bars"></i>-->
-<!--    </a>-->
-</div>
+    <div class="topnav" id="myTopnav">
+        <a  style="font-weight: bold; font-size: 30px; font-family: Arial;color: #588D6A" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
+        <!--    <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
+        <!--    <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
+        <!--        <i class="fa fa-bars"></i>-->
+        <!--    </a>-->
+    </div>
 </nav>
 
 <!--<script>-->

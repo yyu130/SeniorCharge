@@ -1,9 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('homelayout')
+@section('title','Senior Charge')
+@section('mycontent')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
@@ -11,8 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom-style.css" >
 
-    <title>Welcome to Sr.Charge</title>
-</head>
+<!--    <title>Welcome to Sr.Charge</title>-->
 <style>
 
     #search{
@@ -112,14 +109,14 @@
 <!--</div>-->
 <!--</head>-->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div>
-        <a href="/" class="navbar-brand">
-            <img src="{{asset('image/homelogo.png')}}" alt="" class="d-inline-block align-middle" height="150" width="400">
-        </a>
-    </div>
-</nav>
-<br><br>
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-white">-->
+<!--    <div>-->
+<!--        <a href="/" class="navbar-brand">-->
+<!--            <img src="{{asset('image/homelogo.png')}}" alt="" class="d-inline-block align-middle" height="150" width="400">-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<br><br>-->
 <!--<div class="jumbotron background mb-0 jumbotron-fluid" style="height: 500px; padding-top: 150px;">-->
 <!--<div class="jumbotron background mb-0 jumbotron-fluid" style="height: 500px; padding-top: 150px;">-->
 <!--    <div class="container">-->
@@ -152,52 +149,52 @@
 <!--    </div>-->
 <!--</div>-->
 <!--<div class="jumbotron background mb-0 jumbotron-fluid" style="height: 500px; padding-top: 150px;">-->
-<body class="background">
-<div class="jumbotron mb-0 jumbotron-fluid">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col" style="background-color: #f0efef; width:350px; height: 500px; text-align: center">
-                <div class="col-md-4 text-light" style="display: inline-block">
-                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Impact;text-align: center">Free Charging?</h1>
-                    <p style="color: #3d4738; font-family: Avenir;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
-                    <p style="color: #3d4738; font-size: 20px; font-family: Avenir;text-align: center">Enter your postcode or suburb to find your nearest free charging place</p>
-
-                    <form action="{{route('searchFor')}}" class="example" style="text-align: center ">
-                        {{ csrf_field() }}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="query"
-                                   placeholder="Search postcode/suburb here..." style="border-radius: 8px;background-color: #ffffff">
-                            <p></p>
-                            <span>
-                                <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A">
-                                    <span id="search">SEARCH</span>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                    <div class="container">
-                        @if (session()->has('success_message'))
-                        <div class="alter alter-success">
-                            {{session() -> get('success_message')}}
-                        </div>
-                        @endif
-
-                        @if (count($errors) > 0)
-                        <div class="alter alter-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
+<!--<body class="background">-->
+<!--<div class="jumbotron mb-0 jumbotron-fluid">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-center">-->
+<!--            <div class="col" style="background-color: #f0efef; width:350px; height: 500px; text-align: center">-->
+<!--                <div class="col-md-4 text-light" style="display: inline-block">-->
+<!--                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Impact;text-align: center">Free Charging?</h1>-->
+<!--                    <p style="color: #3d4738; font-family: Avenir;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>-->
+<!--                    <p style="color: #3d4738; font-size: 20px; font-family: Avenir;text-align: center">Enter your postcode or suburb to find your nearest free charging place</p>-->
+<!---->
+<!--                    <form action="{{route('searchFor')}}" class="example" style="text-align: center ">-->
+<!--                        {{ csrf_field() }}-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="text" class="form-control" name="query"-->
+<!--                                   placeholder="Search postcode/suburb here..." style="border-radius: 8px;background-color: #ffffff">-->
+<!--                            <p></p>-->
+<!--                            <span>-->
+<!--                                <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A">-->
+<!--                                    <span id="search">SEARCH</span>-->
+<!--                                </button>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                    <div class="container">-->
+<!--                        @if (session()->has('success_message'))-->
+<!--                        <div class="alter alter-success">-->
+<!--                            {{session() -> get('success_message')}}-->
+<!--                        </div>-->
+<!--                        @endif-->
+<!---->
+<!--                        @if (count($errors) > 0)-->
+<!--                        <div class="alter alter-danger">-->
+<!--                            <ul>-->
+<!--                                @foreach ($errors->all() as $error)-->
+<!--                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>-->
+<!--                                @endforeach-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                        @endif-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
 <!--<div class="jumbotron mb-0 jumbotron-fluid" style="height: 800px;" id="bg">-->
 <!--    <div class="container">-->
 <!--                <div class="row align-items-center">-->
@@ -226,14 +223,61 @@
 <!--                </div>-->
 <!--    </div>-->
 <!--</div>-->
-<footer>
-    <div class="footer">
-@ 2020 Sr.Charge. All Rights Reserved * Terms and Conditions * Privacy Policy
-    </div>
-</footer>
-</body>
-</html>
+<!--<footer>-->
+<!--    <div class="footer">-->
+<!--@ 2020 Sr.Charge. All Rights Reserved * Terms and Conditions * Privacy Policy-->
+<!--    </div>-->
+<!--</footer>-->
+<!--</body>-->
+<body style="background-color: #f0efef">
+<div class="jumbotron mb-0 jumbotron-fluid" style="height: 650px; padding-top: 150px;" id="bg">
+    <div class="container" >
+<!--        <div class="row align-items-center" style="float: left">-->
+<!--            <div class="col" style="background-color: #f0efef; width:350px; height: 500px; text-align: center">-->
+<!--                <div class="col" style="background-color: #f0efef; float: left; text-align: center">-->
 
+                <div class="col-md-4 text-light" style="background-color: #f0efef;width:320px; height: 450px; text-align: center">
+                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Impact;text-align: center">Free Charging?</h1>
+                    <p style="color: #3d4738; font-family: Avenir;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
+                    <p style="color: #3d4738; font-size: 20px; font-family: Avenir;text-align: center">Enter your postcode or suburb to find your nearest free charging place across Melbourne</p>
+
+                    <form action="{{route('searchFor')}}" class="example" style="text-align: center ">
+                        {{ csrf_field() }}
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="query"
+                                   placeholder="Search postcode/suburb here..." style="border-radius: 8px;background-color: #ffffff">
+                            <p></p>
+                            <br>
+                        </div>
+                        <br>
+                        <span>
+                                <button type="submit" id="submitBtn" class="fa fa-search" style="background-color: #588D6A">
+                                    <span id="search">SEARCH</span>
+                                </button>
+                            </span>
+                    </form>
+                    <div class="container">
+                        @if (session()->has('success_message'))
+                        <div class="alter alter-success">
+                            {{session() -> get('success_message')}}
+                        </div>
+                        @endif
+
+                        @if (count($errors) > 0)
+                        <div class="alter alter-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+    </div>
+</div>
+</body>
+@endsection
 
 
 

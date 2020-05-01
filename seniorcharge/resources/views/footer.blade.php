@@ -8,19 +8,15 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: mediumseagreen;
-            color: #333333;
+            background-color: #588D6A;
+            color: white;
             text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="footer">
-    900 Dandenong Rd
-    <br>Caulfield Eest VIC 3145
-    <br>(03) 9903 2000
-
-    <br><br>@2020 Sr.Charge
+    @ 2020 Sr.charge. All Rights Reserved * Terms and Conditions * Privacy Policy
 </div>
 </body>
 </html>

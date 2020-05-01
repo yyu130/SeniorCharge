@@ -23,17 +23,18 @@
     .Button {
         border-radius: 8px;
         padding: 7px;
-        background: green;
+        background: #588D6A;
         color: white;
-        font-size: 17px;
+        font-size: 20px;
+        font-weight: bold;
         border: 1px solid grey;
         border-left: none;
         cursor: pointer;
     }
 
-    .Button:hover {
-        background: forestgreen;
-    }
+    /*.Button:hover {*/
+    /*    background: forestgreen;*/
+    /*}*/
 
     #title{
         font-weight: bold;
