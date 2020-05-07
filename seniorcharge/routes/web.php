@@ -30,6 +30,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+//Route::get('/writeReview', function () {
+//    return view('writeReview');
+//});
+
 Route::get('/test', function () {
     return view('test');
 });
@@ -97,6 +101,10 @@ Route::post('/search',function (){
 
 Route::get('detail/{id}','StationController@detail');
 
+Route::get('writeReview/{id}','ReviewController@create');
+
 Route::resource('station','StationController');
 
 Route::get('/searchFor','StationController@searchFor')->name('searchFor');
+
+Route::resource('review','ReviewController');

@@ -25,7 +25,7 @@ $(document).ready(function (listener) {
         });
     }
 
-    //geoLocationInit();
+    // geoLocationInit();
     function geoLocationInit() {
         if (navigator.geolocation){
             navigator.geolocation.getCurrentPosition(success,fail);
@@ -40,9 +40,7 @@ $(document).ready(function (listener) {
         var lngval=position.coords.longitude;
 
         console.log([latval,lngval]);
-
-
-        createMap();
+        createMap(myLatLng);
         //nearbySearch(myLatLng,'school');
         // searchStations(latval,lngval);
     }
@@ -104,7 +102,10 @@ $(document).ready(function (listener) {
                 center: new google.maps.LatLng(lat[0],lng[0]),
                 zoom: 12
             });
-            console.log(lat[0],lng[0])
+            //console.log(lat[0],lng[0])
+
+            var dis = document.getElementsByClassName('distance');
+            console.log(dis[0].innerText);
 
             for(i=0;i<lat.length;i++){
                 var contentString = '<div style="font-weight: bold">' + sname[i] + '</div>' + "<br/>" +add[i] + "<br/>" + open[i] + "-" + close[i] + "<br/>" + type[i]
@@ -129,7 +130,7 @@ $(document).ready(function (listener) {
                     }
                     selectedinfo = infowindow;
                     selectedinfo.open(map,this);
-                })
+                });
                 // google.maps.event.addListener(marker,'click',function (event) {
                 //     infowindow.open(map,this);
                 //     });
@@ -137,33 +138,45 @@ $(document).ready(function (listener) {
                 //     infowindow.close();
                 // })
                  // marker.infowindow.close();
+                //var distance = [];
+                // this.getDistance(add[i],myData.results[0].formatted_address,dis[i]);
+                (function(index){
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
+                    //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
+                    //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                    url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+                        +myData.results[0].formatted_address+'&destinations='+add[i]+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                    success: function (data) {
+                        // console.log(dis[i].innerText);
+                        // console.log(data.rows[0].elements[0].distance.text)
+                        //distance.push(data.rows[0].elements[0].distance.text)
+                        dis[index].innerText = data.rows[0].elements[0].distance.text;
 
-                // $.ajax({
-                //     type: 'GET',
-                //     // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
-                //     //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
-                //     //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
-                //     url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins='
-                //         +myData.results[0].formatted_address+'&destinations='+add[i]+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
-                //     success: function (data) {
-                //         // distance.push(data.rows[0].elements[0].distance.text)
-                //         // console.log(distance)
-                //         // $.ajax({
-                //         //     url:"/search",
-                //         //     type: "POST",
-                //         //     data: {distance: JSON.stringify(distance)},
-                //         //     success:function (dis) {
-                //         //         console.log(dis)
-                //         //     }
-                //         // })
-                //         console.log(data)
-                //     },
-                //     error:function (data) {
-                //         console.log(data)
-                //     }
-                // });
+                         //distance.push(data.rows[0].elements[0].distance.text)
+
+                        // $.ajax({
+                        //     url:"test.blade.php",
+                        //     type: "POST",
+                        //     data: {distance: JSON.stringify(distance)},
+                        //     success:function (dis) {
+                        //         console.log(dis)
+                        //     }
+                        // })
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+                });
+                })(i);
+                //dis[i].innerText = distance[i];
             }
-
+        //console.log(distance)
+        // for(i=0;i<lat.length;i++){
+        //     dis[i].innerText = distance[i];
+        // }
             // var location = [
             //     ['test 1',-37.18961447,145.7081915],
             //     ['test 2',-38.18961447,145.7081915]
@@ -183,7 +196,39 @@ $(document).ready(function (listener) {
     //         InfoObj[0].length = 0;
     //     }
     // }
-
+    // function getDistance(add,postcode) {
+    //     var distance = [];
+    //
+    //     $.ajax({
+    //         type: 'GET',
+    //         async: false,
+    //         // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
+    //         //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
+    //         //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+    //         url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+    //             +postcode+'&destinations='+add+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+    //         success: function (data) {
+    //             // console.log(dis[i].innerText);
+    //             // console.log(data.rows[0].elements[0].distance.text)
+    //             distance.push(data.rows[0].elements[0].distance.text)
+    //             // dis[i].innerText = data.rows[0].elements[0].distance.text;
+    //
+    //             //distance.push(data.rows[0].elements[0].distance.text)
+    //
+    //             // $.ajax({
+    //             //     url:"test.blade.php",
+    //             //     type: "POST",
+    //             //     data: {distance: JSON.stringify(distance)},
+    //             //     success:function (dis) {
+    //             //         console.log(dis)
+    //             //     }
+    //             // })
+    //         },
+    //         error:function (data) {
+    //             console.log(data)
+    //         }
+    //     });
+    // }
     function createMarker(latlng,icn) {
         var marker = new google.maps.Marker({
             position: latlng,
@@ -231,29 +276,91 @@ $(document).ready(function (listener) {
     // }
 });
 
-document.getElementById("checkBtn").addEventListener("click",ifAll);
+// document.getElementById("checkBtn").addEventListener("click",ifAll);
+//
+//     function ifAll() {
+//         var hours = document.getElementsByClassName('hour');
+//
+//         for(h of hours){
+//                 if (h.innerText == 0){
+//                         h.parentElement.parentElement.style.display = "none";
+//                 }
+//         }
+// }
+//
+// document.getElementById("reset").addEventListener("click",reSet);
+//
+//     function reSet() {
+//         var hours = document.getElementsByClassName('hour');
+//
+//         for(h of hours){
+//             if (h.innerText == 0){
+//                 h.parentElement.parentElement.style.display = "table-row";
+//             }
+//         }
+//     }
 
-    function ifAll() {
-        var hours = document.getElementsByClassName('hour');
+    document.getElementById("write").addEventListener("click",displayReview);
+    function displayReview() {
+        var form = document.getElementById('reviewForm');
 
-        for(h of hours){
-                if (h.innerText == 0){
-                        h.parentElement.parentElement.style.display = "none";
-                }
-        }
-}
-
-document.getElementById("reset").addEventListener("click",reSet);
-
-    function reSet() {
-        var hours = document.getElementsByClassName('hour');
-
-        for(h of hours){
-            if (h.innerText == 0){
-                h.parentElement.parentElement.style.display = "table-row";
-            }
+        if (form.style.display == 'none'){
+            form.style.display = 'block';
         }
     }
+
+const stars = document.querySelector(".ratings").children;
+const ratingValue = document.querySelector("#rating");
+let index;
+    for(let i=0; i<stars.length; i++){
+        stars[i].addEventListener("mouseover",function () {
+            // console.log(i)
+            for (let j=0; j<stars.length;j++){
+                stars[j].classList.remove("fa-star")
+                stars[j].classList.add("fa-star-o")
+            }
+            for (let j=0; j<=i;j++){
+                stars[j].classList.remove("fa-star-o")
+                stars[j].classList.add("fa-star")
+            }
+        })
+        stars[i].addEventListener("click",function () {
+            ratingValue.value=i+1;
+            // console.log(ratingValue);
+            index=i;
+        })
+        stars[i].addEventListener("mouseout",function () {
+            for (let j=0;j<stars.length;j++){
+                stars[j].classList.remove("fa-star");
+                stars[j].classList.add("fa-star-o");
+            }
+            for (let j=0; j<=index;j++){
+                stars[j].classList.remove("fa-star-o")
+                stars[j].classList.add("fa-star")
+            }
+        })
+    }
+
+    // $(document).ready(function () {
+    //     $('input:checkbox').click(function () {
+    //         $('input:checkbox').not(this).prop('checked',false)
+    //     });
+    // });
+$("input:checkbox").on('click', function() {
+    // in the handler, 'this' refers to the box clicked on
+    var $box = $(this);
+    if ($box.is(":checked")) {
+        // the name of the box is retrieved using the .attr() method
+        // as it is assumed and expected to be immutable
+        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+        // the checked state of the group/box on the other hand will change
+        // and the current value is retrieved using .prop() method
+        $(group).prop("checked", false);
+        $box.prop("checked", true);
+    } else {
+        $box.prop("checked", false);
+    }
+});
 
 
 

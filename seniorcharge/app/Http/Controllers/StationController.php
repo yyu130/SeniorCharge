@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchStationRequest;
+use App\reviews;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Station;
@@ -23,8 +24,74 @@ class StationController extends Controller
     public function detail($id)
     {
         $station = Station::findOrFail($id);
-        return view('detail',compact('station'));
+        $reviews = reviews::where('station_id', $id)->get();
+        $rating = 0;
+        foreach($reviews as $review){
+            $rating = $review->rating + $rating;
+        }
 
+        if (sizeof($reviews) == 0){
+            $rating = 0;
+        } else{
+            $rating = $rating/sizeof($reviews);
+        }
+
+        $working = 0;
+        $notWorking = 0;
+        $strong = 0;
+        $agree = 0;
+        $neutral = 0;
+        $disagree = 0;
+        $sdisagree = 0;
+        foreach ($reviews as $review){
+            if($review->is_working == 1){
+                $working = $working +1;
+            }else{
+                $notWorking = $notWorking+1;
+            }
+
+            if ($review->is_welcoming == "Strongly Agree"){
+                $strong = $strong + 1;
+            }
+            elseif ($review->is_welcoming == "Agree"){
+                $agree = $agree + 1;
+            }
+            elseif ($review->is_welcoming == "Neutral"){
+                $neutral = $neutral + 1;
+            }
+            elseif ($review->is_welcoming == "Disagree"){
+                $disagree = $disagree + 1;
+            }
+            else{
+                $sdisagree = $sdisagree + 1;
+            }
+    }
+        $rat1 = 0;
+        $rat2 = 0;
+        $rat3 = 0;
+        $rat4 = 0;
+        $rat5 = 0;
+        foreach ($reviews as $review){
+            if($review->rating == 1){
+                $rat1 = $rat1 + 1;
+            }
+            elseif ($review->rating == 2){
+                $rat2 = $rat2 + 1;
+            }
+            elseif ($review->rating == 3){
+                $rat3 = $rat3 + 1;
+            }
+            elseif ($review->rating == 4){
+                $rat4 = $rat4+1;
+            }
+            else{
+                $rat5 = $rat5+1;
+            }
+        }
+
+        return view('detail',['station'=>$station, 'reviews' => $reviews , 'rating' => $rating,
+            'working' => $working, 'notWorking' => $notWorking, 'strong' => $strong, 'rat1' => $rat1, 'rat2' => $rat2
+            , 'rat3' => $rat3, 'rat4' => $rat4, 'rat5' => $rat5, 'agree' => $agree, 'neutral' => $neutral, 'disagree' => $disagree, 'sdisagree' => $sdisagree]);
     }
 
     /**

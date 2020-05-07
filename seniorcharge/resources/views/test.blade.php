@@ -218,17 +218,18 @@
             <ul class="type" style="font-size: 26px;font-family: Arial">{{$station->establishment_type}}</ul>
             <ul style="font-size: 26px;font-family: Arial;font-weight: bold">Types of Charger Available:</ul>
             @if ($station->usb_a == 1)
-            <ul style="font-size: 26px;font-family: Arial">USB A</ul>
+            <ul style="font-size: 26px;font-family: Arial">iPhone (USB A)</ul>
             @endif
             @if ($station->usb_c == 1)
-            <ul style="font-size: 26px;font-family: Arial">Type C</ul>
+            <ul style="font-size: 26px;font-family: Arial">Samsung, Huawei,Oppo,One-Plus (USB C)</ul>
             @endif
             @if ($station->micro_usb == 1)
-            <ul style="font-size: 26px;font-family: Arial">Micro USB</ul>
+            <ul style="font-size: 26px;font-family: Arial">Samsung, Android (Micro USB)</ul>
             @endif
             @if ($station->plug_only == 1)
-            <ul style="font-size: 26px;font-family: Arial">Plug Only</ul>
+            <ul style="font-size: 26px;font-family: Arial">Plug only, bring your own charger</ul>
             @endif
+            <ul class="distance"></ul>
         </td>
     </tr>
     @endforeach

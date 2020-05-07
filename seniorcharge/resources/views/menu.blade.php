@@ -143,6 +143,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        #hide {
+            -moz-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Firefox */
+            -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Safari and Chrome */
+            -o-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Opera */
+            animation: cssAnimation 0s ease-in 5s forwards;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        @keyframes cssAnimation {
+            to {
+                width:0;
+                height:0;
+                overflow:hidden;
+            }
+        }
+        @-webkit-keyframes cssAnimation {
+            to {
+                width:0;
+                height:0;
+                visibility:hidden;
+            }
+        }
         * {
             box-sizing: border-box;
         }
@@ -219,6 +244,23 @@
         }
     </style>
 </head>
+<div class="container" style="text-align: center" id="hide">
+    @if (session()->has('success_message'))
+    <div class="alter alter-success">
+        {{session() -> get('success_message')}}
+    </div>
+    @endif
+
+    @if (count($errors) > 0)
+    <div class="alter alter-danger">
+        <ul style="list-style-type: none">
+            @foreach ($errors->all() as $error)
+            <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+</div>
 <nav>
     <nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
@@ -238,23 +280,23 @@
                 </span>
             </div>
         </form>
-        <div class="container">
-            @if (session()->has('success_message'))
-            <div class="alter alter-success">
-                {{session() -> get('success_message')}}
-            </div>
-            @endif
-
-            @if (count($errors) > 0)
-            <div class="alter alter-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-        </div>
+<!--        <div class="container">-->
+<!--            @if (session()->has('success_message'))-->
+<!--            <div class="alter alter-success">-->
+<!--                {{session() -> get('success_message')}}-->
+<!--            </div>-->
+<!--            @endif-->
+<!---->
+<!--            @if (count($errors) > 0)-->
+<!--            <div class="alter alter-danger">-->
+<!--                <ul>-->
+<!--                    @foreach ($errors->all() as $error)-->
+<!--                    <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>-->
+<!--                    @endforeach-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            @endif-->
+<!--        </div>-->
     </div>
     <div class="topnav" id="myTopnav">
         <a  style="font-weight: bold; font-size: 30px; font-family: Arial;color: #588D6A" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
