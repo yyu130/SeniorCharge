@@ -62,10 +62,26 @@ class StationController extends Controller
             elseif ($review->is_welcoming == "Disagree"){
                 $disagree = $disagree + 1;
             }
-            else{
+            else {
                 $sdisagree = $sdisagree + 1;
             }
     }
+        if ($strong+$agree+$neutral+$disagree+$sdisagree == 0)
+        {
+            $p1 = 0;
+            $p2 = 0;
+            $p3 = 0;
+            $p4 = 0;
+            $p5 = 0;
+        }
+        else{
+            $p1 = $strong/($strong+$agree+$neutral+$disagree+$sdisagree)*100;
+            $p2 = $agree/($strong+$agree+$neutral+$disagree+$sdisagree)*100;
+            $p3 = $neutral/($strong+$agree+$neutral+$disagree+$sdisagree)*100;
+            $p4 = $disagree/($strong+$agree+$neutral+$disagree+$sdisagree)*100;
+            $p5 = $sdisagree/($strong+$agree+$neutral+$disagree+$sdisagree)*100;
+        }
+
         $rat1 = 0;
         $rat2 = 0;
         $rat3 = 0;
@@ -91,7 +107,8 @@ class StationController extends Controller
 
         return view('detail',['station'=>$station, 'reviews' => $reviews , 'rating' => $rating,
             'working' => $working, 'notWorking' => $notWorking, 'strong' => $strong, 'rat1' => $rat1, 'rat2' => $rat2
-            , 'rat3' => $rat3, 'rat4' => $rat4, 'rat5' => $rat5, 'agree' => $agree, 'neutral' => $neutral, 'disagree' => $disagree, 'sdisagree' => $sdisagree]);
+            , 'rat3' => $rat3, 'rat4' => $rat4, 'rat5' => $rat5, 'agree' => $agree, 'neutral' => $neutral, 'disagree' => $disagree, 'sdisagree' => $sdisagree,
+            'p1'=>$p1,'p2'=>$p2, 'p3'=>$p3,'p4'=>$p4,'p5'=>$p5]);
     }
 
     /**

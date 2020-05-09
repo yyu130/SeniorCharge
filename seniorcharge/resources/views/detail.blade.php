@@ -10,6 +10,11 @@
 <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+    #maps{
+        height: 0;
+        position: relative;
+        padding-bottom: 50%;
+    }
     .inline{
         padding: 10px;
         margin: 10px;
@@ -26,7 +31,7 @@
 
     #star{
         color: #f77f00;
-        font-size: 38px;
+        font-size: 27px;
     }
 
     .Button {
@@ -109,6 +114,9 @@
 <!--        </span>-->
 <!--    </div>-->
 <!--</form>-->
+<div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/place.jpg')}}');
+        background-size: cover;" >
+</div>
 <div class="container">
 <a style="color: white" href="{{URL::previous()}}" class="Button"><i class="fas fa-arrow-left" > Return to map view</i></a>
 </div>
@@ -245,14 +253,35 @@
     </div>
     </div>
 </div>
+<!--<div id="maps">-->
+<!--</div>-->
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI&libraries=places"-->
+<!--        type="text/javascript">-->
+<!---->
+<!--</script>-->
+<!--<script src="{{asset('js/jquery-3.5.0.js')}}"></script>-->
+<!--<script-->
+<!--    src="https://code.jquery.com/jquery-3.2.1.min.js"-->
+<!--    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="-->
+<!--    crossorigin="anonymous"></script>-->
+<!---->
+<!---->
+<!--<script src="{{asset('js/script.js')}}"></script>-->
+
 <br><br>
 <div class="container">
-    <p style="color: #588D6A; font-size: 28px; font-weight: bold;font-family: Arial">Ratings & Reviews ({{ $reviews->count() }} review(s))
-        <a href="#" style="font-family: Arial;font-size: 22px;color: #3D4738" id="write">Write a review</a></p>
+    @if ($reviews->count() > 1)
+    <p style="color: #588D6A; font-size: 30px; font-weight: bold;font-family: Arial">Ratings & Reviews ({{ $reviews->count() }} reviews)
+        @else
+    <p style="color: #588D6A; font-size: 30px; font-weight: bold;font-family: Arial">Ratings & Reviews ({{ $reviews->count() }} review)
+        @endif
+        &nbsp;
+        <a href="#" style="font-family: Arial;font-size: 26px;color: #3D4738" id="write">
+            <img src="{{asset('image/edit.png')}}" width="28" height="28" style="margin-top: -7.7px">Write a review</a></p>
 </div>
 <!--style="display: none"-->
 <br>
-<div class="row" id="reviewForm" style="display: none">
+<div class="row" id="reviewForm">
     <div class="col-md-12">
         <!--        @if(count($errors) > 0)-->
         <!--        <div class="alert alert-danger">-->
@@ -275,13 +304,14 @@
                 <input type="text" name="station_id" class="form-control" style="display: none" value="{{$station->id}}" />
             </div>
             <div class="form-group" style="border-bottom: 1px solid #588D6A">
-                <p style="font-size: 25px; font-weight: bold; font-family: Arial;">Rating the place you've visited</p>
+                <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Rating the place you've visited</p>
+                <br>
                 <div class="ratings">
-                <span class="fa fa-star-o" id="star"></span>
-                <span class="fa fa-star-o" id="star"></span>
-                <span class="fa fa-star-o" id="star"></span>
-                <span class="fa fa-star-o" id="star"></span>
-                <span class="fa fa-star-o" id="star"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
                 </div>
                 <input type="text" id="rating" name="rating" class="form-control" style="display: none" />
                 <br>
@@ -289,25 +319,34 @@
             <div class="form-group" style="border-bottom: 1px solid #588D6A">
                 <!--                <p>Is the charging station working?</p>-->
                 <!--                <input type="text" name="is_working" class="form-control" placeholder="Enter If charger station is working or not" />-->
-                <label for="is_working" style="font-size: 25px; font-weight: bold; font-family: Arial;">Is the charging station working?</label><br>
-                <input type="radio" name="is_working" value="1"> Yes
-                <input type="radio" name="is_working" value="0"> No
+                <label for="is_working" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Is the charging station working?</label>
+                <br><br>
+                <p style="font-size: 30px; font-family: Arial; color: #3d4738">
+                <input type="radio" name="is_working" value="1" style="height: 20px; width: 20px"> Yes
+                <input type="radio" name="is_working" value="0" style="height: 20px; width: 20px"> No
+                </p>
                 <br>
             </div>
             <div class="form-group" style="border-bottom: 1px solid #588D6A">
-                <label for="is_welcoming" style="font-size: 25px; font-weight: bold; font-family: Arial;">The charging station location is very welcoming</label><br>
-                <input type="radio" name="is_welcoming" value="Strongly Agree">Strong Agree
-                <input type="radio" name="is_welcoming" value="Agree"> Agree
-                <input type="radio" name="is_welcoming" value="Neutral"> Neutral
-                <input type="radio" name="is_welcoming" value="Disagree"> Disagree
-                <input type="radio" name="is_welcoming" value="Strongly Disagree"> Strongly Disagree
+                <label for="is_welcoming" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">The charging station location is very welcoming</label>
+                <br><br>
+                <p style="font-size: 30px; font-family: Arial; color: #3d4738">
+                <input type="radio" name="is_welcoming" value="Strongly Agree" style="height: 20px; width: 20px">Strong Agree
+                <input type="radio" name="is_welcoming" value="Agree" style="height: 20px; width: 20px"> Agree
+                <input type="radio" name="is_welcoming" value="Neutral" style="height: 20px; width: 20px"> Neutral
+                <input type="radio" name="is_welcoming" value="Disagree" style="height: 20px; width: 20px"> Disagree
+                <input type="radio" name="is_welcoming" value="Strongly Disagree" style="height: 20px; width: 20px"> Strongly Disagree
+                </p>
+                <br>
             </div>
             <div class="form-group">
-                <p style="font-size: 25px; font-weight: bold; font-family: Arial;">Other feedback</p>
-                <input type="text" name="comments" class="form-control" style="width: 40%;display: inline-block;height: 150px" placeholder="Input message here..."/>
+                <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Other feedback</p>
+<!--                <input type="text"  class="form-control" style="height: 20em" placeholder="Input message here..."/>-->
+                <textarea name="comments" style="height: 100px; width: 80%; font-size: 28px; font-family: Arial; color: #88888"></textarea>
             </div>
+            <br>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" style="font-size: 26px; font-weight: bold; font-family: Arial; color: #ffffff;
+                <input type="submit" class="btn btn-primary" style="font-size: 36px; font-weight: bold; font-family: Arial; color: #ffffff;
 background-color: #588D6A; border-radius: 8px" />
             </div>
         </form>
@@ -338,9 +377,14 @@ background-color: #588D6A; border-radius: 8px" />
 <!--            <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">-->
 <!--                {{ $reviews->count() }} people give rate-->
 <!--            </h5>-->
-        <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">
-            Rating: {{round($rating)}}
+        <h5 style="text-align: center;">
+        <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
+            Rating
+        </span>
+        <span style="font-size: 32px; font-family: Arial; font-weight: bold; color: #9a0311">
+            {{round($rating)}}</span>
         </h5>
+        <br><br>
 <!--        <h5 style="text-align: center; font-size: 38px">-->
 <!--            @for ($star = 1; $star <=5; $star++)-->
 <!--            @if (round($rating)>= $star)-->
@@ -351,34 +395,39 @@ background-color: #588D6A; border-radius: 8px" />
 <!--            @endfor-->
 <!--        </h5>-->
         <h5>
+            <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat5}}</span>
+            &nbsp;&nbsp;
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
-            <span style="font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311;float: right">{{$rat5}}</span>
         </h5>
         <h5>
+            <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat4}}</span>
+            &nbsp;&nbsp;
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
-            <span style="font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311;float: right">{{$rat4}}</span>
         </h5>
         <h5>
+            <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat3}}</span>
+            &nbsp;&nbsp;
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
-            <span style="font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311;float: right">{{$rat3}}</span>
         </h5>
         <h5>
+            <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat2}}</span>
+            &nbsp;&nbsp;
             <span id="star" class="glyphicon glyphicon-star"></span>
             <span id="star" class="glyphicon glyphicon-star"></span>
-            <span style="font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311;float: right;">{{$rat2}}</span>
         </h5>
         <h5>
+            <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat1}}</span>
+            &nbsp;&nbsp;
             <span id="star" class="glyphicon glyphicon-star"></span>
-            <span style="font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311;float: right">{{$rat1}}</span>
         </h5>
     </div>
 
@@ -388,14 +437,29 @@ background-color: #588D6A; border-radius: 8px" />
     </div>
 
     <div class="inline" style="width:500px; height: 300px;margin: auto;">
-        <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Charging station is very welcoming</h5>
+        <h5 style="text-align: center; font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">Charging station is very welcoming</h5>
         <br>
-        <h5 style="text-align: left; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Strongly Agree: {{$strong}}</h5>
-        <h5 style="text-align: left; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Strongly Agree: {{$agree}}</h5>
-        <h5 style="text-align: left; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Strongly Agree: {{$neutral}}</h5>
-        <h5 style="text-align: left; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Strongly Agree: {{$disagree}}</h5>
-        <h5 style="text-align: left; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">Strongly Agree: {{$sdisagree}}</h5>
-
+        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
+            <span>Strongly Agree </span>
+            <span><div style="background-color: #f77f00;width:{{$p1}}%;height: 8px">&nbsp;</div></span>
+        </h5>
+        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
+            <span>Agree </span>
+            <span><div style="background-color: #f77f00;width:{{$p2}}%;height: 8px">&nbsp;</div></span>
+        </h5>
+        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
+            <span>Neutral </span>
+            <span><div style="background-color: #f77f00;width:{{$p3}}%;height: 8px">&nbsp;</div></span>
+        </h5>
+        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
+            <span>Disagree </span>
+            <span><div style="background-color: #f77f00;width:{{$p4}}%;height: 8px">&nbsp;</div></span>
+        </h5>
+        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
+            <span>Strongly Disagree </span>
+            <span><div style="background-color: #f77f00;width:{{$p5}}%;height: 8px">&nbsp;</div></span>
+        </h5>
+    </div>
     </div>
 </div>
 @endif
@@ -413,10 +477,10 @@ background-color: #588D6A; border-radius: 8px" />
         @foreach($reviews as $review)
         <tr style="border-bottom: 1px solid #588D6A">
             <td class="table-responsive-md">
-                <img src="{{asset('image/clock.png')}}" width="60" height="60" style="margin-top: -70px">
+                <img src="{{asset('image/tou.png')}}" width="60" height="60" style="margin-top: -70px">
             </td>
             <td class="table-responsive-md">
-                <ul class="type" style="font-size: 26px;font-family: Arial">User ID</ul>
+                <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">User ID</ul>
                 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">-->
 <!--                    @if ($review->is_working == 1)-->
 <!--                    <p>Is charging station working: Yes</p>-->
@@ -432,11 +496,11 @@ background-color: #588D6A; border-radius: 8px" />
                     <span class="glyphicon glyphicon-star-empty"></span>
                     @endif
                     @endfor
-                    <h5 style="display: inline;font-size: 26px;font-family: Arial">reviewd by: {{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</h5>
+                    <h5 style="font-size: 20px;font-family: Arial; color: #3D4738">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</h5>
                 </ul>
 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</ul>-->
                 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">The charing station location is very welcoming: {{$review->is_welcoming}}</ul>-->
-                <ul class="type" style="font-size: 26px;font-family: Arial">{{$review->comments}}</ul>
+                <ul class="type" style="font-size: 24px;font-family: Arial;color: #3D4738">{{$review->comments}}</ul>
             </td>
         </tr>
         @endforeach

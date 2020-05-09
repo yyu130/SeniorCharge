@@ -1,10 +1,17 @@
-var map;
+var map, directionsService, directionsRenderer;
 var myLatLng
 $(document).ready(function (listener) {
 
     var query = document.getElementById("query").innerText;
     document.getElementById('submitBtn').addEventListener("click",findLocation(query));
-
+    document.getElementById('all').addEventListener("click",returnLocation);
+    function returnLocation(){
+        var query = document.getElementById("query").innerText;
+        findLocation(query);
+        document.getElementById('all').style.display = 'none';
+        //document.getElementsByClassName('distance').style.display = 'none';
+    }
+    console.log(document.getElementById('all'))
     // $('submitBtn').click(function () {
     //     $.ajax({
     //         type: 'GET',
@@ -24,11 +31,91 @@ $(document).ready(function (listener) {
             },
         });
     }
+    geoLocationInit();
+    var routes = document.getElementsByClassName('route');
 
-    // geoLocationInit();
+    for (var i = 0; i < routes.length; i++){
+        routes[i].addEventListener('click', router);
+    }
+
+    function router() {
+        console.log(this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText)
+        console.log(document.getElementById('current').innerText);
+
+        document.getElementById('all').style.display = 'block';
+         directionsService = new google.maps.DirectionsService();
+         directionsRenderer = new google.maps.DirectionsRenderer();
+         map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: {lat: 41.85, lng: -87.65}
+        });
+        directionsRenderer.setMap(map);
+        //directionsRenderer.setPanel(document.getElementById('right-panel'));
+
+        calculateAndDisplayRoute(directionsService, directionsRenderer, this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText, document.getElementById('current').innerText);
+
+        $.ajax({
+                type: 'GET',
+                async: false,
+                // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
+                //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
+                //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+                    +document.getElementById('current').innerText+'&destinations='+this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                success: function (data) {
+                    // console.log(dis[i].innerText);
+                    // console.log(data.rows[0].elements[0].distance.text)
+                    //distance.push(data.rows[0].elements[0].distance.text)
+                    // var txt3 = document.createElement("ul");
+                    // txt3.innerText = data.rows[0].elements[0].distance.text;
+                    // this.parentElement.parentElement.childNodes[3].after(txt3);
+                    var distance = document.getElementsByClassName('distance');
+                    for (var i = 0; i < distance.length; i++){
+                        distance[i].style.display = 'none';
+                        distance[i].innerText =  data.rows[0].elements[0].distance.text;
+                    }
+
+                        //dis[index].innerText = data.rows[0].elements[0].distance.text;
+                    //console.log(data.rows[0].elements[0].distance.text)
+
+                     //distance.push(data.rows[0].elements[0].distance.text)
+
+                    // $.ajax({
+                    //     url:"test.blade.php",
+                    //     type: "POST",
+                    //     data: {distance: JSON.stringify(distance)},
+                    //     success:function (dis) {
+                    //         console.log(dis)
+                    //     }
+                    // })
+                },
+                error:function (data) {
+                    console.log(data)
+                }
+            });
+        this.parentElement.parentElement.parentElement.childNodes[3].childNodes[5].style.display = 'block';
+            // console.log( this.parentElement.parentElement.childNodes)
+
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer, des, cur) {
+        directionsService.route(
+            {
+                origin: {query: cur},
+                destination: {query: des},
+                travelMode: 'WALKING'
+            },
+            function(response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+    }
     function geoLocationInit() {
         if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(success,fail);
+            navigator.geolocation.getCurrentPosition(success);
         }
         else{
             alter("Browser not supported");
@@ -36,18 +123,29 @@ $(document).ready(function (listener) {
     }
 
     function success(position) {
-        var latval=position.coords.latitude;
-        var lngval=position.coords.longitude;
+        // var latval=position.coords.latitude;
+        // var lngval=position.coords.longitude;
+        //
+        // console.log([latval,lngval]);
+        // createMap(myLatLng);
 
-        console.log([latval,lngval]);
-        createMap(myLatLng);
+        var geocoder = new google.maps.Geocoder();
+        var latlng = {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)};
+        geocoder.geocode({ 'location' :latlng  }, function (responses) {
+
+            if (responses && responses.length > 0) {
+                // $("#origin").val(responses[1].formatted_address);
+                // $("#from_places").val(responses[1].formatted_address);
+                //     console.log(responses[1].formatted_address);
+                    document.getElementById('current').innerText = responses[1].formatted_address;
+                    console.log(document.getElementById('current').innerText)
+                // responses[1].formatted_address;
+            } else {
+                alert("Cannot determine address at this location.")
+            }
+        });
         //nearbySearch(myLatLng,'school');
         // searchStations(latval,lngval);
-    }
-
-    function fail() {
-        alter("if fails");
-
     }
 
     function createMap(myData) {
@@ -104,8 +202,8 @@ $(document).ready(function (listener) {
             });
             //console.log(lat[0],lng[0])
 
-            var dis = document.getElementsByClassName('distance');
-            console.log(dis[0].innerText);
+            //var dis = document.getElementsByClassName('distance');
+            //console.log(dis[0].innerText);
 
             for(i=0;i<lat.length;i++){
                 var contentString = '<div style="font-weight: bold">' + sname[i] + '</div>' + "<br/>" +add[i] + "<br/>" + open[i] + "-" + close[i] + "<br/>" + type[i]
@@ -140,37 +238,37 @@ $(document).ready(function (listener) {
                  // marker.infowindow.close();
                 //var distance = [];
                 // this.getDistance(add[i],myData.results[0].formatted_address,dis[i]);
-                (function(index){
-                $.ajax({
-                    type: 'GET',
-                    async: false,
-                    // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
-                    //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
-                    //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
-                    url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
-                        +myData.results[0].formatted_address+'&destinations='+add[i]+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
-                    success: function (data) {
-                        // console.log(dis[i].innerText);
-                        // console.log(data.rows[0].elements[0].distance.text)
-                        //distance.push(data.rows[0].elements[0].distance.text)
-                        dis[index].innerText = data.rows[0].elements[0].distance.text;
-
-                         //distance.push(data.rows[0].elements[0].distance.text)
-
-                        // $.ajax({
-                        //     url:"test.blade.php",
-                        //     type: "POST",
-                        //     data: {distance: JSON.stringify(distance)},
-                        //     success:function (dis) {
-                        //         console.log(dis)
-                        //     }
-                        // })
-                    },
-                    error:function (data) {
-                        console.log(data)
-                    }
-                });
-                })(i);
+                // (function(index){
+                // $.ajax({
+                //     type: 'GET',
+                //     async: false,
+                //     // url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
+                //     //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
+                //     //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                //     url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+                //         +myData.results[0].formatted_address+'&destinations='+add[i]+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                //     success: function (data) {
+                //         // console.log(dis[i].innerText);
+                //         // console.log(data.rows[0].elements[0].distance.text)
+                //         //distance.push(data.rows[0].elements[0].distance.text)
+                //         dis[index].innerText = data.rows[0].elements[0].distance.text;
+                //
+                //          //distance.push(data.rows[0].elements[0].distance.text)
+                //
+                //         // $.ajax({
+                //         //     url:"test.blade.php",
+                //         //     type: "POST",
+                //         //     data: {distance: JSON.stringify(distance)},
+                //         //     success:function (dis) {
+                //         //         console.log(dis)
+                //         //     }
+                //         // })
+                //     },
+                //     error:function (data) {
+                //         console.log(data)
+                //     }
+                // });
+                // })(i);
                 //dis[i].innerText = distance[i];
             }
         //console.log(distance)

@@ -10,7 +10,6 @@
         height: 0;
         position: relative;
         padding-bottom: 50%;
-
     }
 
     #open{
@@ -104,8 +103,11 @@
         background-color: mediumseagreen;
         color: #333333;
         text-align: center;
+        
+
     }
 </style>
+
 <body style="background-color: #f0efef">
 <!--<div class="container">-->
 <!--    <h1>Search</h1>-->
@@ -113,13 +115,17 @@
 <!--        <input type="text" name="q" id="q" value="{{ request()->input('q')}}" placeholder="search">-->
 <!--    </form>-->
 <!--</div>-->
+<div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/map.jpg')}}');
+        background-size: cover;" >
+</div>
+
 <div class="container">
     <h1>&nbsp;</h1>
     <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;max-width:600px">
         {{ csrf_field() }}
         <div class="input-group">
             <input type="text" class="form-control" name="query"
-                   placeholder="Search postcode/suburb here..." value="{{ request()->input('query')}}" style="border-radius: 8px; display: none">
+                   placeholder="Search postcode/suburb here..." value="{{ request()->input('query')}}" style="border-radius: 8px;display: none">
             <span>
             <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738;">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
             </span>
@@ -159,10 +165,12 @@
     @if(isset($details))
     <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result(s)</strong> have been found</p>
     <p style="display: none"> The search results for <b id="query"> {{ $query }} </b> are :</p>
+    <button id="all" style="display: none">Show all</button>
+    <p style="display: none" id="current"></p>
+<!--    <div id="right-panel"></div>-->
     <div id="map">
-
     </div>
-
+<!--    <div id="right-panel"></div>-->
     <table class="table table-striped" >
         <table class="table table-responsive">
     <!--        <thead>-->
@@ -189,9 +197,11 @@
         @else
         <td class="table-responsive" width="200" height="300"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.png')}}" width="200" height="200"></td>
         @endif
+
         <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
             <ul class = "address" style="font-family: Arial;font-size: 26px; color: #3D4738"><img src="{{asset('image/pin.png')}}" width="22" height="22"> {{$station->address}}</ul>
+            <ul class="distance" style="display: none"></ul>
             <ul class="longitude" style="display: none">{{$station->longitude}}</ul>
             <ul class="latitude" style="display: none">{{$station->latitude}}</ul>
             <ul class="open" style="display: none">{{\Carbon\Carbon::createFromFormat('H:i:s',$station->mon_open)->format('g a')}}</ul>
@@ -229,7 +239,38 @@
             @if ($station->plug_only == 1)
             <ul style="font-size: 26px;font-family: Arial">Plug only, bring your own charger</ul>
             @endif
-            <ul class="distance"></ul>
+<!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
+
+        <td class="table-responsive-md">
+        <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>
+        </td>
+<!--            <script>-->
+<!--                function getCurrentPosition() {-->
+<!--                    if (navigator.geolocation) {-->
+<!--                        navigator.geolocation.getCurrentPosition(setCurrentPosition);-->
+<!--                    } else {-->
+<!--                        alert("Geolocation is not supported by this browser.")-->
+<!--                    }-->
+<!--                }-->
+<!---->
+<!--                // get formatted address based on current position and set it to input-->
+<!--                function setCurrentPosition(pos) {-->
+<!--                    var geocoder = new google.maps.Geocoder();-->
+<!--                    var latlng = {lat: parseFloat(pos.coords.latitude), lng: parseFloat(pos.coords.longitude)};-->
+<!--                    geocoder.geocode({ 'location' :latlng  }, function (responses) {-->
+<!--                        console.log(responses);-->
+<!--                        if (responses && responses.length > 0) {-->
+<!--                            $("#origin").val(responses[1].formatted_address);-->
+<!--                            $("#from_places").val(responses[1].formatted_address);-->
+<!--                            //    console.log(responses[1].formatted_address);-->
+<!--                        } else {-->
+<!--                            alert("Cannot determine address at this location.")-->
+<!--                        }-->
+<!--                    });-->
+<!--                }-->
+<!--            </script>-->
+<!--            <input id="origin" name="origin" required="" />-->
+<!--            <ul onclick="getCurrentPosition()">Set Current Position</ul>-->
         </td>
     </tr>
     @endforeach
@@ -239,15 +280,16 @@
 <!--        </div>-->
 </table></table>
 </div>
+
 <script src="{{asset('js/jquery-3.5.0.js')}}"></script>
 <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI&libraries=places"
-        type="text/javascript">
-
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="/assets/gmap3.js?body=1" type="text/javascript"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI&libraries=places" type="text/javascript">
 </script>
 <script src="{{asset('js/script.js')}}"></script>
 <!--<script>-->

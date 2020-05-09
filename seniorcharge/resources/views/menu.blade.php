@@ -264,10 +264,10 @@
 <nav>
     <nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
-        <a href="/" class="navbar-brand"  style="margin: auto">
-            <img src="{{asset('image/homelogo.png')}}" alt="" class="d-inline-block align-top" height="150" width="350">
+        <a href="/" class="navbar-brand" >
+            <img src="{{asset('image/logo.png')}}" alt="" class="d-inline-block align-top" height="150" width="400">
         </a></div>
-    <div class="container" style="max-width: 800px">
+    <div class="container" style="width: auto">
         <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
             {{ csrf_field() }}
             <div class="input-group">
@@ -298,7 +298,7 @@
 <!--            @endif-->
 <!--        </div>-->
     </div>
-    <div class="topnav" id="myTopnav">
+    <div class="topnav" id="myTopnav" style="margin-right: 200px">
         <a  style="font-weight: bold; font-size: 30px; font-family: Arial;color: #588D6A" href="/" class="nav-item nav-link @yield('menu_home')"> Home </a>
         <!--    <a href="/find" class="nav-item nav-link @yield('menu_find')"> Find Station </a>-->
         <!--    <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->

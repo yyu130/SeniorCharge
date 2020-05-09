@@ -56,12 +56,12 @@
     }
 
     .footer{
-        position: fixed;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;
         /*background-color: white;*/
-        color: #333333;
+        color: white;
         text-align: center;
     }
 
@@ -78,7 +78,7 @@
     #bg{
         height: auto;
         padding-top: 150px;
-        background-image: url('{{asset('image/finalhome.jpg')}}');
+        background-image: url('{{asset('image/h.jpg')}}');
         background-size: cover;
     }
 </style>
@@ -276,7 +276,10 @@
                 </div>
     </div>
 </div>
-</body>
+<!--<div class="footer">-->
+<!--    @ 2020 Sr.charge. All Rights Reserved * Terms and Conditions * Privacy Policy-->
+<!--</div>-->
+<!--</body>-->
 @endsection
 
 
