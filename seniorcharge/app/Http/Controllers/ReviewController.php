@@ -52,7 +52,6 @@ class ReviewController extends Controller
             'station_id'  =>  $request->get('station_id'),
             'is_working'  =>  $request->get('is_working'),
             'rating'  =>  $request->get('rating'),
-            'is_welcoming'  =>  $request->get('is_welcoming'),
             'comments'  =>  $request->get('comments')
         ]);
         $review->save();

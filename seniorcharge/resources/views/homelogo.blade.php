@@ -152,9 +152,9 @@
 <nav>
     <nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
-        <a href="/" class="navbar-brand" style="margin: auto">
-            <img src="{{asset('image/logo.png')}}" alt="" class="d-inline-block align-top" height="150" width="400">
-        </a>
+<!--        <a href="/" class="navbar-brand" style="margin: auto">-->
+            <img src="{{asset('image/logo.png')}}" alt="" class="d-inline-block align-top" height="150" width="350" style="margin: auto">
+<!--        </a>-->
     </div>
 </nav>
 

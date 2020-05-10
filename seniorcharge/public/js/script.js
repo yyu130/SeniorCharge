@@ -442,10 +442,7 @@ $(document).ready(function (listener) {
     document.getElementById('close').addEventListener("click", close);
     function close() {
         var form = document.getElementById('reviewForm');
-
-        if(form.style.display == 'block'){
-            form.style.display = 'none';
-        }
+        form.style.display = 'none';
     }
 
 const stars = document.querySelector(".ratings").children;

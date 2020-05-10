@@ -14,7 +14,7 @@
 
     #search{
         font-weight: bold;
-        font-family: Apple SD Gothic Neo;
+        font-family: Arial;
         font-size: 20px;
     }
 
@@ -246,9 +246,9 @@
 <!--                <div class="col" style="background-color: #f0efef; float: left; text-align: center">-->
 
                 <div class="col-md-4 text-light" style="background-color: #f0efef;width:320px; height: 450px; text-align: center">
-                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Impact;text-align: center">Free Charging?</h1>
-                    <p style="color: #3d4738; font-family: Avenir;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
-                    <p style="color: #3d4738; font-size: 20px; font-family: Avenir;text-align: center">Enter your postcode or suburb to find your nearest free charging place across Melbourne</p>
+                    <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 48px; font-family: Arial;text-align: center">Free Charging?</h1>
+                    <p style="color: #3d4738; font-family: Arial;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
+                    <p style="color: #3d4738; font-size: 20px; font-family: Arial;text-align: center">Enter your postcode or suburb to find your nearest free charging place across Melbourne</p>
 
                     <form action="{{route('searchFor')}}" class="example" style="text-align: center ">
                         {{ csrf_field() }}

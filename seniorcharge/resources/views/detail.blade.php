@@ -182,7 +182,7 @@
                 </div>
             </div>
             <br>
-            <p style="font-family: Arial;font-size: 22px;color: #3D4738;font-weight: bold; text-align: center">{{$station->establishment_type}}</p>
+            <p style="font-family: Arial;font-size: 22px;color: #3D4738;font-weight: bold; text-align: center;margin-left: 60px">{{$station->establishment_type}}</p>
         </div>
 
         <div class="col-md-5 col-md-offset-1" style="margin: auto">
@@ -347,19 +347,14 @@
             <div class="form-group">
                 <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Other feedback</p>
 <!--                <input type="text"  class="form-control" style="height: 20em" placeholder="Input message here..."/>-->
-                <textarea name="comments" style="height: 100px; width: 80%; font-size: 28px; font-family: Arial; color: #88888"></textarea>
+                <textarea name="comments" style="height: 100px; width: 80%; font-size: 28px; font-family: Arial;"></textarea>
             </div>
             <br>
             <div class="form-group">
-<!--                <input type="submit" class="btn btn-primary" style="font-size: 36px; font-weight: bold; font-family: Arial; color: #ffffff;-->
-<!--background-color: #588D6A; border-radius: 8px" />-->
-                <button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="btn btn-primary">
+                <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</span>
                 </button>
-            </div>
-            <br>
-            <div class="form-group">
-                <button type="reset" id="close" style="background-color: #588D6A;border-radius: 8px" class="btn btn-primary">
+                <button id="close" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Close</span>
                 </button>
             </div>
@@ -387,7 +382,7 @@
 <br>
 @if ($reviews->count() != 0)
 <div class="row" style="background-color: #588D6A">
-    <div class="inline" style="margin: auto">
+    <div class="inline" style="margin: auto;margin-top: 0px">
 <!--            <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">-->
 <!--                {{ $reviews->count() }} people give rate-->
 <!--            </h5>-->
@@ -449,7 +444,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
 
     <!-- Create a div where the graph will take place -->
-    <div class="inline" style="margin: auto;">
+    <div class="inline" style="margin: auto;margin-top: 0px">
         <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
             Charging Station Working
         </span>
@@ -565,7 +560,7 @@
         <tbody>
         @foreach($reviews as $review)
         <tr style="border-bottom: 1px solid #588D6A">
-            <td class="table-responsive-md">
+            <td class="table-responsive-md" style="vertical-align: top">
                 <img src="{{asset('image/tou.png')}}" width="60" height="60" style="text-align: center">
             </td>
             <td class="table-responsive-md">

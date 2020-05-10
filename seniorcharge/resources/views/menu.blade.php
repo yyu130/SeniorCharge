@@ -265,9 +265,9 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background: #F0efef"
     <div class="collapse navbar-collapse">
         <a href="/" class="navbar-brand" >
-            <img src="{{asset('image/logo.png')}}" alt="" class="d-inline-block align-top" height="150" width="400">
+            <img src="{{asset('image/logo.png')}}" alt="" class="d-inline-block align-top" height="150" width="350">
         </a></div>
-    <div class="container" style="width: auto">
+    <div class="container" style="width: auto;margin-right: 250px">
         <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
             {{ csrf_field() }}
             <div class="input-group">
