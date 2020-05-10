@@ -43,10 +43,10 @@ class ReviewController extends Controller
 //        dd($request->get('station_id'));
         $this->validate($request,[
             'station_id'  =>  'required',
-            'is_working'  =>  'required',
+//            'is_working'  =>  'required',
             'rating'  =>  'required',
-            'is_welcoming'  =>  'required',
-            'comments'  =>  'required'
+//            'is_welcoming'  =>  'required',
+//            'comments'  =>  'required'
         ]);
         $review =new reviews([
             'station_id'  =>  $request->get('station_id'),
@@ -71,7 +71,8 @@ class ReviewController extends Controller
         }
 
         Station::where('id', $id)->update(['star_rating' => $rating]);
-        return redirect()->action('StationController@detail', ['id' => $id]);
+        return redirect()->action('StationController@detail', ['id' => $id])
+          ->with('success','Thank you! Your feedback was submitted successfully.');
     }
 
     /**

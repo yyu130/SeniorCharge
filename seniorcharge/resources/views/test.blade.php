@@ -103,7 +103,7 @@
         background-color: mediumseagreen;
         color: #333333;
         text-align: center;
-        
+
 
     }
 </style>
@@ -116,12 +116,14 @@
 <!--    </form>-->
 <!--</div>-->
 <div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/map.jpg')}}');
-        background-size: cover;" >
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;" >
 </div>
 
 <div class="container">
     <h1>&nbsp;</h1>
-    <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;max-width:600px">
+    <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;">
         {{ csrf_field() }}
         <div class="input-group">
             <input type="text" class="form-control" name="query"
@@ -132,24 +134,21 @@
             <span>
             <select id="dropdown" class="form-control" name="sort" value="" style="border-radius: 8px">
                 <option value="name" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "name" ? "selected" : "" ?>>Name</option>
-                <option value="status" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "status" ? "selected" : "" ?>>Open</option>
                 <option value="rating" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "rating" ? "selected" : "" ?>>Rating</option>
             </select>
             </span>
-<!--            &nbsp;&nbsp;&nbsp;-->
-<!--            &nbsp;&nbsp;&nbsp;-->
-<!--            &nbsp;&nbsp;&nbsp;-->
-<!--            &nbsp;&nbsp;&nbsp;-->
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <b>
             <span>
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
             <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
+            <input type="checkbox" name="current" style="height: 18px;width: 18px;" <?php if(isset($_GET['current'])) echo 'checked';?>>
+            <label style="font-size: 22px; font-family: Arial; color: #3d4738">Current Open</label>
             </span>
             </b>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
-            <button type="submit" id="submitBtn" style="background-color: #588D6A" class="fa fa-filter">
+            <button type="submit" id="submitBtn" style="background-color: #588D6A" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 20px; font-weight: bold">Submit</span>
 
             </button>
@@ -163,14 +162,19 @@
 
 <div class="container">
     @if(isset($details))
-    <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result(s)</strong> have been found</p>
+    @if($details->count() > 1)
+    <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} results</strong> have been found</p>
+    @else
+    <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result</strong> have been found</p>
+    @endif
     <p style="display: none"> The search results for <b id="query"> {{ $query }} </b> are :</p>
     <button id="all" style="display: none">Show all</button>
     <p style="display: none" id="current"></p>
-<!--    <div id="right-panel"></div>-->
     <div id="map">
     </div>
-<!--    <div id="right-panel"></div>-->
+<!--    <div id="right-panel" style="width: 40%; height: 200px; overflow-y: scroll; display: inline-block"></div>-->
+
+    <!--    <div id="right-panel"></div>-->
     <table class="table table-striped" >
         <table class="table table-responsive">
     <!--        <thead>-->

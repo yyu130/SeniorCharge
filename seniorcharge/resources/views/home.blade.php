@@ -75,11 +75,20 @@
         text-align: center;
     }
 
+    /*@media only screen and (max-width: 767px){*/
+    /*    #bg{*/
+    /*        height: auto;*/
+    /*        padding-top: 150px;*/
+    /*        background-image: url('{{asset('image/h.jpg')}}');*/
+    /*        background-size: cover;*/
+    /*    }*/
     #bg{
         height: auto;
         padding-top: 150px;
         background-image: url('{{asset('image/h.jpg')}}');
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

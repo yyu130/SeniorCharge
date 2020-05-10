@@ -67,28 +67,30 @@
         text-align: center;
     }
 </style>
-<script type="text/javascript">
-    window.onload = function () {
-        var chart = new CanvasJS.Chart("chartContainer",
-            {
-                title:{
-                    text: "Charging station working?"
-                },
-                data: [
-                    {
-                        type: "pie",
-                        dataPoints: [
-                            { y: {{$working}}, label: "Yes"},
-        { y: {{$notWorking}}, label: "No"},
-    ]
-    }
-    ]
-    });
-
-        chart.render();
-    }
-</script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    google.charts.load('current', {'packages':['corechart']});-->
+<!--    google.charts.setOnLoadCallback(drawChart);-->
+<!---->
+<!--    function drawChart() {-->
+<!---->
+<!--        var data = google.visualization.arrayToDataTable([-->
+<!--            ['Option', 'Amount'],-->
+<!--            ['Yes',     {{$working}}],-->
+<!--            ['No',      {{$notWorking}}]-->
+<!--        ]);-->
+<!---->
+<!--        var options = {-->
+<!--            title: 'Is charging station working'-->
+<!--        };-->
+<!---->
+<!--        var chart = new google.visualization.PieChart(document.getElementById('piechart'));-->
+<!---->
+<!--        chart.draw(data, options);-->
+<!--    }-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>-->
+<!-- Load d3.js -->
 <body style="background-color: #f0efef">
 <h1></h1>
 <!--<form action="/search" method="POST" role="search" class="example" style="margin-right: auto;max-width:600px">-->
@@ -115,10 +117,12 @@
 <!--    </div>-->
 <!--</form>-->
 <div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/place.jpg')}}');
-        background-size: cover;" >
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;" >
 </div>
 <div class="container">
-<a style="color: white" href="{{URL::previous()}}" class="Button"><i class="fas fa-arrow-left" > Return to map view</i></a>
+<a style="color: white" href="{{URL::previous()}}" class="Button"><i class="fas fa-arrow-left" > Back</i></a>
 </div>
 <br>
 <div class="container">
@@ -157,22 +161,23 @@
 <!--            <br>-->
 <!--            <br>-->
 <!--            <br>-->
+            <br>
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin: auto;">
                     @if ($station->establishment_type == "Library")
-                    <img src="{{asset('image/library.png')}}" width="300" height="300">
+                    <img src="{{asset('image/library.jpg')}}" width="400" height="300">
                     @elseif ($station->establishment_type == "Housing Support Services")
-                    <img src="{{asset('image/house.png')}}" width="300" height="300">
+                    <img src="{{asset('image/house.jpg')}}" width="400" height="300">
                     @elseif ($station->establishment_type == "Train Station")
-                    <img src="{{asset('image/station.png')}}" width="300" height="300">
+                    <img src="{{asset('image/station.jpg')}}" width="400" height="300">
                     @elseif ($station->establishment_type == "Community Centre")
-                    <img src="{{asset('image/center.png')}}" width="300" height="300">
+                    <img src="{{asset('image/center.jpg')}}" width="400" height="300">
                     @elseif ($station->establishment_type == "Community Space")
-                    <img src="{{asset('image/space.png')}}" width="300" height="300">
+                    <img src="{{asset('image/space.jpg')}}" width="400" height="300">
                     @elseif ($station->establishment_type == "Restaurant")
-                    <img src="{{asset('image/mc.png')}}" width="300" height="300">
+                    <img src="{{asset('image/mc.png')}}" width="400" height="300">
                     @else
-                    <img src="{{asset('image/other.png')}}" width="300" height="300">
+                    <img src="{{asset('image/other.jpg')}}" width="400" height="300">
                     @endif
                 </div>
             </div>
@@ -180,7 +185,7 @@
             <p style="font-family: Arial;font-size: 22px;color: #3D4738;font-weight: bold; text-align: center">{{$station->establishment_type}}</p>
         </div>
 
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-5 col-md-offset-1" style="margin: auto">
             <br>
             <h4 style="font-weight: bold; font-size: 28px;font-family: Arial">Facilities</h4>
             <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Types of Charger Available:<h5>
@@ -281,7 +286,7 @@
 </div>
 <!--style="display: none"-->
 <br>
-<div class="row" id="reviewForm">
+<div class="row" id="reviewForm" style="display: none">
     <div class="col-md-12">
         <!--        @if(count($errors) > 0)-->
         <!--        <div class="alert alert-danger">-->
@@ -327,18 +332,18 @@
                 </p>
                 <br>
             </div>
-            <div class="form-group" style="border-bottom: 1px solid #588D6A">
-                <label for="is_welcoming" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">The charging station location is very welcoming</label>
-                <br><br>
-                <p style="font-size: 30px; font-family: Arial; color: #3d4738">
-                <input type="radio" name="is_welcoming" value="Strongly Agree" style="height: 20px; width: 20px">Strong Agree
-                <input type="radio" name="is_welcoming" value="Agree" style="height: 20px; width: 20px"> Agree
-                <input type="radio" name="is_welcoming" value="Neutral" style="height: 20px; width: 20px"> Neutral
-                <input type="radio" name="is_welcoming" value="Disagree" style="height: 20px; width: 20px"> Disagree
-                <input type="radio" name="is_welcoming" value="Strongly Disagree" style="height: 20px; width: 20px"> Strongly Disagree
-                </p>
-                <br>
-            </div>
+<!--            <div class="form-group" style="border-bottom: 1px solid #588D6A">-->
+<!--                <label for="is_welcoming" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">The charging station location is very welcoming</label>-->
+<!--                <br><br>-->
+<!--                <p style="font-size: 30px; font-family: Arial; color: #3d4738">-->
+<!--                <input type="radio" name="is_welcoming" value="Strongly Agree" style="height: 20px; width: 20px">Strong Agree-->
+<!--                <input type="radio" name="is_welcoming" value="Agree" style="height: 20px; width: 20px"> Agree-->
+<!--                <input type="radio" name="is_welcoming" value="Neutral" style="height: 20px; width: 20px"> Neutral-->
+<!--                <input type="radio" name="is_welcoming" value="Disagree" style="height: 20px; width: 20px"> Disagree-->
+<!--                <input type="radio" name="is_welcoming" value="Strongly Disagree" style="height: 20px; width: 20px"> Strongly Disagree-->
+<!--                </p>-->
+<!--                <br>-->
+<!--            </div>-->
             <div class="form-group">
                 <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Other feedback</p>
 <!--                <input type="text"  class="form-control" style="height: 20em" placeholder="Input message here..."/>-->
@@ -346,8 +351,17 @@
             </div>
             <br>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" style="font-size: 36px; font-weight: bold; font-family: Arial; color: #ffffff;
-background-color: #588D6A; border-radius: 8px" />
+<!--                <input type="submit" class="btn btn-primary" style="font-size: 36px; font-weight: bold; font-family: Arial; color: #ffffff;-->
+<!--background-color: #588D6A; border-radius: 8px" />-->
+                <button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="btn btn-primary">
+                    <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</span>
+                </button>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="reset" id="close" style="background-color: #588D6A;border-radius: 8px" class="btn btn-primary">
+                    <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Close</span>
+                </button>
             </div>
         </form>
         </div>
@@ -373,11 +387,11 @@ background-color: #588D6A; border-radius: 8px" />
 <br>
 @if ($reviews->count() != 0)
 <div class="row" style="background-color: #588D6A">
-    <div class="inline" style="width:300px; height: 300px;margin: auto;">
+    <div class="inline" style="margin: auto">
 <!--            <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">-->
 <!--                {{ $reviews->count() }} people give rate-->
 <!--            </h5>-->
-        <h5 style="text-align: center;">
+        <h5 style="text-align: center">
         <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
             Rating
         </span>
@@ -431,35 +445,110 @@ background-color: #588D6A; border-radius: 8px" />
         </h5>
     </div>
 
-    <div class="inline" style="width:300px; height: 300px;margin-top: -10px;">
-    <div id="chartContainer" style="width:300px; height: 300px;margin: auto">
-    </div>
-    </div>
 
-    <div class="inline" style="width:500px; height: 300px;margin: auto;">
-        <h5 style="text-align: center; font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">Charging station is very welcoming</h5>
-        <br>
-        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
-            <span>Strongly Agree </span>
-            <span><div style="background-color: #f77f00;width:{{$p1}}%;height: 8px">&nbsp;</div></span>
-        </h5>
-        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
-            <span>Agree </span>
-            <span><div style="background-color: #f77f00;width:{{$p2}}%;height: 8px">&nbsp;</div></span>
-        </h5>
-        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
-            <span>Neutral </span>
-            <span><div style="background-color: #f77f00;width:{{$p3}}%;height: 8px">&nbsp;</div></span>
-        </h5>
-        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
-            <span>Disagree </span>
-            <span><div style="background-color: #f77f00;width:{{$p4}}%;height: 8px">&nbsp;</div></span>
-        </h5>
-        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">
-            <span>Strongly Disagree </span>
-            <span><div style="background-color: #f77f00;width:{{$p5}}%;height: 8px">&nbsp;</div></span>
-        </h5>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <!-- Create a div where the graph will take place -->
+    <div class="inline" style="margin: auto;">
+        <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
+            Charging Station Working
+        </span>
+        <div id="my_dataviz">
+        </div>
     </div>
+    <!-- Color scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <script>
+
+        // set the dimensions and margins of the graph
+        var width = 340
+        height = 340
+        margin = 40
+
+        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+        var radius = Math.min(width, height) / 2 - margin
+
+        // append the svg object to the div called 'my_dataviz'
+        var svg = d3.select("#my_dataviz")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        // Create dummy data
+        var data = {
+            Yes: {{$working}},
+            No: {{$notWorking}}
+        }
+
+        // set the color scale
+        var color = d3.scaleOrdinal()
+            .domain(data)
+            .range(d3.schemeSet2);
+
+        // Compute the position of each group on the pie:
+        var pie = d3.pie()
+            .value(function(d) {return d.value; })
+        var data_ready = pie(d3.entries(data))
+        // Now I know that group A goes from 0 degrees to x degrees and so on.
+
+        // shape helper to build arcs:
+        var arcGenerator = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius)
+
+        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+        svg
+            .selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', arcGenerator)
+            .attr('fill', function(d){ return(color(d.data.key)) })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7)
+
+        // Now add the annotation. Use the centroid method to get the best coordinates
+        svg
+            .selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('text')
+            .text(function(d){ return d.data.key+ ": " + d.value})
+            .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+            .style("text-anchor", "middle")
+            .style("font-size", 17)
+
+
+    </script>
+
+<!--    <div class="inline" style="width:500px; height: 300px;margin: auto;">-->
+<!--        <h5 style="text-align: center; font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">Charging station is very welcoming</h5>-->
+<!--        <br>-->
+<!--        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">-->
+<!--            <span>Strongly Agree </span>-->
+<!--            <span><div style="background-color: #f77f00;width:{{$p1}}%;height: 8px">&nbsp;</div></span>-->
+<!--        </h5>-->
+<!--        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">-->
+<!--            <span>Agree </span>-->
+<!--            <span><div style="background-color: #f77f00;width:{{$p2}}%;height: 8px">&nbsp;</div></span>-->
+<!--        </h5>-->
+<!--        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">-->
+<!--            <span>Neutral </span>-->
+<!--            <span><div style="background-color: #f77f00;width:{{$p3}}%;height: 8px">&nbsp;</div></span>-->
+<!--        </h5>-->
+<!--        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">-->
+<!--            <span>Disagree </span>-->
+<!--            <span><div style="background-color: #f77f00;width:{{$p4}}%;height: 8px">&nbsp;</div></span>-->
+<!--        </h5>-->
+<!--        <h5 style="text-align: left; font-size: 26px; font-family: Arial; color: #3d4738">-->
+<!--            <span>Strongly Disagree </span>-->
+<!--            <span><div style="background-color: #f77f00;width:{{$p5}}%;height: 8px">&nbsp;</div></span>-->
+<!--        </h5>-->
+<!--    </div>-->
     </div>
 </div>
 @endif
@@ -477,7 +566,7 @@ background-color: #588D6A; border-radius: 8px" />
         @foreach($reviews as $review)
         <tr style="border-bottom: 1px solid #588D6A">
             <td class="table-responsive-md">
-                <img src="{{asset('image/tou.png')}}" width="60" height="60" style="margin-top: -70px">
+                <img src="{{asset('image/tou.png')}}" width="60" height="60" style="text-align: center">
             </td>
             <td class="table-responsive-md">
                 <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">User ID</ul>

@@ -39,20 +39,23 @@ $(document).ready(function (listener) {
     }
 
     function router() {
+        var markerArray = [];
         console.log(this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText)
         console.log(document.getElementById('current').innerText);
 
         document.getElementById('all').style.display = 'block';
          directionsService = new google.maps.DirectionsService();
-         directionsRenderer = new google.maps.DirectionsRenderer();
          map = new google.maps.Map(document.getElementById('map'), {
             zoom: 7,
             center: {lat: 41.85, lng: -87.65}
         });
+        directionsRenderer = new google.maps.DirectionsRenderer({map:map});
+        var stepDisplay = new google.maps.InfoWindow;
+
         directionsRenderer.setMap(map);
         //directionsRenderer.setPanel(document.getElementById('right-panel'));
 
-        calculateAndDisplayRoute(directionsService, directionsRenderer, this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText, document.getElementById('current').innerText);
+        calculateAndDisplayRoute(directionsService, directionsRenderer, this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText, document.getElementById('current').innerText,markerArray, stepDisplay, map);
 
         $.ajax({
                 type: 'GET',
@@ -98,7 +101,11 @@ $(document).ready(function (listener) {
 
     }
 
-    function calculateAndDisplayRoute(directionsService, directionsRenderer, des, cur) {
+    function calculateAndDisplayRoute(directionsService, directionsRenderer, des, cur, markerArray, stepDisplay, map) {
+
+        for (var i = 0; i < markerArray.length; i++) {
+            markerArray[i].setMap(null);
+        }
         directionsService.route(
             {
                 origin: {query: cur},
@@ -108,10 +115,35 @@ $(document).ready(function (listener) {
             function(response, status) {
                 if (status === 'OK') {
                     directionsRenderer.setDirections(response);
+                    showSteps(response, markerArray, stepDisplay, map);
+
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
             });
+    }
+
+    function showSteps(directionResult, markerArray, stepDisplay, map) {
+        // For each step, place a marker, and add the text to the marker's infowindow.
+        // Also attach the marker to an array so we can keep track of it and remove it
+        // when calculating new routes.
+        var myRoute = directionResult.routes[0].legs[0];
+        for (var i = 0; i < myRoute.steps.length; i++) {
+            var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+            marker.setMap(map);
+            marker.setPosition(myRoute.steps[i].start_location);
+            attachInstructionText(
+                stepDisplay, marker, myRoute.steps[i].instructions, map);
+        }
+    }
+
+    function attachInstructionText(stepDisplay, marker, text, map) {
+        google.maps.event.addListener(marker, 'click', function() {
+            // Open an info window when the marker is clicked on, containing the text
+            // of the step.
+            stepDisplay.setContent(text);
+            stepDisplay.open(map, marker);
+        });
     }
     function geoLocationInit() {
         if (navigator.geolocation){
@@ -404,6 +436,15 @@ $(document).ready(function (listener) {
 
         if (form.style.display == 'none'){
             form.style.display = 'block';
+        }
+    }
+
+    document.getElementById('close').addEventListener("click", close);
+    function close() {
+        var form = document.getElementById('reviewForm');
+
+        if(form.style.display == 'block'){
+            form.style.display = 'none';
         }
     }
 

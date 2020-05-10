@@ -245,9 +245,9 @@
     </style>
 </head>
 <div class="container" style="text-align: center" id="hide">
-    @if (session()->has('success_message'))
-    <div class="alter alter-success">
-        {{session() -> get('success_message')}}
+    @if($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{$message}}</p>
     </div>
     @endif
 
