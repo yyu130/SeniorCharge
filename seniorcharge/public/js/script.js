@@ -239,7 +239,7 @@ $(document).ready(function (listener) {
             map = new google.maps.Map(document.getElementById('map'), {
             // center: new google.maps.LatLng(myData.results[0].geometry.location.lat,myData.results[0].geometry.location.lng),
                 center: new google.maps.LatLng(lat[0],lng[0]),
-                zoom: 12
+                zoom: 14
             });
             //console.log(lat[0],lng[0])
 

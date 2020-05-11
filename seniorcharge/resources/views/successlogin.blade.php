@@ -1,7 +1,10 @@
+
+@extends('homelayout')
+@section('mycontent')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Login System in Laravel</title>
+    <title>Sr.charge Admin CMS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,16 +16,30 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #f0efef">
 <br />
 <div class="container box">
-    <h3 align="center">Simple Login System in Laravel</h3><br />
+    <h3 align="center">Sr.charge Admin CMS</h3><br />
 
     @if(isset(Auth::user()->email))
     <div class="alert alert-danger success-block">
-        <strong>Welcome {{ Auth::user()->email }}</strong>
+        <strong>Welcome to Sr.charge CMS, {{ Auth::user()->email }}</strong>
         <br />
-        <a href="{{ url('/main/logout') }}">Logout</a>
+        <br />
+<!--        <ul class="nav justify-content-center">-->
+            <li class="nav-item" style="list-style-type: none">
+                <a class="nav-link" href="/station">Station</a>
+            </li>
+            <li class="nav-item" style="list-style-type: none">
+                <a class="nav-link" href="/station">Review</a>
+            </li>
+            <li class="nav-item" style="list-style-type: none">
+                <a class="nav-link" href="{{ url('/main/logout') }}">Logout</a>
+                <!--                    <a class="nav-link" href="/station">Review</a>-->
+            </li>
+<!--        </ul>-->
+
+
     </div>
     @else
     <script>window.location = "/main";</script>
@@ -32,3 +49,4 @@
 </div>
 </body>
 </html>
+@endsection

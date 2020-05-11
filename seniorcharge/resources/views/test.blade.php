@@ -143,7 +143,7 @@
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
             <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
             <input type="checkbox" name="current" style="height: 18px;width: 18px;" <?php if(isset($_GET['current'])) echo 'checked';?>>
-            <label style="font-size: 22px; font-family: Arial; color: #3d4738">Current Open</label>
+            <label style="font-size: 22px; font-family: Arial; color: #3d4738">Currently Open</label>
             </span>
             </b>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -167,7 +167,7 @@
     <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result</strong> have been found</p>
     @endif
     <p style="display: none"> The search results for <b id="query"> {{ $query }} </b> are :</p>
-    <button style="background-color: #588D6A" class="btn btn-primary" id="all" style="display: none">
+    <button style="background-color: #588D6A; display: none" class="btn btn-primary" id="all">
         <span style="font-family: Arial;font-size: 20px; font-weight: bold">Show all stations</span>
     </button>
     <p style="display: none" id="current"></p>

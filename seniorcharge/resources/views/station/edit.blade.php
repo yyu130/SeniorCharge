@@ -1,11 +1,11 @@
-@extends('master')
-
-@section('content')
+@extends('cmsLayout')
+@section('mycontent')
+<body style="background-color: #f0efef">
 
 <div class="row">
     <div class="col-md-12">
         <br />
-        <h3>Edit Record</h3>
+        <h3 align="center">Edit Record</h3>
         <br />
         @if(count($errors) > 0)
 
@@ -117,9 +117,11 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Edit" />
+                    <a href="{{route('station.index')}}" class="btn btn-primary">Back</a>
                 </div>
             </form>
         </div>
     </div>
-
-    @endsection
+</div>
+</body>
+ @endsection

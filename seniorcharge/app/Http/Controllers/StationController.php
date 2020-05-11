@@ -7,6 +7,8 @@ use App\reviews;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Station;
+use Illuminate\Support\Facades\DB;
+
 
 class StationController extends Controller
 {
@@ -17,7 +19,7 @@ class StationController extends Controller
      */
     public function index()
     {
-        $stations = Station::all()->toArray();
+        $stations = Station::paginate(7);
         return view('station.index',compact('stations'));
     }
 
@@ -196,7 +198,7 @@ class StationController extends Controller
             'if_24h'  =>  $request->get('if_24h')
         ]);
         $station->save();
-        return redirect()->route('station.create')->with('success','Data Added');
+        return redirect()->route('station.index')->with('success','Data Added');
 
     }
 

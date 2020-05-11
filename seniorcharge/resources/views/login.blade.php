@@ -1,7 +1,9 @@
+@extends('homelayout')
+@section('mycontent')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Login System in Laravel</title>
+    <title>Sr.charge Admin CMS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,10 +15,10 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #f0efef">
 <br />
-<div class="container box">
-    <h3 align="center">Simple Login System in Laravel</h3><br />
+<div class="container box" style="background-color: white">
+    <h3 align="center">Sr.charge Admin CMS</h3><br />
 
     @if(isset(Auth::user()->email))
     <script>window.location="/main/successlogin";</script>
@@ -56,3 +58,4 @@
 </div>
 </body>
 </html>
+@endsection

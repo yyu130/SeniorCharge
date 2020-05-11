@@ -1,7 +1,7 @@
-@extends('master')
+@extends('cmsLayout')
+@section('mycontent')
 
-@section('content')
-
+<body style="background-color: #f0efef">
 <div class="row">
  <div class="col-md-12">
   <br />
@@ -56,12 +56,12 @@
    </tr>
    @foreach($stations as $row)
    <tr>
-    <td>{{$row['station_name']}}</td>
-    <td>{{$row['longitude']}}</td>
-    <td>{{$row['latitude']}}</td>
-    <td>{{$row['address']}}</td>
-    <td>{{$row['suburb']}}</td>
-    <td>{{$row['postcode']}}</td>
+       <td>{{$row['station_name']}}</td>
+       <td>{{$row['longitude']}}</td>
+       <td>{{$row['latitude']}}</td>
+       <td>{{$row['address']}}</td>
+       <td>{{$row['suburb']}}</td>
+       <td>{{$row['postcode']}}</td>
        <td>{{$row['if_charger_working']}}</td>
        <td>{{$row['usb_a']}}</td>
        <td>{{$row['usb_c']}}</td>
@@ -90,16 +90,17 @@
        <td>{{$row['if_24h']}}</td>
 
        <td><a href="{{action('StationController@edit', $row['id'])}}" class="btn btn-warning">Edit</a></td>
-        <td>
-            <form method="post" class="delete_form" action="{{action('StationController@destroy', $row['id'])}}">
-                {{csrf_field()}}
-                <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
+       <td>
+           <form method="post" class="delete_form" action="{{action('StationController@destroy', $row['id'])}}">
+               {{csrf_field()}}
+               <input type="hidden" name="_method" value="DELETE" />
+               <button type="submit" class="btn btn-danger">Delete</button>
+           </form>
+       </td>
    </tr>
    @endforeach
   </table>
+     {{ $stations->links() }}
  </div>
 </div>
 <script>
@@ -116,4 +117,5 @@
         });
     });
 </script>
+</body>
 @endsection

@@ -26,9 +26,10 @@ Route::get('/find', function () {
     return view('find');
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/attribution', function () {
+    return view('attr');
 });
+
 
 //Route::get('/writeReview', function () {
 //    return view('writeReview');

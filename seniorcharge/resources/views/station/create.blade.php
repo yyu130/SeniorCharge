@@ -1,10 +1,10 @@
-@extends('master')
-
- @section('content')
+@extends('cmsLayout')
+@section('mycontent')
+<body style="background-color: #f0efef">
  <div class="row">
   <div class="col-md-12">
    <br />
-   <h3 aling="center">Add Data</h3>
+   <h3 align="center">Add Data</h3>
    <br />
 
     @if(count($errors) > 0)
@@ -120,9 +120,11 @@
            <input type="text" name="if_24h" class="form-control" placeholder="Enter If 24H"/>
        </div>
     <div class="form-group">
-     <input type="submit" class="btn btn-primary" />
+        <button type="submit" class="btn btn-primary">Add</button>
+        <a href="{{route('station.index')}}" class="btn btn-primary">Back</a>
     </div>
    </form>
   </div>
  </div>
+</body>
  @endsection
