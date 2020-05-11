@@ -13,15 +13,15 @@
     }
 
     #open{
-        color: #85B892;
-        font-size: 24px;
+        color: #588D6A;;
+        font-size: 20px;
         font-family: Arial;
         font-weight: bold;
     }
 
     #close{
         color: red;
-        font-size: 24px;
+        font-size: 20px;
         font-family: Arial;
         font-weight: bold;
     }
@@ -33,7 +33,7 @@
     #title{
         font-weight: bold;
         color: #588D6A;
-        font-size: 30px;
+        font-size: 26px;
         font-family: Arial;
     }
 
@@ -187,24 +187,24 @@
     @foreach($details as $station)
     <tr>
         @if ($station->establishment_type == "Library")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="400" height="300"></td>
         @elseif ($station->establishment_type == "Housing Support Services")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/house.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/house.jpg')}}" width="400" height="300"></td>
         @elseif ($station->establishment_type == "Train Station")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/station.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/station.jpg')}}" width="400" height="300"></td>
         @elseif ($station->establishment_type == "Community Centre")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/center.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/center.jpg')}}" width="400" height="300"></td>
         @elseif ($station->establishment_type == "Community Space")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/space.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/space.jpg')}}" width="400" height="300"></td>
         @elseif ($station->establishment_type == "Restaurant")
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/mc.png')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/mc.png')}}" width="400" height="300"></td>
         @else
-        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="300" height="200"></td>
+        <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="400" height="300"></td>
         @endif
 
         <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
-            <ul class = "address" style="font-family: Arial;font-size: 26px; color: #3D4738"><img src="{{asset('image/pin.png')}}" width="22" height="22"> {{$station->address}}</ul>
+            <ul class = "address" style="font-family: Arial;font-size: 22px; color: #3D4738"><img src="{{asset('image/pin.png')}}" width="22" height="22"> {{$station->address}}</ul>
             <ul class="distance" style="display: none"></ul>
             <ul class="longitude" style="display: none">{{$station->longitude}}</ul>
             <ul class="latitude" style="display: none">{{$station->latitude}}</ul>
@@ -229,19 +229,19 @@
                 @endif
                 @endfor
             </ul>
-            <ul class="type" style="font-size: 26px;font-family: Arial">{{$station->establishment_type}}</ul>
-            <ul style="font-size: 26px;font-family: Arial;font-weight: bold">Types of Charger Available:</ul>
+            <ul class="type" style="font-size: 22px;font-family: Arial">{{$station->establishment_type}}</ul>
+            <ul style="font-size: 22px;font-family: Arial;font-weight: bold">Types of Charger Available:</ul>
             @if ($station->usb_a == 1)
-            <ul style="font-size: 26px;font-family: Arial">iPhone (USB A)</ul>
+            <ul style="font-size: 22px;font-family: Arial">iPhone (USB A)</ul>
             @endif
             @if ($station->usb_c == 1)
-            <ul style="font-size: 26px;font-family: Arial">Samsung, Huawei,Oppo,One-Plus (USB C)</ul>
+            <ul style="font-size: 22px;font-family: Arial">Samsung, Huawei,Oppo,One-Plus (USB C)</ul>
             @endif
             @if ($station->micro_usb == 1)
-            <ul style="font-size: 26px;font-family: Arial">Samsung, Android (Micro USB)</ul>
+            <ul style="font-size: 22px;font-family: Arial">Samsung, Android (Micro USB)</ul>
             @endif
             @if ($station->plug_only == 1)
-            <ul style="font-size: 26px;font-family: Arial">Plug only, bring your own charger</ul>
+            <ul style="font-size: 22px;font-family: Arial">Plug only, bring your own charger</ul>
             @endif
 <!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
 

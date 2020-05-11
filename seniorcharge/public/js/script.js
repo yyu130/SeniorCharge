@@ -9,7 +9,10 @@ $(document).ready(function (listener) {
         var query = document.getElementById("query").innerText;
         findLocation(query);
         document.getElementById('all').style.display = 'none';
-        //document.getElementsByClassName('distance').style.display = 'none';
+        var distance = document.getElementsByClassName('distance');
+        for (var i = 0; i < distance.length; i++){
+            distance[i].style.display = 'none';
+        }
     }
     console.log(document.getElementById('all'))
     // $('submitBtn').click(function () {

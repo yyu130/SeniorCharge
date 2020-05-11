@@ -23,7 +23,7 @@
     }
 
     #open{
-        color: green;
+        color: #588D6A;;
     }
     #close{
         color: red;
@@ -185,7 +185,7 @@
             <p style="font-family: Arial;font-size: 22px;color: #3D4738;font-weight: bold; text-align: center;margin-left: 60px">{{$station->establishment_type}}</p>
         </div>
 
-        <div class="col-md-5 col-md-offset-1" style="margin: auto">
+        <div class="col-md-5 col-md-offset-1" style="margin: auto; margin-top: 0px">
             <br>
             <h4 style="font-weight: bold; font-size: 28px;font-family: Arial">Facilities</h4>
             <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Types of Charger Available:<h5>
@@ -381,7 +381,7 @@
 <!--</div>-->
 <br>
 @if ($reviews->count() != 0)
-<div class="row" style="background-color: #588D6A">
+<div class="row" style="background-color: #aecdb5">
     <div class="inline" style="margin: auto;margin-top: 0px">
 <!--            <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">-->
 <!--                {{ $reviews->count() }} people give rate-->
