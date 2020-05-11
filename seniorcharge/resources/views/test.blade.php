@@ -167,8 +167,11 @@
     <p style="font-size: 22px; font-family: Arial; color: #3d4738"><img src="{{asset('image/result.png')}}" width="20" height="20"><strong> {{ $details->count() }} result</strong> have been found</p>
     @endif
     <p style="display: none"> The search results for <b id="query"> {{ $query }} </b> are :</p>
-    <button id="all" style="display: none">Show all</button>
+    <button style="background-color: #588D6A" class="btn btn-primary" id="all" style="display: none">
+        <span style="font-family: Arial;font-size: 20px; font-weight: bold">Show all stations</span>
+    </button>
     <p style="display: none" id="current"></p>
+    <br>
     <div id="map">
     </div>
 <!--    <div id="right-panel" style="width: 40%; height: 200px; overflow-y: scroll; display: inline-block"></div>-->
