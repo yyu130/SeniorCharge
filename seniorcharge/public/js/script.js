@@ -14,6 +14,13 @@ $(document).ready(function (listener) {
             distance[i].style.display = 'none';
         }
     }
+
+    // document.getElementById('back').addEventListener("click",goBack);
+    // function goBack(){
+    //     var query = document.getElementById('post');
+    //     findLocation(query);
+    // }
+
     console.log(document.getElementById('all'))
     // $('submitBtn').click(function () {
     //     $.ajax({
@@ -43,7 +50,7 @@ $(document).ready(function (listener) {
 
     function router() {
         var markerArray = [];
-        console.log(this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText)
+        console.log(this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText)
         console.log(document.getElementById('current').innerText);
 
         document.getElementById('all').style.display = 'block';
@@ -58,8 +65,7 @@ $(document).ready(function (listener) {
         directionsRenderer.setMap(map);
         //directionsRenderer.setPanel(document.getElementById('right-panel'));
 
-        calculateAndDisplayRoute(directionsService, directionsRenderer, this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText, document.getElementById('current').innerText,markerArray, stepDisplay, map);
-
+        calculateAndDisplayRoute(directionsService, directionsRenderer, this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText, document.getElementById('current').innerText,markerArray, stepDisplay, map);
         $.ajax({
                 type: 'GET',
                 async: false,
@@ -67,7 +73,7 @@ $(document).ready(function (listener) {
                 //     +myData.results[0].geometry.location.lat+','+myData.results[0].geometry.location.lng+'|'+lat[i]+','+lng[i]+
                 //     '&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
                 url:'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins='
-                    +document.getElementById('current').innerText+'&destinations='+this.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
+                    +document.getElementById('current').innerText+'&destinations='+this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText+'&departure_time=now&key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI',
                 success: function (data) {
                     // console.log(dis[i].innerText);
                     // console.log(data.rows[0].elements[0].distance.text)
@@ -99,7 +105,7 @@ $(document).ready(function (listener) {
                     console.log(data)
                 }
             });
-        this.parentElement.parentElement.parentElement.childNodes[3].childNodes[5].style.display = 'block';
+        this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[5].style.display = 'block';
             // console.log( this.parentElement.parentElement.childNodes)
 
     }
@@ -442,11 +448,11 @@ $(document).ready(function (listener) {
         }
     }
 
-    document.getElementById('close').addEventListener("click", close);
-    function close() {
-        var form = document.getElementById('reviewForm');
-        form.style.display = 'none';
-    }
+    // document.getElementById('close').addEventListener("click", close);
+    // function close() {
+    //     var form = document.getElementById('reviewForm');
+    //     form.style.display = 'none';
+    // }
 
 const stars = document.querySelector(".ratings").children;
 const ratingValue = document.querySelector("#rating");

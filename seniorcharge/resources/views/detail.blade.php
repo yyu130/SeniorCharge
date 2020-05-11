@@ -91,6 +91,8 @@
 <!--</script>-->
 <!--<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>-->
 <!-- Load d3.js -->
+<!--<script src="{{asset('js/script.js')}}"></script>-->
+
 <body style="background-color: #f0efef">
 <h1></h1>
 <!--<form action="/search" method="POST" role="search" class="example" style="margin-right: auto;max-width:600px">-->
@@ -121,8 +123,22 @@
         background-repeat: no-repeat;
         background-position: center center;" >
 </div>
+<br><br>
 <div class="container">
-<a style="color: white" href="{{URL::previous()}}" class="Button"><i class="fas fa-arrow-left" > Back</i></a>
+<!--    <a style="color: white" id="back" class="Button"><i class="fas fa-arrow-left" > Back</i></a>-->
+    <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
+    {{ csrf_field() }}
+    <div class="input-group">
+        <input type="text" class="form-control" name="query"
+               placeholder="Search..." value="{{$station->postcode}}" style="display: none;">
+        <span>
+					<button id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="fas fa-arrow-left">
+                    <span style="font-family: Arial;font-size: 20px; font-weight: bold"> Back</span>
+					</button>
+                </span>
+    </div>
+    </form>
+<!--    <p id="post">{{$station->postcode}}</p>-->
 </div>
 <br>
 <div class="container">
@@ -352,10 +368,10 @@
             <br>
             <div class="form-group">
                 <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
-                    <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</span>
+                    <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</a>
                 </button>
-                <button type="reset" id="close" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
-                    <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Close</span>
+                <button style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
+                <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff" href="" >Close</a>
                 </button>
             </div>
         </form>

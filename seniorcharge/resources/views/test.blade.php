@@ -150,7 +150,6 @@
             <span>
             <button type="submit" id="submitBtn" style="background-color: #588D6A" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 20px; font-weight: bold">Submit</span>
-
             </button>
             </span>
 
@@ -243,11 +242,12 @@
             @if ($station->plug_only == 1)
             <ul style="font-size: 22px;font-family: Arial">Plug only, bring your own charger</ul>
             @endif
-<!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
+            <ul><button style="background-color: #aecdb5" class="btn btn-primary"><a href="#" id="route{{$station->id}}" class="route" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold">Go There</a></button></ul>
+            <!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
 
-        <td class="table-responsive-md">
-        <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>
-        </td>
+<!--        <td class="table-responsive-md">-->
+<!--        <ul><a href="#" id="route{{$station->id}}" class="route">Go There</a></ul>-->
+<!--        </td>-->
 <!--            <script>-->
 <!--                function getCurrentPosition() {-->
 <!--                    if (navigator.geolocation) {-->
