@@ -354,7 +354,7 @@
                 <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</span>
                 </button>
-                <button id="close" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
+                <button type="reset" id="close" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Close</span>
                 </button>
             </div>
