@@ -31,7 +31,7 @@
                 <a class="nav-link" href="/station">Station</a>
             </li>
             <li class="nav-item" style="list-style-type: none">
-                <a class="nav-link" href="/station">Review</a>
+                <a class="nav-link" href="/review">Review</a>
             </li>
             <li class="nav-item" style="list-style-type: none">
                 <a class="nav-link" href="{{ url('/main/logout') }}">Logout</a>

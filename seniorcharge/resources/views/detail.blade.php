@@ -324,8 +324,8 @@
             <div class="form-group">
                 <input type="text" name="station_id" class="form-control" style="display: none" value="{{$station->id}}" />
             </div>
-            <div class="form-group" style="border-bottom: 1px solid #588D6A">
-                <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Rating the place you've visited</p>
+            <div class="form-group" >
+                <p style="font-size: 36px; font-family: Arial;color: #3d4738">Rate the place you've visited</p>
                 <br>
                 <div class="ratings">
                 <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
@@ -337,16 +337,17 @@
                 <input type="text" id="rating" name="rating" class="form-control" style="display: none" />
                 <br>
             </div>
-            <div class="form-group" style="border-bottom: 1px solid #588D6A">
+            <div class="form-group" style="border-top: 1px solid #588D6A">
+                <br>
+                <br>
                 <!--                <p>Is the charging station working?</p>-->
                 <!--                <input type="text" name="is_working" class="form-control" placeholder="Enter If charger station is working or not" />-->
-                <label for="is_working" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Is the charging station working?</label>
+                <label for="is_working" style="font-size: 36px; font-family: Arial;color: #3d4738">Was the charging station working?</label>
                 <br><br>
                 <p style="font-size: 30px; font-family: Arial; color: #3d4738">
                 <input type="radio" name="is_working" value="1" style="height: 20px; width: 20px"> Yes
                 <input type="radio" name="is_working" value="0" style="height: 20px; width: 20px"> No
                 </p>
-                <br>
             </div>
 <!--            <div class="form-group" style="border-bottom: 1px solid #588D6A">-->
 <!--                <label for="is_welcoming" style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">The charging station location is very welcoming</label>-->
@@ -360,19 +361,26 @@
 <!--                </p>-->
 <!--                <br>-->
 <!--            </div>-->
-            <div class="form-group">
-                <p style="font-size: 36px; font-weight: bold; font-family: Arial;color: #3d4738">Other feedback</p>
-<!--                <input type="text"  class="form-control" style="height: 20em" placeholder="Input message here..."/>-->
-                <textarea name="comments" style="height: 100px; width: 80%; font-size: 28px; font-family: Arial;"></textarea>
-            </div>
+<!--            <div class="form-group" style="border-top: 1px solid #588D6A">-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <p style="font-size: 36px; font-family: Arial;color: #3d4738">Other feedback</p>-->
+<!--                <br>-->
+<!--                <textarea name="comments" style="height: 100px; width: 80%; font-size: 28px; font-family: Arial;"></textarea>-->
+<!--            </div>-->
             <br>
-            <div class="form-group">
-                <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
+            <div>
+            <div class="form-group" style="display: inline-block; margin: 20px">
+                <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 300px;border-color: #588D6A" class="btn btn-primary">
                     <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</a>
                 </button>
-                <button style="background-color: #588D6A;border-radius: 8px;width: 200px" class="btn btn-primary">
-                <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff" href="" >Close</a>
+            </div>
+
+            <div class="form-group" style="display: inline-block; margin: 20px">
+                <button style="background-color: #588D6A;border-radius: 8px;width: 300px;border-color: #588D6A" class="btn btn-primary">
+                <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff" href="" >Review later</a>
                 </button>
+            </div>
             </div>
         </form>
         </div>
@@ -580,7 +588,7 @@
                 <img src="{{asset('image/tou.png')}}" width="60" height="60" style="text-align: center">
             </td>
             <td class="table-responsive-md">
-                <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">User ID</ul>
+                <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">Review ID: {{$review->id}}</ul>
                 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">-->
 <!--                    @if ($review->is_working == 1)-->
 <!--                    <p>Is charging station working: Yes</p>-->
@@ -600,7 +608,7 @@
                 </ul>
 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</ul>-->
                 <!--                <ul class="type" style="font-size: 26px;font-family: Arial">The charing station location is very welcoming: {{$review->is_welcoming}}</ul>-->
-                <ul class="type" style="font-size: 24px;font-family: Arial;color: #3D4738">{{$review->comments}}</ul>
+<!--                <ul class="type" style="font-size: 24px;font-family: Arial;color: #3D4738">{{$review->comments}}</ul>-->
             </td>
         </tr>
         @endforeach

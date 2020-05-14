@@ -43,9 +43,26 @@ $(document).ready(function (listener) {
     }
     geoLocationInit();
     var routes = document.getElementsByClassName('route');
+    var links = document.getElementsByClassName('google');
+
 
     for (var i = 0; i < routes.length; i++){
         routes[i].addEventListener('click', router);
+    }
+
+    for (var i = 0; i < links.length; i++){
+        links[i].addEventListener('click', link);
+    }
+
+    function link() {
+        console.log(this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText)
+        console.log(document.getElementById('current').innerText);
+
+        var start = document.getElementById('current').innerText;
+        var end = this.parentElement.parentElement.parentElement.parentElement.childNodes[3].childNodes[3].innerText;
+        console.log(start)
+        console.log(end)
+        window.open("https://maps.google.com/?saddr=<"+start+">&daddr=<"+end+">");
     }
 
     function router() {

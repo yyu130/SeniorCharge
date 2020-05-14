@@ -232,7 +232,8 @@
                 @endfor
             </ul>
             <ul class="type" style="font-size: 22px;font-family: Arial">{{$station->establishment_type}}</ul>
-            <ul style="font-size: 22px;font-family: Arial;font-weight: bold">Types of Charger Available:</ul>
+            @if ($station->usb_a != 0 || $station->usb_c != 0 || $station->micro_usb != 0 || $station->plug_only != 0)
+            <ul style="font-size: 22px;font-family: Arial;font-weight: bold" id="type">Types of Charger Available:</ul>
             @if ($station->usb_a == 1)
             <ul style="font-size: 22px;font-family: Arial">iPhone (USB A)</ul>
             @endif
@@ -245,7 +246,10 @@
             @if ($station->plug_only == 1)
             <ul style="font-size: 22px;font-family: Arial">Plug only, bring your own charger</ul>
             @endif
-            <ul><button style="background-color: #aecdb5" class="btn btn-primary"><a href="#" id="route{{$station->id}}" class="route" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold">Go There</a></button></ul>
+            @endif
+            <!--            <ul><button style="background-color: #aecdb5" class="btn btn-primary"><a href="#" id="route{{$station->id}}" class="route" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold">Go There</a></button></ul>-->
+            <ul><button style="background-color: #aecdb5;border-color: #aecdb5" class="btn btn-primary"><a href="#" id="link{{$station->id}}" class="google" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold;">Google Map</a></button></ul>
+
             <!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
 
 <!--        <td class="table-responsive-md">-->

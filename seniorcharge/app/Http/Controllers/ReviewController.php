@@ -16,7 +16,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-
+        $reviews = reviews::paginate(7);
+        return view('review.index',compact('reviews'));
     }
 
     /**
@@ -28,7 +29,8 @@ class ReviewController extends Controller
     {
 //        dd($id);
         $station = Station::findOrFail($id);
-        return view('writeReview',compact('station'));    }
+        return view('writeReview',compact('station'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,6 +38,7 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $working = $request->has('working');
@@ -52,7 +55,7 @@ class ReviewController extends Controller
             'station_id'  =>  $request->get('station_id'),
             'is_working'  =>  $request->get('is_working'),
             'rating'  =>  $request->get('rating'),
-            'comments'  =>  $request->get('comments')
+//            'comments'  =>  $request->get('comments')
         ]);
         $review->save();
 
@@ -94,6 +97,8 @@ class ReviewController extends Controller
     public function edit($id)
     {
         //
+        $review =reviews::find($id);
+        return view('review.edit', compact('review','id'));
     }
 
     /**
@@ -106,6 +111,20 @@ class ReviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'station_id'  =>  'required',
+//            'is_working'  =>  'required',
+            'rating'  =>  'required'
+//            'comments'  =>  'required'
+        ]);
+
+        $review = reviews::find($id);
+        $review->station_id = $request->get('station_id');
+        $review->is_working = $request->get('is_working');
+        $review->rating =$request->get('rating');
+//        $review->comments =$request->get('comments');
+        $review->save();
+        return redirect()->route('review.index')->with('success', 'Review Updated');
     }
 
     /**
@@ -117,5 +136,9 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
+        $review = reviews::find($id);
+        $review->delete();
+        return redirect()->route('review.index')->with('success',
+            'Review Deleted');
     }
 }

@@ -17,7 +17,7 @@
 <!--    <div class="container">-->
         @include('menu')
         @yield('mycontent')
-<!--        @include('footer')-->
+        @include('otherFooter')
 <!--    </div>-->
 </body>
 </html>

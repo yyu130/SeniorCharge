@@ -198,7 +198,7 @@ class StationController extends Controller
             'if_24h'  =>  $request->get('if_24h')
         ]);
         $station->save();
-        return redirect()->route('station.index')->with('success','Data Added');
+        return redirect()->route('station.index')->with('success','Station Added');
 
     }
 
@@ -300,7 +300,7 @@ class StationController extends Controller
         $station->sun_close = $request->get('sun_close');
         $station->if_24h =$request->get('if_24h');
         $station->save();
-        return redirect()->route('station.index')->with('success', 'Data Updated');
+        return redirect()->route('station.index')->with('success', 'Station Updated');
     }
 
     /**
@@ -314,7 +314,7 @@ class StationController extends Controller
         $station = Station::find($id);
         $station->delete();
         return redirect()->route('station.index')->with('success',
-        'Data Deleted');
+        'Station Deleted');
     }
 
     public function searchFor(Request $request){

@@ -167,7 +167,7 @@
                     <a class="nav-link" href="/station">Station</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/station">Review</a>
+                    <a class="nav-link" href="/review">Review</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/main/logout') }}">Logout</a>
