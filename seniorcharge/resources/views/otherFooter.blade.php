@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="footer">
-    @ 2020 Sr.charge. All Rights Reserved * <a href="/attribution" style="color: white">Attributions</a>
+    @ 2020 Sr.Charge. All Rights Reserved * <a href="/attribution" style="color: white">Attributions</a>
 </div>
 </body>
 </html>

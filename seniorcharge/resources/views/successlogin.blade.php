@@ -19,11 +19,11 @@
 <body style="background-color: #f0efef">
 <br />
 <div class="container box">
-    <h3 align="center">Sr.charge Admin CMS</h3><br />
+    <h3 align="center">Sr.Charge Admin CMS</h3><br />
 
     @if(isset(Auth::user()->email))
     <div class="alert alert-danger success-block">
-        <strong>Welcome to Sr.charge CMS, {{ Auth::user()->email }}</strong>
+        <strong>Welcome to Sr.Charge CMS, {{ Auth::user()->email }}</strong>
         <br />
         <br />
 <!--        <ul class="nav justify-content-center">-->

@@ -18,7 +18,7 @@
 <body style="background-color: #f0efef">
 <br />
 <div class="container box" style="background-color: white">
-    <h3 align="center">Sr.charge Admin CMS</h3><br />
+    <h3 align="center">Sr.Charge Admin CMS</h3><br />
 
     @if(isset(Auth::user()->email))
     <script>window.location="/main/successlogin";</script>

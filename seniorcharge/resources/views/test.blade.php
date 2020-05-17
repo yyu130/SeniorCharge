@@ -142,17 +142,21 @@
             <span>
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
             <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
-            <input type="checkbox" name="current" style="height: 18px;width: 18px;" <?php if(isset($_GET['current'])) echo 'checked';?>>
-            <label style="font-size: 22px; font-family: Arial; color: #3d4738">Currently Open</label>
             </span>
             </b>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <b>
+            <span>
+                <input type="checkbox" name="current" style="height: 18px;width: 18px;" <?php if(isset($_GET['current'])) echo 'checked';?>>
+                <label style="font-size: 22px; font-family: Arial; color: #3d4738">Currently Open</label>
+            </span>
+            </b>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <span>
             <button type="submit" id="submitBtn" style="background-color: #588D6A" class="btn btn-primary">
                     <span style="font-family: Arial;font-size: 20px; font-weight: bold">Submit</span>
             </button>
             </span>
-
         </div>
     </form>
 </div>
@@ -248,7 +252,7 @@
             @endif
             @endif
             <!--            <ul><button style="background-color: #aecdb5" class="btn btn-primary"><a href="#" id="route{{$station->id}}" class="route" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold">Go There</a></button></ul>-->
-            <ul><button style="background-color: #aecdb5;border-color: #aecdb5" class="btn btn-primary"><a href="#" id="link{{$station->id}}" class="google" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold;">Google Map</a></button></ul>
+            <ul><button style="background-color: #aecdb5;border-color: #aecdb5" class="btn btn-primary"><a href="#" id="link{{$station->id}}" class="google" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold;">Get Directions</a></button></ul>
 
             <!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
 

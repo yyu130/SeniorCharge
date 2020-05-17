@@ -325,14 +325,14 @@
                 <input type="text" name="station_id" class="form-control" style="display: none" value="{{$station->id}}" />
             </div>
             <div class="form-group" >
-                <p style="font-size: 36px; font-family: Arial;color: #3d4738">Rate the place you've visited</p>
+                <p style="font-size: 20px; font-family: Arial;color: #3d4738">Rate the place you've visited</p>
                 <br>
                 <div class="ratings">
-                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
-                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
-                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
-                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
-                <span class="fa fa-star-o" id="star" style="font-size: 45px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 40px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 40px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 40px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 40px"></span>
+                <span class="fa fa-star-o" id="star" style="font-size: 40px"></span>
                 </div>
                 <input type="text" id="rating" name="rating" class="form-control" style="display: none" />
                 <br>
@@ -342,11 +342,11 @@
                 <br>
                 <!--                <p>Is the charging station working?</p>-->
                 <!--                <input type="text" name="is_working" class="form-control" placeholder="Enter If charger station is working or not" />-->
-                <label for="is_working" style="font-size: 36px; font-family: Arial;color: #3d4738">Was the charging station working?</label>
+                <label for="is_working" style="font-size: 20px; font-family: Arial;color: #3d4738">Was the charging station working?</label>
                 <br><br>
-                <p style="font-size: 30px; font-family: Arial; color: #3d4738">
-                <input type="radio" name="is_working" value="1" style="height: 20px; width: 20px"> Yes
-                <input type="radio" name="is_working" value="0" style="height: 20px; width: 20px"> No
+                <p style="font-size: 20px; font-family: Arial; color: #3d4738">
+                <input type="radio" name="is_working" value="1" style="height: 15px; width: 15px"> Yes
+                <input type="radio" name="is_working" value="0" style="height: 15px; width: 15px"> No
                 </p>
             </div>
 <!--            <div class="form-group" style="border-bottom: 1px solid #588D6A">-->
@@ -371,14 +371,14 @@
             <br>
             <div>
             <div class="form-group" style="display: inline-block; margin: 20px">
-                <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 300px;border-color: #588D6A" class="btn btn-primary">
-                    <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff">Submit</a>
+                <button id="submitBtn" style="background-color: #588D6A;border-radius: 8px;width: 180px;border-color: #588D6A" class="btn btn-primary">
+                    <a style="font-family: Arial;font-size: 20px; color: #ffffff">Submit</a>
                 </button>
             </div>
 
             <div class="form-group" style="display: inline-block; margin: 20px">
-                <button style="background-color: #588D6A;border-radius: 8px;width: 300px;border-color: #588D6A" class="btn btn-primary">
-                <a style="font-family: Arial;font-size: 36px; font-weight: bold; color: #ffffff" href="" >Review later</a>
+                <button style="background-color: #588D6A;border-radius: 8px;width: 180px;border-color: #588D6A" class="btn btn-primary">
+                <a style="font-family: Arial;font-size: 20px; color: #ffffff" href="" >Review later</a>
                 </button>
             </div>
             </div>
@@ -412,7 +412,7 @@
 <!--            </h5>-->
         <h5 style="text-align: center">
         <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
-            Rating
+            Average Rating
         </span>
         <span style="font-size: 32px; font-family: Arial; font-weight: bold; color: #9a0311">
             {{round($rating)}}</span>
@@ -465,7 +465,7 @@
     </div>
 
 
-    <script src="https://d3js.org/d3.v4.js"></script>
+<!--    <script src="https://d3js.org/d3.v4.js"></script>-->
 
     <!-- Create a div where the graph will take place -->
     <div class="inline" style="margin: auto;margin-top: 0px">
@@ -476,73 +476,153 @@
         </div>
     </div>
     <!-- Color scale -->
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<!--    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
+    <script src='https://d3js.org/d3.v2.js'></script>
+    <script type="text/javascript">
+        var canvasWidth = 300, //width
+            canvasHeight = 300,   //height
+            outerRadius = 100,   //radius
+            color = d3.scale.category20(); //builtin range of colors
 
-    <script>
+        var dataSet = [
+            {"legendLabel":"Yes", "magnitude":{{$working}}},
+            {"legendLabel":"No", "magnitude":{{$notWorking}}}];
 
-        // set the dimensions and margins of the graph
-        var width = 340
-        height = 340
-        margin = 40
+        var vis = d3.select("#my_dataviz")
+            .append("svg:svg") //create the SVG element inside the <body>
+            .data([dataSet]) //associate our data with the document
+            .attr("width", canvasWidth) //set the width of the canvas
+            .attr("height", canvasHeight) //set the height of the canvas
+            .append("svg:g") //make a group to hold our pie chart
+            .attr("transform", "translate(" + 1.5*outerRadius + "," + 1.5*outerRadius + ")") // relocate center of pie to 'outerRadius,outerRadius'
 
-        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-        var radius = Math.min(width, height) / 2 - margin
+        // This will create <path> elements for us using arc data...
+        var arc = d3.svg.arc()
+            .outerRadius(outerRadius);
 
-        // append the svg object to the div called 'my_dataviz'
-        var svg = d3.select("#my_dataviz")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        var pie = d3.layout.pie() //this will create arc data for us given a list of values
+            .value(function(d) { return d.magnitude; }) // Binding each value to the pie
+            .sort( function(d) { return null; } );
 
-        // Create dummy data
-        var data = {
-            Yes: {{$working}},
-            No: {{$notWorking}}
+        // Select all <g> elements with class slice (there aren't any yet)
+        var arcs = vis.selectAll("g.slice")
+            // Associate the generated pie data (an array of arcs, each having startAngle,
+            // endAngle and value properties)
+            .data(pie)
+            // This will create <g> elements for every "extra" data element that should be associated
+            // with a selection. The result is creating a <g> for every object in the data array
+            .enter()
+            // Create a group to hold each slice (we will have a <path> and a <text>
+            // element associated with each slice)
+            .append("svg:g")
+            .attr("class", "slice");    //allow us to style things in the slices (like text)
+
+        arcs.append("svg:path")
+            //set the color for each slice to be chosen from the color function defined above
+            .attr("fill", function(d, i) { return color(i); } )
+            //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+            .attr("d", arc);
+
+        // Add a legendLabel to each arc slice...
+        arcs.append("svg:text")
+            .attr("transform", function(d) { //set the label's origin to the center of the arc
+                //we have to make sure to set these before calling arc.centroid
+                d.outerRadius = outerRadius + 50; // Set Outer Coordinate
+                d.innerRadius = outerRadius + 45; // Set Inner Coordinate
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle") //center the text on it's origin
+            .style("fill", "Purple")
+            .style("font", "bold 12px Arial")
+            .text(function(d, i) { return dataSet[i].legendLabel; }); //get the label from our original data array
+
+        // Add a magnitude value to the larger arcs, translated to the arc centroid and rotated.
+        arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; }).append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            //.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
+            .attr("transform", function(d) { //set the label's origin to the center of the arc
+                //we have to make sure to set these before calling arc.centroid
+                d.outerRadius = outerRadius; // Set Outer Coordinate
+                d.innerRadius = outerRadius/2; // Set Inner Coordinate
+                return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")";
+            })
+            .style("fill", "White")
+            .style("font", "bold 12px Arial")
+            .text(function(d) { return d.data.magnitude; });
+
+        // Computes the angle of an arc, converting from radians to degrees.
+        function angle(d) {
+            var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+            return a > 90 ? a - 180 : a;
         }
-
-        // set the color scale
-        var color = d3.scaleOrdinal()
-            .domain(data)
-            .range(d3.schemeSet2);
-
-        // Compute the position of each group on the pie:
-        var pie = d3.pie()
-            .value(function(d) {return d.value; })
-        var data_ready = pie(d3.entries(data))
-        // Now I know that group A goes from 0 degrees to x degrees and so on.
-
-        // shape helper to build arcs:
-        var arcGenerator = d3.arc()
-            .innerRadius(0)
-            .outerRadius(radius)
-
-        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-        svg
-            .selectAll('mySlices')
-            .data(data_ready)
-            .enter()
-            .append('path')
-            .attr('d', arcGenerator)
-            .attr('fill', function(d){ return(color(d.data.key)) })
-            .attr("stroke", "black")
-            .style("stroke-width", "2px")
-            .style("opacity", 0.7)
-
-        // Now add the annotation. Use the centroid method to get the best coordinates
-        svg
-            .selectAll('mySlices')
-            .data(data_ready)
-            .enter()
-            .append('text')
-            .text(function(d){ return d.data.key+ ": " + d.value})
-            .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-            .style("text-anchor", "middle")
-            .style("font-size", 17)
-
-
     </script>
+
+<!--    <script>-->
+<!---->
+<!--        // set the dimensions and margins of the graph-->
+<!--        var width = 340-->
+<!--        height = 340-->
+<!--        margin = 40-->
+<!---->
+<!--        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.-->
+<!--        var radius = Math.min(width, height) / 2 - margin-->
+<!---->
+<!--        // append the svg object to the div called 'my_dataviz'-->
+<!--        var svg = d3.select("#my_dataviz")-->
+<!--            .append("svg")-->
+<!--            .attr("width", width)-->
+<!--            .attr("height", height)-->
+<!--            .append("g")-->
+<!--            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");-->
+<!---->
+<!--        // Create dummy data-->
+<!--        var data = {-->
+<!--            Yes: {{$working}},-->
+<!--            No: {{$notWorking}}-->
+<!--        }-->
+<!---->
+<!--        // set the color scale-->
+<!--        var color = d3.scaleOrdinal()-->
+<!--            .domain(data)-->
+<!--            .range(d3.schemeSet2);-->
+<!---->
+<!--        // Compute the position of each group on the pie:-->
+<!--        var pie = d3.pie()-->
+<!--            .value(function(d) {return d.value; })-->
+<!--        var data_ready = pie(d3.entries(data))-->
+<!--        // Now I know that group A goes from 0 degrees to x degrees and so on.-->
+<!---->
+<!--        // shape helper to build arcs:-->
+<!--        var arcGenerator = d3.arc()-->
+<!--            .innerRadius(0)-->
+<!--            .outerRadius(radius)-->
+<!---->
+<!--        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.-->
+<!--        svg-->
+<!--            .selectAll('mySlices')-->
+<!--            .data(data_ready)-->
+<!--            .enter()-->
+<!--            .append('path')-->
+<!--            .attr('d', arcGenerator)-->
+<!--            .attr('fill', function(d){ return(color(d.data.key)) })-->
+<!--            .attr("stroke", "black")-->
+<!--            .style("stroke-width", "2px")-->
+<!--            .style("opacity", 0.7)-->
+<!---->
+<!--        // Now add the annotation. Use the centroid method to get the best coordinates-->
+<!--        svg-->
+<!--            .selectAll('mySlices')-->
+<!--            .data(data_ready)-->
+<!--            .enter()-->
+<!--            .append('text')-->
+<!--            .text(function(d){ return d.data.key+ ": " + d.value})-->
+<!--            .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })-->
+<!--            .style("text-anchor", "middle")-->
+<!--            .style("font-size", 17)-->
+<!---->
+<!---->
+<!--    </script>-->
 
 <!--    <div class="inline" style="width:500px; height: 300px;margin: auto;">-->
 <!--        <h5 style="text-align: center; font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">Charging station is very welcoming</h5>-->
@@ -571,51 +651,36 @@
     </div>
 </div>
 @endif
-<br><br>
-<div class="container">
-<table class="table table-striped">
-    <table style="border-collapse: collapse">
-    <!--        <thead>-->
-        <!--        <tr>-->
-        <!--            <th>Station Name</th>-->
-        <!--            <th>Address</th>-->
-        <!--        </tr>-->
-        <!--        </thead>-->
-        <tbody>
-        @foreach($reviews as $review)
-        <tr style="border-bottom: 1px solid #588D6A">
-            <td class="table-responsive-md" style="vertical-align: top">
-                <img src="{{asset('image/tou.png')}}" width="60" height="60" style="text-align: center">
-            </td>
-            <td class="table-responsive-md">
-                <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">Review ID: {{$review->id}}</ul>
-                <!--                <ul class="type" style="font-size: 26px;font-family: Arial">-->
-<!--                    @if ($review->is_working == 1)-->
-<!--                    <p>Is charging station working: Yes</p>-->
+<!--<br><br>-->
+<!--<div class="container">-->
+<!--<table class="table table-striped">-->
+<!--    <table style="border-collapse: collapse">-->
+<!--        <tbody>-->
+<!--        @foreach($reviews as $review)-->
+<!--        <tr style="border-bottom: 1px solid #588D6A">-->
+<!--            <td class="table-responsive-md" style="vertical-align: top">-->
+<!--                <img src="{{asset('image/tou.png')}}" width="60" height="60" style="text-align: center">-->
+<!--            </td>-->
+<!--            <td class="table-responsive-md">-->
+<!--                <ul class="type" style="font-size: 26px;font-family: Arial;font-weight: bold;color: #588D6A">Review ID: {{$review->id}}</ul>-->
+<!--                <ul class="type" style="font-size: 26px;font-family: Arial">-->
+<!--                    @for ($star = 1; $star <=5; $star++)-->
+<!--                    @if ($review->rating>= $star)-->
+<!--                    <span id="star" class="glyphicon glyphicon-star"></span>-->
 <!--                    @else-->
-<!--                    <p>Is charging station working: No</p>-->
+<!--                    <span class="glyphicon glyphicon-star-empty"></span>-->
 <!--                    @endif-->
+<!--                    @endfor-->
+<!--                    <h5 style="font-size: 20px;font-family: Arial; color: #3D4738">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</h5>-->
 <!--                </ul>-->
-                <ul class="type" style="font-size: 26px;font-family: Arial">
-                    @for ($star = 1; $star <=5; $star++)
-                    @if ($review->rating>= $star)
-                    <span id="star" class="glyphicon glyphicon-star"></span>
-                    @else
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    @endif
-                    @endfor
-                    <h5 style="font-size: 20px;font-family: Arial; color: #3D4738">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</h5>
-                </ul>
-<!--                <ul class="type" style="font-size: 26px;font-family: Arial">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</ul>-->
-                <!--                <ul class="type" style="font-size: 26px;font-family: Arial">The charing station location is very welcoming: {{$review->is_welcoming}}</ul>-->
-<!--                <ul class="type" style="font-size: 24px;font-family: Arial;color: #3D4738">{{$review->comments}}</ul>-->
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
-</table>
-</div>
+<!---->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        @endforeach-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</table>-->
+<!--</div>-->
 </body>
 <script src="{{asset('js/script.js')}}"></script>
 

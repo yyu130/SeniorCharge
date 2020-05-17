@@ -273,7 +273,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="query"
                        placeholder="Search..." style="border-radius: 8px;width: 300px">
-                <span>
+                <span style="margin-left: 5px">
 					<button type="submit" id="submitBtn" style="background-color: #588D6A;border-radius: 8px" class="fa fa-search">
 						<span id="search"></span>
 					</button>
