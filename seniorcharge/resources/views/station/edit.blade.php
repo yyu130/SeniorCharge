@@ -1,5 +1,7 @@
 @extends('cmsLayout')
 @section('mycontent')
+@if(isset(Auth::user()->email))
+
 <body style="background-color: #f0efef">
 
 <div class="row">
@@ -124,4 +126,7 @@
     </div>
 </div>
 </body>
+@else
+<script>window.location = "/main";</script>
+@endif
  @endsection

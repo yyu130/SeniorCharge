@@ -1,7 +1,7 @@
 @extends('cmsLayout')
 
 @section('mycontent')
-
+@if(isset(Auth::user()->email))
 <div class="row">
     <div class="col-md-12">
         <br />
@@ -118,5 +118,8 @@
         });
     });
 </script>
+@else
+<script>window.location = "/main";</script>
+@endif
 @endsection
 
