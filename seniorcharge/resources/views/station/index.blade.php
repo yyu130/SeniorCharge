@@ -2,6 +2,8 @@
 
 @section('mycontent')
 @if(isset(Auth::user()->email))
+<body style="background-color: #f0efef">
+
 <div class="row">
     <div class="col-md-12">
         <br />
@@ -62,14 +64,42 @@
                 <td>{{$row['address']}}</td>
                 <td>{{$row['suburb']}}</td>
                 <td>{{$row['postcode']}}</td>
-                <td>{{$row['if_charger_working']}}</td>
-                <td>{{$row['usb_a']}}</td>
-                <td>{{$row['usb_c']}}</td>
-                <td>{{$row['micro_usb']}}</td>
-                <td>{{$row['plug_only']}}</td>
+                @if ($row['if_charger_working'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
+                @if ($row['usb_a'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
+                @if ($row['usb_c'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
+                @if ($row['micro_usb'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
+                @if ($row['plug_only'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
                 <td>{{$row['establishment_type']}}</td>
-                <td>{{$row['if_wifi']}}</td>
-                <td>{{$row['if_bathroom']}}</td>
+                @if ($row['if_wifi'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
+                @if ($row['if_bathroom'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
                 <td>{{$row['access_type']}}</td>
                 <td>{{$row['other_amenities']}}</td>
                 <td>{{$row['star_rating']}}</td>
@@ -87,7 +117,11 @@
                 <td>{{$row['sat_close']}}</td>
                 <td>{{$row['sun_open']}}</td>
                 <td>{{$row['sun_close']}}</td>
-                <td>{{$row['if_24h']}}</td>
+                @if ($row['if_24h'] == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
 
                 <td><a href="{{action('StationController@edit', $row['id'])}}" class="btn btn-warning">Edit</a></td>
                 <td>
@@ -118,6 +152,7 @@
         });
     });
 </script>
+</body>
 @else
 <script>window.location = "/main";</script>
 @endif
