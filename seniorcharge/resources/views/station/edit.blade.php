@@ -118,7 +118,7 @@
                     <input type="text" name="if_24h" class="form-control" value="{{$station->if_24h}}" placeholder="Enter if 24H" />
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Edit" />
+                    <input type="submit" class="btn btn-primary" value="Submit" />
                     <a href="{{route('station.index')}}" class="btn btn-primary">Back</a>
                 </div>
             </form>
