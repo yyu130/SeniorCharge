@@ -115,7 +115,7 @@
 <!--        <input type="text" name="q" id="q" value="{{ request()->input('q')}}" placeholder="search">-->
 <!--    </form>-->
 <!--</div>-->
-<div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/map.jpg')}}');
+<div class="jumbotron mb-0 jumbotron-fluid" style="height: 300px; padding-top: 150px;background-image: url('{{asset('image/search1.png')}}');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;" >

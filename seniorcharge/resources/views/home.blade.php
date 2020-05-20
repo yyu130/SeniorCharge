@@ -240,12 +240,12 @@
 <!--</body>-->
 <body style="background-color: #f0efef">
 <div class="jumbotron mb-0 jumbotron-fluid" style="height: 650px; padding-top: 150px;" id="bg">
-    <div class="container" >
+    <div class="container">
 <!--        <div class="row align-items-center" style="float: left">-->
 <!--            <div class="col" style="background-color: #f0efef; width:350px; height: 500px; text-align: center">-->
 <!--                <div class="col" style="background-color: #f0efef; float: left; text-align: center">-->
 
-                <div class="col-md-4 text-light" style="background-color: #f0efef;width:330px; height: 420px; text-align: center">
+                <div class="col-md-3" style="background-color: #f0efef;width:350px; height: fit-content; text-align: center">
                     <h1 class="display-5" style="color: #588D6A; font-weight: bold;font-size: 40px; font-family: Arial;text-align: center">Free Charging?</h1>
                     <p style="color: #3d4738; font-family: Arial;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
                     <p style="color: #3d4738; font-size: 20px; font-family: Arial;text-align: center">Enter your postcode or suburb to find your nearest free charging place across Melbourne</p>
@@ -264,6 +264,8 @@
                                     <span id="search">SEARCH</span>
                                 </button>
                             </span>
+                        <div>&nbsp;</div>
+
                     </form>
                     <div class="container">
                         @if (session()->has('success_message'))
@@ -276,7 +278,7 @@
                         <div class="alter alter-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                <li style="font-size: 20px;font-family: Arial;color: red">{{$error}}</li>
+                                <li style="font-size: 20px;font-family: Arial;color: red;list-style-type: none">{{$error}}</li>
                                 @endforeach
                             </ul>
                         </div>

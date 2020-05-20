@@ -10,6 +10,9 @@
 <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+    .gaugeBackground {
+        fill: #ddd;
+    }
     #maps{
         height: 0;
         position: relative;
@@ -118,7 +121,7 @@
 <!--        </span>-->
 <!--    </div>-->
 <!--</form>-->
-<div class="jumbotron mb-0 jumbotron-fluid" style="height: 400px; padding-top: 150px;background-image: url('{{asset('image/place.jpg')}}');
+<div class="jumbotron mb-0 jumbotron-fluid" style="height: 300px; padding-top: 150px;background-image: url('{{asset('image/detail1.png')}}');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;" >
@@ -298,7 +301,7 @@
         @endif
         &nbsp;
         <a href="#" style="font-family: Arial;font-size: 26px;color: #3D4738" id="write">
-            <img src="{{asset('image/edit.png')}}" width="28" height="28" style="margin-top: -7.7px">Write a review</a></p>
+            <img src="{{asset('image/edit.png')}}" width="28" height="28" style="margin-top: -7.7px">Review this station</a></p>
 </div>
 <!--style="display: none"-->
 <br>
@@ -405,16 +408,16 @@
 <!--</div>-->
 <br>
 @if ($reviews->count() != 0)
-<div class="row" style="background-color: #aecdb5">
+<div class="row" style="background-color: #aecdb5;margin: auto">
     <div class="inline" style="margin: auto;margin-top: 0px">
 <!--            <h5 style="text-align: center; font-size: 28px; font-family: Arial; font-weight: bold; color: #9a0311">-->
 <!--                {{ $reviews->count() }} people give rate-->
 <!--            </h5>-->
         <h5 style="text-align: center">
-        <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
+        <span style=" font-size: 27px; font-family: Arial; font-weight: bold; color: #3d4738">
             Average Rating
         </span>
-        <span style="font-size: 32px; font-family: Arial; font-weight: bold; color: #9a0311">
+        <span style="font-size: 30px; font-family: Arial; font-weight: bold; color: #9a0311">
             {{round($rating)}}</span>
         </h5>
         <br><br>
@@ -469,93 +472,282 @@
 
     <!-- Create a div where the graph will take place -->
     <div class="inline" style="margin: auto;margin-top: 0px">
-        <span style=" font-size: 30px; font-family: Arial; font-weight: bold; color: #3d4738">
-            Charging Station Working
+        <span style=" font-size: 27px; font-family: Arial; font-weight: bold; color: #3d4738">
+            Charging Station Working?
         </span>
-        <div id="my_dataviz">
+        <div id="my_dataviz" style="text-align: center;margin-top:60px">
         </div>
     </div>
     <!-- Color scale -->
-<!--    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src='https://d3js.org/d3.v2.js'></script>
+<!--    <script data-require="d3@*" data-semver="3.2.2" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.min.js"></script>-->
+<!--    <script data-require="d3@*" data-semver="3.2.2" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js"></script>-->
     <script type="text/javascript">
-        var canvasWidth = 300, //width
-            canvasHeight = 300,   //height
-            outerRadius = 100,   //radius
-            color = d3.scale.category20(); //builtin range of colors
+        let Gauge = function(configuration) {
+            let that = {}
 
-        var dataSet = [
-            {"legendLabel":"Yes", "magnitude":{{$working}}},
-            {"legendLabel":"No", "magnitude":{{$notWorking}}}];
+            let config = {
+                size: 300,
+                arcInset: 150,
+                arcWidth: 60,
 
-        var vis = d3.select("#my_dataviz")
-            .append("svg:svg") //create the SVG element inside the <body>
-            .data([dataSet]) //associate our data with the document
-            .attr("width", canvasWidth) //set the width of the canvas
-            .attr("height", canvasHeight) //set the height of the canvas
-            .append("svg:g") //make a group to hold our pie chart
-            .attr("transform", "translate(" + 1.5*outerRadius + "," + 1.5*outerRadius + ")") // relocate center of pie to 'outerRadius,outerRadius'
+                pointerWidth: 8,
+                pointerOffset: 0,
+                pointerHeadLengthPercent: 0.9,
 
-        // This will create <path> elements for us using arc data...
-        var arc = d3.svg.arc()
-            .outerRadius(outerRadius);
+                minValue: 0,
+                maxValue: {{$working}}+{{$notWorking}},
 
-        var pie = d3.layout.pie() //this will create arc data for us given a list of values
-            .value(function(d) { return d.magnitude; }) // Binding each value to the pie
-            .sort( function(d) { return null; } );
+                minAngle: -90,
+                maxAngle: 90,
 
-        // Select all <g> elements with class slice (there aren't any yet)
-        var arcs = vis.selectAll("g.slice")
-            // Associate the generated pie data (an array of arcs, each having startAngle,
-            // endAngle and value properties)
-            .data(pie)
-            // This will create <g> elements for every "extra" data element that should be associated
-            // with a selection. The result is creating a <g> for every object in the data array
-            .enter()
-            // Create a group to hold each slice (we will have a <path> and a <text>
-            // element associated with each slice)
-            .append("svg:g")
-            .attr("class", "slice");    //allow us to style things in the slices (like text)
+                transitionMs: 750,
 
-        arcs.append("svg:path")
-            //set the color for each slice to be chosen from the color function defined above
-            .attr("fill", function(d, i) { return color(i); } )
-            //this creates the actual SVG path using the associated data (pie) with the arc drawing function
-            .attr("d", arc);
+                currentLabelFontSize: 20,
+                currentLabelInset: 20,
+                labelFont: "Helvetica",
+                labelFontSize: 25,
+                labelFormat: (numberToFormat) => {
+                    let prefix = d3.formatPrefix(numberToFormat)
+                    console.log(prefix)
+                    return prefix.scale(numberToFormat) + '' + prefix.symbol.toUpperCase()
+                },
 
-        // Add a legendLabel to each arc slice...
-        arcs.append("svg:text")
-            .attr("transform", function(d) { //set the label's origin to the center of the arc
-                //we have to make sure to set these before calling arc.centroid
-                d.outerRadius = outerRadius + 50; // Set Outer Coordinate
-                d.innerRadius = outerRadius + 45; // Set Inner Coordinate
-                return "translate(" + arc.centroid(d) + ")";
-            })
-            .attr("text-anchor", "middle") //center the text on it's origin
-            .style("fill", "Purple")
-            .style("font", "bold 12px Arial")
-            .text(function(d, i) { return dataSet[i].legendLabel; }); //get the label from our original data array
+                arcColorFn: function(value) {
+                    let ticks = [{
+                        tick: 0,
+                        color: '#588D6A'
+                    }, {
+                        tick: 25000,
+                        color: 'yellow'
+                    }, {
+                        tick: 50000,
+                        color: 'orange'
+                    }, {
+                        tick: 75000,
+                        color: 'red'
+                    }]
+                    let ret;
+                    ticks.forEach(function(tick) {
 
-        // Add a magnitude value to the larger arcs, translated to the arc centroid and rotated.
-        arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; }).append("svg:text")
-            .attr("dy", ".35em")
-            .attr("text-anchor", "middle")
-            //.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
-            .attr("transform", function(d) { //set the label's origin to the center of the arc
-                //we have to make sure to set these before calling arc.centroid
-                d.outerRadius = outerRadius; // Set Outer Coordinate
-                d.innerRadius = outerRadius/2; // Set Inner Coordinate
-                return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")";
-            })
-            .style("fill", "White")
-            .style("font", "bold 12px Arial")
-            .text(function(d) { return d.data.magnitude; });
+                        if (value > tick.tick) {
+                            ret = tick.color
+                            return
+                        }
+                    });
+                    return ret;
+                }
+            }
 
-        // Computes the angle of an arc, converting from radians to degrees.
-        function angle(d) {
-            var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
-            return a > 90 ? a - 180 : a;
+            function configure(configuration) {
+                for (let prop in configuration) {
+                    config[prop] = configuration[prop]
+                }
+            }
+            configure(configuration);
+
+            let foreground, arc, svg, current;
+            let cur_color;
+            let new_color, hold;
+
+            var oR = config.size - config.arcInset;
+            var iR = config.size - oR - config.arcWidth;
+
+            function deg2rad(deg) {
+                return deg * Math.PI / 180
+            }
+
+            function render(value) {
+
+                //oR = 30;
+                //iR = 10;
+
+
+
+                // Arc Defaults
+                arc = d3.svg.arc()
+                    .innerRadius(iR)
+                    .outerRadius(oR)
+                    .startAngle(deg2rad(-90))
+
+
+                svg = d3.select("#my_dataviz").append("svg")
+                    .attr("width", config.size)
+                    .attr("height", 200)
+                    .append("g")
+                    .attr("transform", "translate(" + config.size / 2 + "," + config.size / 2 + ")")
+
+
+                // Append background arc to svg
+                var background = svg.append("path")
+                    .datum({
+                        endAngle: deg2rad(90)
+                    })
+                    .attr("class", "gaugeBackground")
+                    .attr("d", arc)
+
+                // Append foreground arc to svg
+                foreground = svg.append("path")
+                    .datum({
+                        endAngle: deg2rad(-90)
+                    })
+                    //.style("fill", cur_color)
+                    .attr("d", arc);
+
+                // Display Max value
+                var max = svg.append("text")
+                    .attr("transform", "translate(" + (iR + ((oR - iR) / 2)) + ",25)") // Set between inner and outer Radius
+                    .attr("text-anchor", "middle")
+                    .style("font-size", config.labelFontSize)
+                    .style("font-family", config.labelFont)
+                    .text(config.maxValue)
+
+                // Display Min value
+                var min = svg.append("text")
+                    .attr("transform", "translate(" + -(iR + ((oR - iR) / 2)) + ",25)") // Set between inner and outer Radius
+                    .attr("text-anchor", "middle")
+                    .style("font-size", config.labelFontSize)
+                    .style("font-family", config.labelFont)
+                    .text(config.minValue)
+
+                // Display Current value
+                current = svg.append("text")
+                    .attr("transform", "translate(0," + -(-config.currentLabelInset + iR / 4) + ")") // Push up from center 1/4 of innerRadius
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "25px")
+                    .style("font-family", config.labelFont)
+                    .text(config.labelFormat(current))
+            }
+
+
+            function update(value) {
+                // Get new color
+                new_color = config.arcColorFn(value)
+                console.log(new_color)
+
+                var numPi = deg2rad(Math.floor(value * 180 / config.maxValue - 90));
+
+                // Display Current value
+                current.transition()
+                    .text((value/config.maxValue*100).toFixed(0)  + "% said YES")
+                // .text(config.labelFormat(value))
+
+                // Arc Transition
+                foreground.transition()
+                    .duration(config.transitionMs)
+                    .styleTween("fill", function() {
+                        return d3.interpolate(new_color, cur_color);
+                    })
+                    .call(arcTween, numPi);
+
+                // Set colors for next transition
+                hold = cur_color;
+                cur_color = new_color;
+                new_color = hold;
+            }
+
+            // Update animation
+            function arcTween(transition, newAngle) {
+                transition.attrTween("d", function(d) {
+                    var interpolate = d3.interpolate(d.endAngle, newAngle);
+                    return function(t) {
+                        d.endAngle = interpolate(t);
+                        return arc(d);
+                    };
+                });
+            }
+
+            render();
+            that.update = update;
+            that.configuration = config;
+            return that;
         }
+
+        let g = new Gauge({
+            size: 300
+        });
+        console.log(g)
+        g.update(30000);
+        g.update({{$working}});
+
+        // var canvasWidth = 350, //width
+        //     canvasHeight = 300,   //height
+        //     outerRadius = 100,   //radius
+        //     color = d3.scale.category20(); //builtin range of colors
+        //
+        // var dataSet = [
+        //     {"legendLabel":"Yes", "magnitude":{{$working}}},
+        //     {"legendLabel":"No", "magnitude":{{$notWorking}}}];
+        //
+        // var vis = d3.select("#my_dataviz")
+        //     .append("svg:svg") //create the SVG element inside the <body>
+        //     .data([dataSet]) //associate our data with the document
+        //     .attr("width", canvasWidth) //set the width of the canvas
+        //     .attr("height", canvasHeight) //set the height of the canvas
+        //     .append("svg:g") //make a group to hold our pie chart
+        //     .attr("transform", "translate(" + 175 + "," + 160 + ")") // relocate center of pie to 'outerRadius,outerRadius'
+        //
+        // // This will create <path> elements for us using arc data...
+        // var arc = d3.svg.arc()
+        //     .outerRadius(outerRadius);
+        //
+        // var pie = d3.layout.pie() //this will create arc data for us given a list of values
+        //     .value(function(d) { return d.magnitude; }) // Binding each value to the pie
+        //     .sort( function(d) { return null; } );
+        //
+        // // Select all <g> elements with class slice (there aren't any yet)
+        // var arcs = vis.selectAll("g.slice")
+        //     // Associate the generated pie data (an array of arcs, each having startAngle,
+        //     // endAngle and value properties)
+        //     .data(pie)
+        //     // This will create <g> elements for every "extra" data element that should be associated
+        //     // with a selection. The result is creating a <g> for every object in the data array
+        //     .enter()
+        //     // Create a group to hold each slice (we will have a <path> and a <text>
+        //     // element associated with each slice)
+        //     .append("svg:g")
+        //     .attr("class", "slice");    //allow us to style things in the slices (like text)
+        //
+        // arcs.append("svg:path")
+        //     //set the color for each slice to be chosen from the color function defined above
+        //     .attr("fill", function(d, i) { return color(i); } )
+        //     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+        //     .attr("d", arc);
+        //
+        // // Add a legendLabel to each arc slice...
+        // arcs.append("svg:text")
+        //     .attr("transform", function(d) { //set the label's origin to the center of the arc
+        //         //we have to make sure to set these before calling arc.centroid
+        //         d.outerRadius = outerRadius + 50; // Set Outer Coordinate
+        //         d.innerRadius = outerRadius +80; // Set Inner Coordinate
+        //         return "translate(" + arc.centroid(d)  + ")";
+        //     })
+        //     .attr("text-anchor", "middle") //center the text on it's origin
+        //     .style("fill", "Purple")
+        //     .style("font", "bold 20px Arial")
+        //     .text(function(d, i) { return dataSet[i].legendLabel +" - "+ dataSet[i].magnitude}); //get the label from our original data array
+        //
+        // // Add a magnitude value to the larger arcs, translated to the arc centroid and rotated.
+        // arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; }).append("svg:text")
+        //     .attr("dy", ".35em")
+        //     .attr("text-anchor", "middle")
+        //     //.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
+        //     .attr("transform", function(d) { //set the label's origin to the center of the arc
+        //         //we have to make sure to set these before calling arc.centroid
+        //         d.outerRadius = outerRadius; // Set Outer Coordinate
+        //         d.innerRadius = outerRadius/2; // Set Inner Coordinate
+        //         return "translate(" + arc.centroid(d) + ")";
+        //     })
+        //     .style("fill", "White")
+        //     .style("font", "bold 12px Arial")
+        //     .text(function(d) { return d.data.magnitude; });
+        //
+        // // Computes the angle of an arc, converting from radians to degrees.
+        // function angle(d) {
+        //     var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+        //     return a > 90 ? a - 180 : a;
+        // }
     </script>
 
 <!--    <script>-->
