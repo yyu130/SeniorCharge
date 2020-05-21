@@ -1,4 +1,4 @@
-<p align="center"><img src="https://seniorcharge.me/image/logo.png" width="400"></p>
+<p align="center"><img src="seniorcharge/public/image/logo.png" width="400"></p>
 
 # Sr.Charge
 Sr.Charge website was developed to help the Homeless Elderly find places (a.k.a Charging Stations) in Melbourne where they can charge their devices for free.
