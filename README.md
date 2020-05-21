@@ -8,6 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Versioning 
 We use Github to do the version control, which is keepping track of our work and helps us to easily explore the changes we have made, be it data, coding scripts, notes, etc. 
--Iteration 1: https://iteration1.seniorcharge.me
--Iteration 2: https://iteration2.seniorcharge.me
--Final Product: https://seniorcharge.me
+
+Here are three differnet versions for Sr.Charge website:
+- [Iteration 1]: https://iteration1.seniorcharge.me
+- [Iteration 2]: https://iteration2.seniorcharge.me
+- [Final Product]: https://seniorcharge.me
