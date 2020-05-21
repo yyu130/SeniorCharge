@@ -4,11 +4,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .footer{
-            position: fixed;
+            position: relative;
             left: 0;
             bottom: 0;
             width: 100%;
-            color: white;
+            background-color: #85b892;
             text-align: center;
         }
     </style>
