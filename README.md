@@ -5,6 +5,10 @@
 Sr.Charge website was developed to help the Homeless Elderly find places (a.k.a Charging Stations) in Melbourne where they can charge their devices for free.
 
 ## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
+### Prerequisites
+
 
 ## Built With
 
@@ -17,10 +21,10 @@ Sr.Charge website was developed to help the Homeless Elderly find places (a.k.a 
 ## Deployment 
 
 Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), which provides a stable and fast web hosting enviornment. It also provides SSL certificate and several subdomains which is matched our IE requests. Here is the list of modifications in some files to make the webiste alive:
-* [index.php](seniorcharge/public/index.php) in public_html on host file manager - Change the router for loader
-* [.htaccess](seniorcharge/public/.htaccess) in public_html on host file manager - Enable the SSL/HTTPS
-* .env (which is not stored in Github due to the security) in seniorcharge on host file manger - Change the database connection from local side to host server side
-* [database.php](seniorcharge/config/database.php) in seniorcharge on host file manager - Add one 'option' field in 'mysql' connection
+* [index.php](seniorcharge/public/index.php) in public_html folder on host file manager - Change the router for loader
+* [.htaccess](seniorcharge/public/.htaccess) in public_html folder on host file manager - Enable the SSL/HTTPS
+* .env (which is not stored in Github due to the security issue) in seniorcharge folder on host file manger - Change the database connection from local side to host server side
+* [database.php](seniorcharge/config/database.php) in seniorcharge folder on host file manager - Add one 'option' field in 'mysql' connection
 
 ## Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with Team B3 - Homage, who is the onwer of this repository, before making changes.
