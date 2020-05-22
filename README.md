@@ -1,12 +1,10 @@
 <p align="center"><img src="seniorcharge/public/image/logo.png" width="400"></p>
 
-# About Sr.Charge
+# Sr.Charge
 
 Sr.Charge website was developed to help the Homeless Elderly find places (a.k.a Charging Stations) in Melbourne where they can charge their devices for free.
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## Built With
 
@@ -18,16 +16,25 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Deployment 
 
+Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), it provides a stable and fast web hosting enviornment. It also provide SSL certificate and several subdomains which is matched our IE requests. Here is the list of modifications in some files to make the webiste alive:
+* [index.php](seniorcharge/public/index.php) in public_html on host file manager - Change the router for loader
+* [.htaccess](seniorcharge/public/.htaccess) in public_html on host file manager - Enable the SSL/HTTPS
+* [.env](seniorcharge/.env) in seniorcharge on host file manger - Change the database connection from local side to host server side
+* [database.php](seniorcharge/config/database.php) in seniorcharge on host file manager - Add one 'option' field in 'mysql' connection
 
+## Contributing
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+
+Please note we have a code of conduct, please follow it in all your interactions with the project.
 
 ## Versioning 
 
-We use Github to do the version control, which is keepping track of our work and helps us to easily explore the changes we have made, be it data, coding scripts, notes, etc. 
+We use Github to do the version control, which is used to keep track of our work and helps us to easily explore the changes we have made, be it data, coding scripts, notes, etc. The GitHub workflow can be summarised by the “commit-pull-push” mantra, which is also used by our project versioning. Each file on GitHub has a history, so instead of having many files like SrCharge_1st_May.php, SrCharge_2st_May.php, you can have only one and by exploring its history, you can see what it looked at different points in time. For example, you can go to our [Homepage](seniorcharge/resources/views/home.blade.php) file, and click the '[histroy]' (https://github.com/yyu130/SeniorCharge/commits/master/seniorcharge/resources/views/home.blade.php) button to view the completed workflow that we did for homepage file.  
 
-Here are three differnet versions for Sr.Charge website:
-- [Iteration 1](https://iteration1.seniorcharge.me)
-- [Iteration 2](https://iteration2.seniorcharge.me)
-- [Final Product](https://seniorcharge.me)
+Meanwhile, we have created subdomains for different versions of Sr.Charge website, Here are the website links:
+- Iteration 1 - [https://iteration1.seniorcharge.me](https://iteration1.seniorcharge.me)
+- Iteration 2 - [https://iteration2.seniorcharge.me](https://iteration2.seniorcharge.me)
+- Final Product - [https://seniorcharge.me](https://seniorcharge.me)
 
 ## Authors
 
@@ -37,6 +44,14 @@ Sr.Charge is developed by Team B3 - Homage. Here are all contributors who partic
 * **Jinyun Liu** - *UI/UX Designer / Analyst / Lead Graphics/Content* 
 * **Rina Reinoso** - *Project Manager / Data Governance* 
 * **Yinlong Yu** - *Lead Software Developer* 
+
+## Code of Conduct
+
+Since we use the Laravel web framework for Sr.Charge website, we need to review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct) to make sure no violations happened. 
+- Participants will be tolerant of opposing views.
+- Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
+- When interpreting the words and actions of others, participants should always assume good intentions.
+- Behavior that can be reasonably considered harassment will not be tolerated.
 
 ## License
 
