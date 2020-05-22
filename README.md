@@ -16,10 +16,10 @@ Sr.Charge website was developed to help the Homeless Elderly find places (a.k.a 
 
 ## Deployment 
 
-Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), it provides a stable and fast web hosting enviornment. It also provide SSL certificate and several subdomains which is matched our IE requests. Here is the list of modifications in some files to make the webiste alive:
+Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), which provides a stable and fast web hosting enviornment. It also provides SSL certificate and several subdomains which is matched our IE requests. Here is the list of modifications in some files to make the webiste alive:
 * [index.php](seniorcharge/public/index.php) in public_html on host file manager - Change the router for loader
 * [.htaccess](seniorcharge/public/.htaccess) in public_html on host file manager - Enable the SSL/HTTPS
-* [.env](seniorcharge/.env) in seniorcharge on host file manger - Change the database connection from local side to host server side
+* .env (which is not stored in Github due to the security) in seniorcharge on host file manger - Change the database connection from local side to host server side
 * [database.php](seniorcharge/config/database.php) in seniorcharge on host file manager - Add one 'option' field in 'mysql' connection
 
 ## Contributing
