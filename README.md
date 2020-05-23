@@ -67,4 +67,7 @@ Since the application was developed with Laravel web framework the team reviewed
 
 The website is built with Laravel - PHP web framework. The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Other 
+## Infrastructure/Security
+ - [Hostinger](https://www.hostinger.com/) for Web Hosting - It is paid monthly, and the expire date will be at 12th of the expired month.
+ It also provides SSL Certificate for [Sr.Charge](https://seniorcharge.me), which will not be expired if the hosting is paid monthly. 
+ - [ZeroSSL](https://zerossl.com/) for Free SSL Certificate - This website is used to apply SSL Certificates for two subdomains ([iteration 1](https://iteration1.seniorcharge.me) and [iteration 2](https://iteration2.seniorcharge.me)). The expired date is 18th August and 17th August respectively. 
