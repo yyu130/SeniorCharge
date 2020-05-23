@@ -2,7 +2,9 @@
 
 # Sr.Charge
 
-Sr.Charge website was developed to help the Homeless Elderly find Charging Stations in Melbourne where they can charge their devices for free. It is able to holistically support its users select the right charging station based on its location, services available on site, accessibility, feedback of previous users on the said station, and how to get there. These features were based on the data retrieved from several sources and then aligned with research-based needs of the homeless elderly.
+Sr.Charge website was developed to help the Homeless Elderly find Charging Stations in Melbourne where they can charge their devices for free.
+
+It can holistically support its users select the right charging station based on its location, services available on-site, accessibility, feedback of previous users on the said station, and how to get there. These features were based on the data retrieved from several sources and then aligned with research-based needs of the homeless elderly.
 
 ## Getting Started
 The detailed prerequisites and installation can be found on [Laravel](https://laravel.com/docs/7.x/installation) website. These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
@@ -35,16 +37,18 @@ When contributing to this repository, please first discuss the change you wish t
 
 ## Versioning 
 
-We use Github to do the version control, which is used to keep track of our work and helps us to easily explore the changes we have made, be it data, coding scripts, notes, etc. The GitHub workflow can be summarised by the “commit-pull-push” mantra, which is also used by our project versioning. Each file on GitHub has a history, so instead of having many files like SrCharge_1st_May.php, SrCharge_2st_May.php, you can have only one and by exploring its history, you can see what it looked at different points in time. For example, you can go to our [Homepage](seniorcharge/resources/views/home.blade.php) file, and click the ['histroy'](https://github.com/yyu130/SeniorCharge/commits/master/seniorcharge/resources/views/home.blade.php) button to view the completed workflow that we did for homepage file.  
+GitHub has been used for version control. It contains the record of all the development work and helps to quickly access the changes made in the past including data, coding scripts, notes etc. The GitHub workflow can be summarised by the “commit-pull-push” mantra, which is being adopted for project versioning.
 
-Meanwhile, we have created subdomains for different versions of Sr.Charge website, Here are the website links:
+Each file on GitHub has a history, so instead of having many files like SrCharge_1st_May.php, SrCharge_2st_May.php, there is only a single file and a user can explore its history to check how it looked in the past. 
+
+For instance, the [Homepage](seniorcharge/resources/views/home.blade.php) file of the website has a ['histroy'](https://github.com/yyu130/SeniorCharge/commits/master/seniorcharge/resources/views/home.blade.php) button which displays its complete workflow. Additionally, there are three subdomains in place for the website. Below is the URL to the website:
 - Iteration 1 - [https://iteration1.seniorcharge.me](https://iteration1.seniorcharge.me)
 - Iteration 2 - [https://iteration2.seniorcharge.me](https://iteration2.seniorcharge.me)
 - Final Product - [https://seniorcharge.me](https://seniorcharge.me)
 
 ## Authors
 
-Sr.Charge is developed by Team B3 - Homage. Here are all contributors who participated in this project:
+Sr.Charge is developed by Team B3 - Homage. Below is the list of project stakeholders:
 
 * **Abhinav Choudhary** - *Product Owner / UI/UX Designer / Analyst* 
 * **Jinyun Liu** - *UI/UX Designer / Analyst / Lead Graphics/Content* 
@@ -52,8 +56,8 @@ Sr.Charge is developed by Team B3 - Homage. Here are all contributors who partic
 * **Yinlong Yu** - *Lead Software Developer* 
 
 ## Code of Conduct
+Since the application was developed with Laravel web framework the team reviewedand abided by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct) to make sure there is no incident of violation:
 
-Since we use the Laravel web framework for Sr.Charge website, we need to review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct) to make sure no violations happened: 
 - Participants will be tolerant of opposing views.
 - Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
 - When interpreting the words and actions of others, participants should always assume good intentions.
@@ -62,3 +66,5 @@ Since we use the Laravel web framework for Sr.Charge website, we need to review 
 ## License
 
 The website is built with Laravel - PHP web framework. The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Other 
