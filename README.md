@@ -39,6 +39,7 @@ Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), wh
 
 * Data can be with updated one by oe or bulk by by following these [instructions](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/data_maintenance.md)
 * All codes relevant to the data are available in the .ipnyb files of the [Data Maintenance](https://github.com/yyu130/SeniorCharge/tree/master/Data%20Maintenance) repository
+* Data definitions are available in the system's [Data Dictionary](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataDictionary.md)
 
 ## Contributing
 
