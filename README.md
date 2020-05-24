@@ -31,6 +31,15 @@ Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), wh
 * .env (which is not stored in Github due to the security issue) in seniorcharge folder on host file manger - Change the database connection from local side to host server side
 * [database.php](seniorcharge/config/database.php) in seniorcharge folder on host file manager - Add one 'option' field in 'mysql' connection
 
+## Data Maintenance 
+
+* In collecting, wrangling, and restructuring the data, Python language was primarily used via Jupyter Notebook and hosted in [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb#recent=true). The following python packages were used:
++ [Geopy](https://geopy.readthedocs.io/en/stable/) - Retrieves location data using either a given address or coordinates (longitude and latitude)
++ [Pandas](https://pandas.pydata.org/)- Restructures the data that is used for the database or for data visualisations and data analysis
+
+* Data can be with updated one by oe or bulk by by following these [instructions](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/data_maintenance.md)
+* All codes relevant to the data are available in the .ipnyb files of the [Data Maintenance](https://github.com/yyu130/SeniorCharge/tree/master/Data%20Maintenance) repository
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with Team B3 - Homage, who is the onwer of this repository, before making changes.
