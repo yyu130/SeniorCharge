@@ -18,6 +18,11 @@ The detailed prerequisites and installation can be found on [Laravel](https://la
 * [Intellij](https://www.jetbrains.com/idea/) - The IDE used for writting source code
 * [Github](https://github.com/) - The development platform used for storing source code and version control 
 
+## Infrastructure/Security
+
+ - [Hostinger](https://www.hostinger.com/) for Web Hosting - It is paid monthly, the current expire date is 12th-June-2020. It also provides SSL Certificate for [Sr.Charge](https://seniorcharge.me), which will not be expired if the hosting is paid uninterrupted. 
+ - [ZeroSSL](https://zerossl.com/) for Free SSL Certificate - This website is used to apply SSL Certificates for two subdomains ([iteration 1](https://iteration1.seniorcharge.me) and [iteration 2](https://iteration2.seniorcharge.me)). The expired date is 18th-August-2020 and 17th-August-2020 respectively. 
+
 ## Deployment 
 
 Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), which provides a stable and fast web hosting enviornment. It also provides SSL certificate and several subdomains which is matched our IE requests. Here is the list of modifications in some files to make the webiste alive:
@@ -69,8 +74,3 @@ Since the application was developed with Laravel web framework the team reviewed
 ## License
 
 The website is built with Laravel - PHP web framework. The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Infrastructure/Security
-
- - [Hostinger](https://www.hostinger.com/) for Web Hosting - It is paid monthly, the current expire date is 12th-June-2020. It also provides SSL Certificate for [Sr.Charge](https://seniorcharge.me), which will not be expired if the hosting is paid uninterrupted. 
- - [ZeroSSL](https://zerossl.com/) for Free SSL Certificate - This website is used to apply SSL Certificates for two subdomains ([iteration 1](https://iteration1.seniorcharge.me) and [iteration 2](https://iteration2.seniorcharge.me)). The expired date is 18th-August-2020 and 17th-August-2020 respectively. 
