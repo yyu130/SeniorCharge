@@ -33,13 +33,15 @@ Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), wh
 
 ## Data Maintenance 
 
-* In collecting, wrangling, and restructuring the data, Python language was primarily used via Jupyter Notebook and hosted in [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb#recent=true). The following python packages were used:
-+ [Geopy](https://geopy.readthedocs.io/en/stable/) - Retrieves location data using either a given address or coordinates (longitude and latitude)
-+ [Pandas](https://pandas.pydata.org/)- Restructures the data that is used for the database or for data visualisations and data analysis
+### In collecting, wrangling, and restructuring the data, Python language was primarily used via Jupyter Notebook and hosted in [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb#recent=true). The following python packages were used:
+-  [Geopy](https://geopy.readthedocs.io/en/stable/) - Retrieves location data using either a given address or coordinates (longitude and latitude)
+-  [Pandas](https://pandas.pydata.org/)- Restructures the data that is used for the database or for data visualisations and data analysis
 
+### Data Updates and Data sources
 * Data can be with updated one by oe or bulk by by following these [instructions](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/data_maintenance.md)
 * All codes relevant to the data are available in the .ipnyb files of the [Data Maintenance](https://github.com/yyu130/SeniorCharge/tree/master/Data%20Maintenance) repository
 * Data definitions are available in the system's [Data Dictionary](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataDictionary.md)
+* The details data sources should be updated/reviewed every 2 years as noted in the [Data Sources List](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataSources.md)
 
 ## Contributing
 
