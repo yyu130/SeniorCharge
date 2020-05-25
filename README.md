@@ -41,7 +41,8 @@ Sr.Charge website is deployed on the [Hostinger](https://www.hostinger.com/), wh
 * Data can be with updated one by oe or bulk by by following these [instructions](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/data_maintenance.md)
 * All codes relevant to the data are available in the .ipnyb files of the [Data Maintenance](https://github.com/yyu130/SeniorCharge/tree/master/Data%20Maintenance) repository
 * Data definitions are available in the system's [Data Dictionary](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataDictionary.md)
-* The details data sources should be updated/reviewed every 2 years as noted in the [Data Sources List](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataSources.md)
+* The details of the data sources should be updated/reviewed every 2 years as noted in the [Data Sources List](https://github.com/yyu130/SeniorCharge/blob/master/Data%20Maintenance/DataSources.md)
+* [Salvation Army](https://www.salvationarmy.org.au/about-us/governance-policy/website-terms-of-use/) related data requires permission from the respective organisations by April 30, 2021
 
 ## Contributing
 
@@ -86,3 +87,7 @@ Since the application was developed with Laravel web framework the team reviewed
 ## License
 
 The website is built with Laravel - PHP web framework. The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Terms of Use
+
+All information in the website is for not-for-profit and non-commercial use only.
