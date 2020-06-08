@@ -1,3 +1,5 @@
+<!--    This is the file for homepage-->
+
 @extends('homelayout')
 @section('title','Senior Charge')
 @section('mycontent')
@@ -250,6 +252,7 @@
                     <p style="color: #3d4738; font-family: Arial;font-size: 34px; font-weight: bold;text-align: center">Your Postcode</p>
                     <p style="color: #3d4738; font-size: 20px; font-family: Arial;text-align: center">Enter your postcode or suburb to find your nearest free charging place across Melbourne</p>
 
+                    <!--    search function in the homepage to find charging stations-->
                     <form action="{{route('searchFor')}}" class="example" style="text-align: center ">
                         {{ csrf_field() }}
                         <div class="input-group">
@@ -267,6 +270,7 @@
                         <div>&nbsp;</div>
 
                     </form>
+                    <!--    show error message if search input is not valid-->
                     <div class="container">
                         @if (session()->has('success_message'))
                         <div class="alter alter-success">
