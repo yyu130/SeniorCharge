@@ -1,3 +1,5 @@
+<!--    This file is showing all matching charging stations after searching-->
+
 @extends('layout')
 @section('title','Find Stations')
 @section('mycontent')
@@ -123,6 +125,7 @@
 
 <div class="container">
     <h1>&nbsp;</h1>
+    <!--    advanced search function-->
     <form action="{{route('searchFor')}}" class="example" style="margin-right: auto;">
         {{ csrf_field() }}
         <div class="input-group">
@@ -131,6 +134,7 @@
             <span>
             <h3><b style="font-size: 22px; font-family: Arial; color: #3d4738;">&nbsp;Sort by&nbsp;&nbsp;</b></h3>
             </span>
+            <!--    sort by function (name and rating)-->
             <span>
             <select id="dropdown" class="form-control" name="sort" value="" style="border-radius: 8px">
                 <option value="name" <?php echo isset($_GET["sort"]) && $_GET["sort"] == "name" ? "selected" : "" ?>>Name</option>
@@ -139,6 +143,7 @@
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <b>
+            <!--    filter by function (open 24 hours and currently open)-->
             <span>
             <input type="checkbox" name="openAllDay" style="height: 18px;width: 18px;" <?php if(isset($_GET['openAllDay'])) echo 'checked';?>>
             <label style="font-size: 22px; font-family: Arial; color: #3d4738">24 Hours Only</label>
@@ -176,6 +181,7 @@
     </button>
     <p style="display: none" id="current"></p>
     <br>
+    <!--    show the map for all matching charging stations-->
     <div id="map">
     </div>
 <!--    <div id="right-panel" style="width: 40%; height: 200px; overflow-y: scroll; display: inline-block"></div>-->
@@ -191,6 +197,7 @@
     <!--        </thead>-->
     <tbody>
     @foreach($details as $station)
+    <!--    show iamges depending on their estabishment type-->
     <tr>
         @if ($station->establishment_type == "Library")
         <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/library.jpg')}}" width="400" height="300"></td>
@@ -208,6 +215,7 @@
         <td class="table-responsive-md" style="vertical-align: middle"><a href="{{url('detail',$station->id)}}"><img src="{{asset('image/other.jpg')}}" width="400" height="300"></td>
         @endif
 
+        <!--    show some brief information about charging station-->
         <td class="table-responsive-md">
             <ul class="name"><a id="title" href="{{url('detail',$station->id)}}">{{$station->station_name}}</a></ul>
             <ul class = "address" style="font-family: Arial;font-size: 22px; color: #3D4738"><img src="{{asset('image/pin.png')}}" width="22" height="22"> {{$station->address}}</ul>
@@ -252,6 +260,7 @@
             @endif
             @endif
             <!--            <ul><button style="background-color: #aecdb5" class="btn btn-primary"><a href="#" id="route{{$station->id}}" class="route" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold">Go There</a></button></ul>-->
+            <!--    redirect to google map to show the navigation-->
             <ul><button style="background-color: #aecdb5;border-color: #aecdb5" class="btn btn-primary"><a href="#" id="link{{$station->id}}" class="google" style="color: #3d4738;font-size: 22px;font-family: Arial;font-weight: bold;">Get Directions</a></button></ul>
 
             <!--            <ul><a href="#" id="route{{$station->id}}" class="route"><img src="{{asset('image/Navigation.png')}}" width="40" height="40"></a></ul>-->
@@ -296,6 +305,7 @@
 </table></table>
 </div>
 
+<!--    import the javascript to enable google map functons-->
 <script src="{{asset('js/jquery-3.5.0.js')}}"></script>
 <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
