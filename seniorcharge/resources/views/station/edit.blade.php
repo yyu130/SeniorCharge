@@ -1,3 +1,5 @@
+<!--update station details in cms-->
+
 @extends('cmsLayout')
 @section('mycontent')
 @if(isset(Auth::user()->email))
