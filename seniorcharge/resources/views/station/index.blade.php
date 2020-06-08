@@ -1,3 +1,5 @@
+<!--view all station details with add, edit and delete function-->
+
 @extends('cmsLayout')
 
 @section('mycontent')
