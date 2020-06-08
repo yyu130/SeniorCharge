@@ -1,3 +1,5 @@
+<!--    this page is for showing the detail information of specific charging station-->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!DOCTYPE html>
@@ -127,6 +129,7 @@
         background-position: center center;" >
 </div>
 <br><br>
+<!--    back button - back to the result page to show all charging stations-->
 <div class="container">
 <!--    <a style="color: white" id="back" class="Button"><i class="fas fa-arrow-left" > Back</i></a>-->
     <form action="{{route('searchFor')}}" class="example" style="margin-right: auto">
@@ -144,6 +147,8 @@
 <!--    <p id="post">{{$station->postcode}}</p>-->
 </div>
 <br>
+
+<!--   detailed information about charging station-->
 <div class="container">
     <div class="row">
         <h2 id="title">{{$station->station_name}}</h2>
@@ -181,6 +186,7 @@
 <!--            <br>-->
 <!--            <br>-->
             <br>
+            <!--    show image depends their estabishment type-->
             <div class="col-md-6 col-xs-12">
                 <div class="thumbnail" style="margin: auto;">
                     @if ($station->establishment_type == "Library")
@@ -206,6 +212,7 @@
 
         <div class="col-md-5 col-md-offset-1" style="margin: auto; margin-top: 0px">
             <br>
+            <!--    show different services and chargers depending what they have-->
             <h4 style="font-weight: bold; font-size: 28px;font-family: Arial">Facilities</h4>
             <h5 style="font-weight: bold; font-size: 22px;font-family: Arial">Types of Charger Available:<h5>
                     @if ($station->usb_a == 1)
@@ -293,6 +300,7 @@
 <!--<script src="{{asset('js/script.js')}}"></script>-->
 
 <br><br>
+<!--    review section (view summary and give reviews)-->
 <div class="container">
     @if ($reviews->count() > 1)
     <p style="color: #588D6A; font-size: 30px; font-weight: bold;font-family: Arial">Ratings & Reviews ({{ $reviews->count() }} reviews)
@@ -321,6 +329,8 @@
         <!--            <p>{{ \Session::get('success') }}</p>-->
         <!--        </div>-->
         <!--        @endif-->
+        
+        <!--    give reviews (star rating and is charging station working?)-->
         <div class="container">
         <form method="post" action="{{url('review')}}" style="text-align: center">
             {{csrf_field()}}
@@ -406,6 +416,7 @@
 <!--    </h5>-->
 <!--</div>-->
 <!--</div>-->
+<!--    show summary of charging station (average rating and chart for whether charging station work or not)-->
 <br>
 @if ($reviews->count() != 0)
 <div class="row" style="background-color: #aecdb5;margin: auto">
@@ -430,6 +441,7 @@
 <!--            @endif-->
 <!--            @endfor-->
 <!--        </h5>-->
+        <!--    number of review for each rating(1-5)-->
         <h5>
             <span style="font-size: 26px; font-family: Arial;color: #3d4738">{{$rat5}}</span>
             &nbsp;&nbsp;
@@ -483,6 +495,7 @@
     <script src='https://d3js.org/d3.v2.js'></script>
 <!--    <script data-require="d3@*" data-semver="3.2.2" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.min.js"></script>-->
 <!--    <script data-require="d3@*" data-semver="3.2.2" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js"></script>-->
+    <!--    javascript for d3 dynamic chart-->
     <script type="text/javascript">
         let Gauge = function(configuration) {
             let that = {}
