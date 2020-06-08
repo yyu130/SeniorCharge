@@ -313,6 +313,7 @@
     crossorigin="anonymous"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="/assets/gmap3.js?body=1" type="text/javascript"></script>
+<!--Google map API (change to your personal google map api here). For more details, maintenance documents can be referred-->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZsJRAorUhneET2Z6ohhvevUv5h1XQaLI&libraries=places" type="text/javascript">
 </script>
